@@ -1,0 +1,177 @@
+<resources>
+    <!-- Core Identity & Navigation -->
+    <string name="app_name">PocketMechanic</string>
+    <string name="app_tagline">Visual &amp; Audio DIY Diagnoser</string>
+    <string name="sign_in_google">Sign in with Google</string>
+    <string name="signing_in">Signing in…</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="nav_audio">Audio</string>
+    <string name="nav_workbench">Inspect</string>
+    <string name="nav_hands_free">Hands-Free</string>
+    <string name="nav_logs">Repair Log</string>
+    <string name="nav_garage">Garage</string>
+    <string name="splash_calibrating">CALIBRATING ACOUSTIC &amp; VISION PROBES…</string>
+
+    <!-- Auth / Onboarding -->
+    <string name="auth_hero_headline">Diagnose engine noises, leaks &amp; error codes in seconds.</string>
+    <string name="auth_feature_audio_title">Audio Pattern Diagnosis</string>
+    <string name="auth_feature_audio_desc">Capture belt squeals, knocks, and motor hums for culprit analysis.</string>
+    <string name="auth_feature_vision_title">Visual &amp; Torch Inspector</string>
+    <string name="auth_feature_vision_desc">Snap error codes, blown fuses, and fittings with built-in flashlight.</string>
+    <string name="auth_feature_manuals_title">Search-Grounded Manuals</string>
+    <string name="auth_feature_manuals_desc">Cross-references exact make &amp; model repair guides and safety warnings.</string>
+    <string name="auth_feature_voice_title">Hands-Free Voice Mode</string>
+    <string name="auth_feature_voice_desc">Talk back and forth with the assistant without touching the screen.</string>
+    <string name="auth_sync_footnote">Syncs your Garage equipment &amp; DIY repair logs securely to your account.</string>
+
+    <!-- Flashlight & Hardware -->
+    <string name="torch_toggle">Toggle Flashlight</string>
+    <string name="torch_light_on">LIGHT ON</string>
+    <string name="torch_light_off">LIGHT</string>
+    <string name="torch_card_title_on">WORKSHOP FLASHLIGHT ON</string>
+    <string name="torch_card_title_off">WORKSHOP FLASHLIGHT</string>
+    <string name="torch_card_desc_on">Illuminating dark engine bays &amp; under-sink areas</string>
+    <string name="torch_card_desc_off">Toggle LED torch for dark engine bays or under sinks</string>
+    <string name="torch_card_unavailable">No camera flash hardware detected on this device</string>
+
+    <!-- Audio Capture & Workbench -->
+    <string name="audio_capture_title">Acoustic Engine &amp; Motor Probe</string>
+    <string name="vision_capture_title">Visual Fault &amp; Code Inspector</string>
+    <string name="hands_free_title">Hands-Free Voice Mechanic</string>
+    <string name="error_empty_input">Please record audio, attach a photo, or describe the issue first.</string>
+    <string name="permission_mic_required">Microphone permission is needed to listen to mechanical sounds or voice commands.</string>
+    <string name="permission_camera_required">Camera permission is needed to inspect parts, leaks, and error codes.</string>
+    <string name="audio_profile_engine">Engine Bay</string>
+    <string name="audio_profile_plumbing">Plumbing</string>
+    <string name="audio_profile_appliance">Appliance</string>
+    <string name="audio_placement_engine">Hold 6–12 in from engine bay, belt, or manifold — avoid exhaust airflow</string>
+    <string name="audio_placement_plumbing">Hold near pipe, P-trap, or shutoff valve while cycling faucet or drain</string>
+    <string name="audio_placement_appliance">Hold near motor, drum, or condenser panel during active cycle</string>
+    <string name="audio_playback_play">Preview captured audio</string>
+    <string name="audio_playback_stop">Stop audio preview</string>
+    <string name="audio_signal_quiet">Move closer</string>
+    <string name="audio_signal_optimal">Optimal level</string>
+    <string name="audio_signal_clipping">Too loud</string>
+    <string name="audio_context_header">SOUND SOURCE &amp; MODEL CONTEXT</string>
+    <string name="audio_make_model_label">Make &amp; Model (optional)</string>
+    <string name="audio_symptom_label">When does the noise happen?</string>
+    <string name="audio_analyze_cta">Analyze Mechanical Sound</string>
+    <string name="audio_analyzing_cta">Analyzing Acoustic Pattern…</string>
+    <string name="audio_capture_another">Capture Another Sound</string>
+
+    <string name="workbench_header">WHAT ARE WE INSPECTING?</string>
+    <string name="workbench_make_model_label">Make, Model &amp; Year (for manual grounding)</string>
+    <string name="workbench_symptom_label">Symptoms, error codes, or context (optional)</string>
+    <string name="workbench_mode_audio">Audio</string>
+    <string name="workbench_mode_camera">Camera</string>
+    <string name="workbench_mode_code">Code / Text</string>
+    <string name="workbench_run_diagnosis">Run Grounded Diagnosis</string>
+    <string name="workbench_analyzing">Analyzing &amp; Searching Manuals…</string>
+    <string name="workbench_start_new">Start New Inspection</string>
+    <string name="dictate_symptoms">Dictate symptoms by voice</string>
+
+    <!-- Diagnostic Result & Maps Finder -->
+    <string name="result_likely_culprit">LIKELY CULPRIT</string>
+    <string name="result_save_report">Save Report</string>
+    <string name="result_saved_to_log">Saved to Log</string>
+    <string name="result_share">Share</string>
+    <string name="result_share_full">Share Repair Report</string>
+    <string name="result_diy_checklist">DIY REPAIR CHECKLIST</string>
+    <string name="result_parts_tools">TOOLS &amp; PARTS NEEDED</string>
+    <string name="result_grounded_sources">GROUNDED REPAIR MANUALS &amp; SOURCES</string>
+    <string name="result_followup_header">ASK A FOLLOW-UP QUESTION</string>
+    <string name="result_followup_hint">Ask about torque specs, safety, or next steps…</string>
+    <string name="nearby_help_header">NEARBY PARTS &amp; REPAIR HELP</string>
+    <string name="nearby_help_urgent">High severity — quickly locate a nearby shop or replacement parts in Google Maps.</string>
+    <string name="nearby_help_standard">Opens Google Maps directly with zero extra permissions or API fees.</string>
+    <string name="find_parts_nearby">Find Parts</string>
+    <string name="find_pro_nearby">Nearby Shop</string>
+
+    <!-- Hands-Free Voice -->
+    <string name="hands_free_banner">GREASY-HANDS VOICE MODE</string>
+    <string name="hands_free_general_assistant">General Workshop Assistant</string>
+    <string name="hands_free_loop_enabled">Continuous back-and-forth loop</string>
+    <string name="hands_free_tap_record">Tap-to-record voice &amp; audio clip</string>
+    <string name="hands_free_tap_start">Tap Anywhere to Start Talking</string>
+    <string name="hands_free_listening">Listening… Speak Naturally</string>
+    <string name="hands_free_thinking">Searching Manuals &amp; Diagnosing…</string>
+    <string name="hands_free_speaking">Speaking Reply… (Tap to Interrupt)</string>
+    <string name="hands_free_pause">Pause Hands-Free Session</string>
+
+    <!-- Garage & Repair Log -->
+    <string name="garage_stat_units">UNITS</string>
+    <string name="garage_stat_diagnoses">DIAGNOSES</string>
+    <string name="garage_stat_fixed">FIXED</string>
+    <string name="garage_empty_title">Register Your Vehicles &amp; Appliances</string>
+    <string name="garage_empty_desc">Save exact make &amp; model details so PocketMechanic automatically pulls the right service manual during diagnostics.</string>
+    <string name="garage_add_first">Add First Equipment</string>
+    <string name="garage_inspect_unit">Inspect This Unit</string>
+    <string name="garage_add_equipment">Add Equipment</string>
+    <string name="garage_edit_equipment">Edit Equipment</string>
+    <string name="garage_field_nickname">Nickname *</string>
+    <string name="garage_field_make_model">Make &amp; Model</string>
+    <string name="garage_field_year_serial">Year / Serial</string>
+    <string name="garage_field_notes">Service Notes</string>
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_byok">BYOK</string>
+    <string name="action_offline">Offline</string>
+    <string name="action_close">Close</string>
+    <string name="history_search_hint">Search past diagnoses, models, or culprits…</string>
+
+    <!-- AI Engine, Quota & BYOK -->
+    <string name="ai_engine_settings_title">AI Engine &amp; BYOK</string>
+    <string name="ai_engine_settings_subtitle">Free daily tier, Bring Your Own Gemini Key, or Offline Reference</string>
+    <string name="ai_quota_reached_title">Daily Free AI Allowance Used (%1$d/%2$d)</string>
+    <string name="ai_quota_reached_desc">Resets automatically at midnight UTC — or keep diagnosing right now with your choice below:</string>
+    <string name="ai_choose_byok_cta">Use Personal Gemini Key (BYOK • Unlimited)</string>
+    <string name="ai_choose_supporter_cta">Support &amp; Boost</string>
+    <string name="ai_choose_offline_cta">Offline Ref</string>
+    <string name="ai_get_key_cta">Get a Gemini API Key at AI Studio</string>
+    <string name="ai_key_input_label">Personal Gemini API Key</string>
+    <string name="ai_test_save_key">Test &amp; Save Key</string>
+    <string name="ai_testing_key">Testing…</string>
+    <string name="ai_clear_key">Clear</string>
+    <string name="ai_privacy_note">Stored strictly on-device in private preferences. Never uploaded to cloud logs.</string>
+
+    <!-- Support, Engagement Auto-Popups & Privacy -->
+    <string name="support_development_title">Support Development</string>
+    <string name="support_development_subtitle">100% ad-free indie DIY workshop tool</string>
+    <string name="support_about_header">SUPPORT &amp; ABOUT POCKETMECHANIC</string>
+    <string name="support_view_options">View Support Options</string>
+    <string name="support_supporter_options">View Supporter Options</string>
+    <string name="support_inline_title">Diagnosis Ready — Saved Your Day?</string>
+    <string name="support_inline_subtitle">Buy the indie dev a coffee or unlock Active Supporter badge</string>
+    <string name="active_supporter_badge">Active Supporter</string>
+    <string name="action_rate">Rate</string>
+    <string name="action_share">Share</string>
+    <string name="action_update">Update</string>
+    <string name="privacy_policy_title">Privacy Policy</string>
+    <string name="event_log_label">App Event Log (%1$d tracked)</string>
+
+    <!-- Localized Smart Auto-Popups (Update, Rate, Share, Support Milestone) -->
+    <string name="share_app_subject">Try PocketMechanic — Visual &amp; Audio DIY Diagnoser</string>
+    <string name="rate_app_title">Did PocketMechanic Save You a Trip?</string>
+    <string name="rate_app_message">If our diagnostics helped pinpoint the issue, a quick Play Store rating helps other DIYers find us.</string>
+    <string name="rate_app_primary">Rate App</string>
+    <string name="rate_app_later">Maybe Later</string>
+    <string name="rate_app_opt_out">Already Rated / Don\'t Ask</string>
+
+    <string name="update_app_title">Workshop Update Ready</string>
+    <string name="update_app_message">A newer version of PocketMechanic is available with improved acoustic &amp; diagnostic accuracy.</string>
+    <string name="update_app_primary">Update Now</string>
+    <string name="update_app_later">Later</string>
+    <string name="update_app_opt_out">Skip Version</string>
+
+    <string name="share_popup_title">Share PocketMechanic with a Friend</string>
+    <string name="share_popup_message">Know someone troubleshooting a noisy belt, error code, or leaky sink? Send them PocketMechanic.</string>
+    <string name="share_popup_primary">Share App</string>
+    <string name="share_popup_later">Later</string>
+    <string name="share_popup_opt_out">Not Interested</string>
+
+    <string name="milestone_popup_title">Workshop Milestone: %1$d Diagnoses!</string>
+    <string name="milestone_popup_message">PocketMechanic stays 100% ad-free thanks to community supporters. Want to buy the dev a coffee?</string>
+    <string name="milestone_popup_primary">Support Options</string>
+    <string name="milestone_popup_later">Not Now</string>
+</resources>

@@ -1,0 +1,177 @@
+<resources>
+    <!-- Core Identity & Navigation -->
+    <string name="app_name">PocketMechanic</string>
+    <string name="app_tagline">Diagnóstico visual e sonoro DIY</string>
+    <string name="sign_in_google">Entrar com o Google</string>
+    <string name="signing_in">Entrando…</string>
+    <string name="sign_out">Sair</string>
+    <string name="nav_audio">Áudio</string>
+    <string name="nav_workbench">Inspecionar</string>
+    <string name="nav_hands_free">Mãos livres</string>
+    <string name="nav_logs">Histórico</string>
+    <string name="nav_garage">Garagem</string>
+    <string name="splash_calibrating">CALIBRANDO SONDAS ACÚSTICAS E VISUAIS…</string>
+
+    <!-- Auth / Onboarding -->
+    <string name="auth_hero_headline">Diagnostique ruídos de motor, vazamentos e códigos de erro em segundos.</string>
+    <string name="auth_feature_audio_title">Diagnóstico por padrão de áudio</string>
+    <string name="auth_feature_audio_desc">Capte chiados de correia, batidas e zumbidos para identificar o defeito.</string>
+    <string name="auth_feature_vision_title">Inspetor visual e lanterna</string>
+    <string name="auth_feature_vision_desc">Fotografe códigos de erro, fusíveis queimados e conexões com lanterna integrada.</string>
+    <string name="auth_feature_manuals_title">Manuais verificados por busca</string>
+    <string name="auth_feature_manuals_desc">Cruza dados com guias de reparo e avisos de segurança da marca e modelo exatos.</string>
+    <string name="auth_feature_voice_title">Modo voz mãos livres</string>
+    <string name="auth_feature_voice_desc">Converse com o assistente sem tocar na tela enquanto trabalha.</string>
+    <string name="auth_sync_footnote">Sincroniza seus equipamentos da Garagem e registros de reparo com segurança na sua conta.</string>
+
+    <!-- Flashlight & Hardware -->
+    <string name="torch_toggle">Alternar lanterna</string>
+    <string name="torch_light_on">LUZ LIGADA</string>
+    <string name="torch_light_off">LANTERNA</string>
+    <string name="torch_card_title_on">LANTERNA DE OFICINA LIGADA</string>
+    <string name="torch_card_title_off">LANTERNA DE OFICINA</string>
+    <string name="torch_card_desc_on">Iluminando áreas escuras do motor e sob a pia</string>
+    <string name="torch_card_desc_off">Ligue a lanterna LED para compartimentos do motor ou embaixo da pia</string>
+    <string name="torch_card_unavailable">Nenhum flash de câmera detectado neste dispositivo</string>
+
+    <!-- Audio Capture & Workbench -->
+    <string name="audio_capture_title">Sonda acústica de motor</string>
+    <string name="vision_capture_title">Inspetor visual de falhas e códigos</string>
+    <string name="hands_free_title">Mecânico de voz mãos livres</string>
+    <string name="error_empty_input">Grave um áudio, anexe uma foto ou descreva o problema primeiro.</string>
+    <string name="permission_mic_required">A permissão de microfone é necessária para ouvir ruídos mecânicos ou comandos de voz.</string>
+    <string name="permission_camera_required">A permissão de câmera é necessária para inspecionar peças, vazamentos e códigos de erro.</string>
+    <string name="audio_profile_engine">Motor</string>
+    <string name="audio_profile_plumbing">Hidráulica</string>
+    <string name="audio_profile_appliance">Eletrodoméstico</string>
+    <string name="audio_placement_engine">Segure a 15–30 cm do motor, correia ou coletor — evite o fluxo do escapamento</string>
+    <string name="audio_placement_plumbing">Segure perto do cano, sifão ou registro ao abrir a torneira ou o ralo</string>
+    <string name="audio_placement_appliance">Segure perto do motor, tambor ou condensador durante o funcionamento</string>
+    <string name="audio_playback_play">Ouvir áudio gravado</string>
+    <string name="audio_playback_stop">Parar reprodução</string>
+    <string name="audio_signal_quiet">Aproxime mais</string>
+    <string name="audio_signal_optimal">Nível ideal</string>
+    <string name="audio_signal_clipping">Muito alto</string>
+    <string name="audio_context_header">ORIGEM DO SOM E MODELO</string>
+    <string name="audio_make_model_label">Marca e modelo (opcional)</string>
+    <string name="audio_symptom_label">Quando o ruído acontece?</string>
+    <string name="audio_analyze_cta">Analisar som mecânico</string>
+    <string name="audio_analyzing_cta">Analisando padrão acústico…</string>
+    <string name="audio_capture_another">Gravar outro som</string>
+
+    <string name="workbench_header">O QUE VAMOS INSPECIONAR?</string>
+    <string name="workbench_make_model_label">Marca, modelo e ano (para buscar manuais)</string>
+    <string name="workbench_symptom_label">Sintomas, códigos de erro ou contexto (opcional)</string>
+    <string name="workbench_mode_audio">Áudio</string>
+    <string name="workbench_mode_camera">Câmera</string>
+    <string name="workbench_mode_code">Código / Texto</string>
+    <string name="workbench_run_diagnosis">Executar diagnóstico</string>
+    <string name="workbench_analyzing">Analisando e consultando manuais…</string>
+    <string name="workbench_start_new">Iniciar nova inspeção</string>
+    <string name="dictate_symptoms">Ditar sintomas por voz</string>
+
+    <!-- Diagnostic Result & Maps Finder -->
+    <string name="result_likely_culprit">CAUSA PROVÁVEL</string>
+    <string name="result_save_report">Salvar relatório</string>
+    <string name="result_saved_to_log">Salvo</string>
+    <string name="result_share">Compartilhar</string>
+    <string name="result_share_full">Compartilhar relatório</string>
+    <string name="result_diy_checklist">CHECKLIST DE REPARO PASSO A PASSO</string>
+    <string name="result_parts_tools">FERRAMENTAS E PEÇAS NECESSÁRIAS</string>
+    <string name="result_grounded_sources">MANUAIS E FONTES DE REPARO</string>
+    <string name="result_followup_header">FAZER UMA PERGUNTA ADICIONAL</string>
+    <string name="result_followup_hint">Pergunte sobre torque, segurança ou próximos passos…</string>
+    <string name="nearby_help_header">PEÇAS E OFICINAS PRÓXIMAS</string>
+    <string name="nearby_help_urgent">Alta gravidade — encontre rapidamente uma oficina próxima ou peças no Google Maps.</string>
+    <string name="nearby_help_standard">Abre o Google Maps diretamente, sem permissões extras nem taxas de API.</string>
+    <string name="find_parts_nearby">Buscar peças</string>
+    <string name="find_pro_nearby">Oficina próxima</string>
+
+    <!-- Hands-Free Voice -->
+    <string name="hands_free_banner">MODO VOZ MÃOS SUJAS</string>
+    <string name="hands_free_general_assistant">Assistente geral de oficina</string>
+    <string name="hands_free_loop_enabled">Conversa contínua em loop</string>
+    <string name="hands_free_tap_record">Toque para gravar voz e áudio</string>
+    <string name="hands_free_tap_start">Toque em qualquer lugar para falar</string>
+    <string name="hands_free_listening">Ouvindo… Fale normalmente</string>
+    <string name="hands_free_thinking">Consultando manuais e diagnosticando…</string>
+    <string name="hands_free_speaking">Falando resposta… (Toque para interromper)</string>
+    <string name="hands_free_pause">Pausar sessão mãos livres</string>
+
+    <!-- Garage & Repair Log -->
+    <string name="garage_stat_units">EQUIPAMENTOS</string>
+    <string name="garage_stat_diagnoses">DIAGNÓSTICOS</string>
+    <string name="garage_stat_fixed">CONSERTADOS</string>
+    <string name="garage_empty_title">Cadastre seus veículos e aparelhos</string>
+    <string name="garage_empty_desc">Salve a marca e o modelo exatos para o PocketMechanic buscar o manual certo durante os diagnósticos.</string>
+    <string name="garage_add_first">Adicionar primeiro item</string>
+    <string name="garage_inspect_unit">Inspecionar unidade</string>
+    <string name="garage_add_equipment">Adicionar equipamento</string>
+    <string name="garage_edit_equipment">Editar equipamento</string>
+    <string name="garage_field_nickname">Apelido *</string>
+    <string name="garage_field_make_model">Marca e modelo</string>
+    <string name="garage_field_year_serial">Ano / Série</string>
+    <string name="garage_field_notes">Notas de manutenção</string>
+    <string name="action_save">Salvar</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_retry">Tentar novamente</string>
+    <string name="action_byok">BYOK</string>
+    <string name="action_offline">Offline</string>
+    <string name="action_close">Fechar</string>
+    <string name="history_search_hint">Buscar diagnósticos, modelos ou falhas…</string>
+
+    <!-- AI Engine, Quota & BYOK -->
+    <string name="ai_engine_settings_title">Motor de IA e BYOK</string>
+    <string name="ai_engine_settings_subtitle">Cota diária gratuita, chave própria do Gemini ou referência offline</string>
+    <string name="ai_quota_reached_title">Cota diária de IA usada (%1$d/%2$d)</string>
+    <string name="ai_quota_reached_desc">Renova automaticamente à meia-noite UTC — ou continue diagnosticando agora abaixo:</string>
+    <string name="ai_choose_byok_cta">Usar chave pessoal do Gemini (BYOK • Ilimitado)</string>
+    <string name="ai_choose_supporter_cta">Apoiar e ampliar</string>
+    <string name="ai_choose_offline_cta">Ref. offline</string>
+    <string name="ai_get_key_cta">Obter chave API do Gemini no AI Studio</string>
+    <string name="ai_key_input_label">Chave API pessoal do Gemini</string>
+    <string name="ai_test_save_key">Testar e salvar</string>
+    <string name="ai_testing_key">Testando…</string>
+    <string name="ai_clear_key">Limpar</string>
+    <string name="ai_privacy_note">Armazenada apenas no aparelho em preferências privadas. Nunca enviada à nuvem.</string>
+
+    <!-- Support, Engagement Auto-Popups & Privacy -->
+    <string name="support_development_title">Apoiar o desenvolvimento</string>
+    <string name="support_development_subtitle">Ferramenta independente de oficina sem anúncios</string>
+    <string name="support_about_header">APOIO E SOBRE O POCKETMECHANIC</string>
+    <string name="support_view_options">Ver opções de apoio</string>
+    <string name="support_supporter_options">Opções de apoiador</string>
+    <string name="support_inline_title">Diagnóstico pronto — Salvou seu dia?</string>
+    <string name="support_inline_subtitle">Pague um café ao desenvolvedor ou desbloqueie o selo Apoiador Ativo</string>
+    <string name="active_supporter_badge">Apoiador ativo</string>
+    <string name="action_rate">Avaliar</string>
+    <string name="action_share">Compartilhar</string>
+    <string name="action_update">Atualizar</string>
+    <string name="privacy_policy_title">Política de privacidade</string>
+    <string name="event_log_label">Registro de eventos (%1$d registrados)</string>
+
+    <!-- Localized Smart Auto-Popups (Update, Rate, Share, Support Milestone) -->
+    <string name="share_app_subject">Conheça o PocketMechanic — Diagnóstico visual e sonoro</string>
+    <string name="rate_app_title">O PocketMechanic economizou uma ida à oficina?</string>
+    <string name="rate_app_message">Se o diagnóstico ajudou a encontrar o problema, uma avaliação na Play Store ajuda outros usuários.</string>
+    <string name="rate_app_primary">Avaliar app</string>
+    <string name="rate_app_later">Mais tarde</string>
+    <string name="rate_app_opt_out">Já avaliei / Não perguntar</string>
+
+    <string name="update_app_title">Atualização disponível</string>
+    <string name="update_app_message">Uma nova versão do PocketMechanic está disponível com maior precisão acústica e de diagnóstico.</string>
+    <string name="update_app_primary">Atualizar agora</string>
+    <string name="update_app_later">Depois</string>
+    <string name="update_app_opt_out">Pular versão</string>
+
+    <string name="share_popup_title">Compartilhe o PocketMechanic</string>
+    <string name="share_popup_message">Conhece alguém investigando uma correia barulhenta, código de erro ou vazamento? Envie o PocketMechanic.</string>
+    <string name="share_popup_primary">Compartilhar app</string>
+    <string name="share_popup_later">Depois</string>
+    <string name="share_popup_opt_out">Sem interesse</string>
+
+    <string name="milestone_popup_title">Marco na oficina: %1$d diagnósticos!</string>
+    <string name="milestone_popup_message">O PocketMechanic continua sem anúncios graças aos apoiadores da comunidade. Quer pagar um café ao dev?</string>
+    <string name="milestone_popup_primary">Opções de apoio</string>
+    <string name="milestone_popup_later">Agora não</string>
+</resources>

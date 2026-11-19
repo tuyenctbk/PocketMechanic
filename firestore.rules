@@ -1,0 +1,150 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global default-deny safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isValidCategory(category) {
+      return category in ['VEHICLE', 'APPLIANCE', 'PLUMBING', 'HVAC', 'YARD_TOOL', 'OTHER'];
+    }
+
+    function isValidMode(mode) {
+      return mode in ['AUDIO', 'VISION', 'VOICE', 'TEXT'];
+    }
+
+    function isValidSeverity(severity) {
+      return severity in ['LOW', 'MEDIUM', 'HIGH', 'CRITICAL'];
+    }
+
+    function isValidStringList(items, maxCount) {
+      return items is list &&
+             items.size() <= maxCount &&
+             (items.size() == 0 || items[0] is string);
+    }
+
+    function isValidEquipment(data, userId) {
+      return data.userId is string &&
+             data.userId == userId &&
+             data.userId == request.auth.uid &&
+             data.name is string &&
+             data.name.size() >= 1 &&
+             data.name.size() <= 80 &&
+             isValidCategory(data.category) &&
+             (!('makeModel' in data) || (data.makeModel is string && data.makeModel.size() <= 100)) &&
+             (!('yearOrSerial' in data) || (data.yearOrSerial is string && data.yearOrSerial.size() <= 60)) &&
+             (!('notes' in data) || (data.notes is string && data.notes.size() <= 300)) &&
+             data.createdAt is timestamp &&
+             data.createdAt <= request.time &&
+             data.updatedAt is timestamp &&
+             data.updatedAt <= request.time;
+    }
+
+    function isValidDiagnostic(data, userId) {
+      return data.userId is string &&
+             data.userId == userId &&
+             data.userId == request.auth.uid &&
+             data.title is string &&
+             data.title.size() >= 1 &&
+             data.title.size() <= 120 &&
+             isValidCategory(data.category) &&
+             isValidMode(data.mode) &&
+             data.equipmentName is string &&
+             data.equipmentName.size() <= 100 &&
+             isValidSeverity(data.severity) &&
+             data.primaryCulprit is string &&
+             data.primaryCulprit.size() >= 1 &&
+             data.primaryCulprit.size() <= 200 &&
+             data.confidencePercent is int &&
+             data.confidencePercent >= 0 &&
+             data.confidencePercent <= 100 &&
+             data.summary is string &&
+             data.summary.size() >= 1 &&
+             data.summary.size() <= 2000 &&
+             isValidStringList(data.safetyWarnings, 10) &&
+             isValidStringList(data.diySteps, 15) &&
+             isValidStringList(data.partsTools, 15) &&
+             isValidStringList(data.sourceEntries, 10) &&
+             data.resolved is bool &&
+             data.createdAt is timestamp &&
+             data.createdAt <= request.time &&
+             data.updatedAt is timestamp &&
+             data.updatedAt <= request.time;
+    }
+
+    match /users/{userId}/equipment/{equipmentId} {
+      allow list: if isOwner(userId);
+      allow get: if isOwner(userId) && isValidId(equipmentId);
+
+      allow create: if isOwner(userId) &&
+                       isValidId(equipmentId) &&
+                       incoming().keys().hasAll(['userId', 'name', 'category', 'createdAt', 'updatedAt']) &&
+                       incoming().keys().hasOnly(['userId', 'name', 'category', 'makeModel', 'yearOrSerial', 'notes', 'createdAt', 'updatedAt']) &&
+                       isValidEquipment(incoming(), userId);
+
+      allow update: if isOwner(userId) &&
+                       isValidId(equipmentId) &&
+                       isValidEquipment(incoming(), userId) &&
+                       incoming().userId == existing().userId &&
+                       incoming().createdAt == existing().createdAt &&
+                       incoming().diff(existing()).affectedKeys().hasOnly(['name', 'category', 'makeModel', 'yearOrSerial', 'notes', 'updatedAt']);
+
+      allow delete: if isOwner(userId) && isValidId(equipmentId);
+    }
+
+    match /users/{userId}/diagnostics/{diagnosticId} {
+      allow list: if isOwner(userId);
+      allow get: if isOwner(userId) && isValidId(diagnosticId);
+
+      allow create: if isOwner(userId) &&
+                       isValidId(diagnosticId) &&
+                       incoming().keys().hasAll([
+                         'userId', 'title', 'category', 'mode', 'equipmentName', 'severity',
+                         'primaryCulprit', 'confidencePercent', 'summary',
+                         'safetyWarnings', 'diySteps', 'partsTools', 'sourceEntries',
+                         'resolved', 'createdAt', 'updatedAt'
+                       ]) &&
+                       incoming().keys().hasOnly([
+                         'userId', 'title', 'category', 'mode', 'equipmentName', 'severity',
+                         'primaryCulprit', 'confidencePercent', 'summary',
+                         'safetyWarnings', 'diySteps', 'partsTools', 'sourceEntries',
+                         'resolved', 'createdAt', 'updatedAt'
+                       ]) &&
+                       isValidDiagnostic(incoming(), userId);
+
+      allow update: if isOwner(userId) &&
+                       isValidId(diagnosticId) &&
+                       isValidDiagnostic(incoming(), userId) &&
+                       incoming().userId == existing().userId &&
+                       incoming().createdAt == existing().createdAt &&
+                       (
+                         incoming().diff(existing()).affectedKeys().hasOnly(['resolved', 'updatedAt']) ||
+                         incoming().diff(existing()).affectedKeys().hasOnly(['title', 'equipmentName', 'summary', 'resolved', 'updatedAt'])
+                       );
+
+      allow delete: if isOwner(userId) && isValidId(diagnosticId);
+    }
+  }
+}

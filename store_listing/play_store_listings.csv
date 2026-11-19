@@ -1,0 +1,253 @@
+locale,language_name,app_name,short_description,full_description
+en-US,English (United States),"PocketMechanic: Car & Home Fix","Diagnose engine sounds, leaks, and error codes with audio, vision & manuals.","PocketMechanic helps car owners, homeowners, and DIY builders troubleshoot mechanical sounds, leaks, and appliance error codes right from their phone.
+
+Key Capabilities:
+- Acoustic Engine & Motor Probe: Record belt squeals, knocks, valve ticks, plumbing rattles, or appliance hums with real-time level guidance and playback review.
+- Visual Fault & Code Inspector: Capture photos of dashboard lights, blown fuses, hoses, fittings, and display error codes with an integrated workshop LED flashlight for dark engine bays and under-sink spaces.
+- Grounded Repair Guidance: Cross-references make, model, and year details to deliver structured likely causes, required tools and parts, safety warnings, and step-by-step DIY checklists.
+- Hands-Free Voice Mode: Talk through inspections while your hands are occupied or oily, with voice replies and tap-to-interrupt control.
+- Personal Garage & Repair Log: Register vehicles, plumbing fixtures, and appliances once so every inspection loads the right context automatically, synced securely to your account with local access.
+- Nearby Parts & Shops: Open Google Maps directly to locate replacement parts or nearby repair specialists without extra permissions.
+- Flexible AI Access & Ad-Zero Experience: Includes a daily AI allowance, optional Bring Your Own Gemini Key (BYOK) stored strictly on-device, and an offline mechanical reference guide.
+
+Safety Notice: PocketMechanic provides informational troubleshooting guidance only. Always disconnect power, follow manufacturer safety instructions, and consult a certified technician for critical braking, electrical, gas, or structural hazards."
+es-ES,Spanish (Spain),"PocketMechanic: Motor y Hogar","Diagnostica ruidos de motor, fugas y códigos de error con audio y cámara.","PocketMechanic ayuda a conductores, propietarios y aficionados al bricolaje a diagnosticar ruidos mecánicos, fugas y códigos de error desde el teléfono.
+
+Funciones principales:
+- Sonda acústica de motor y aparatos: Graba chirridos de correas, golpeteos, vibraciones de tuberías y zumbidos con indicador de nivel en tiempo real y reproducción previa.
+- Inspector visual con linterna: Fotografía testigos del tablero, fusibles, mangueras y códigos de error utilizando la linterna LED integrada para compartimentos oscuros o bajo el fregadero.
+- Guías de reparación verificadas: Usa marca, modelo y año para ofrecer causas probables, herramientas y repuestos necesarios, avisos de seguridad y listas paso a paso.
+- Modo voz manos libres: Conversa con el asistente mientras trabajas sin tocar la pantalla, con respuestas habladas e interrupción rápida.
+- Garaje y registro de reparaciones: Guarda tus vehículos y electrodomésticos para cargar automáticamente su contexto en cada revisión, sincronizado con tu cuenta y disponible en tu dispositivo.
+- Repuestos y talleres cercanos: Abre Google Maps directamente para localizar tiendas de piezas o talleres sin permisos adicionales.
+- Acceso flexible a IA y sin anuncios: Incluye cuota diaria de IA, opción de clave personal Gemini (BYOK) guardada solo en el dispositivo y referencia mecánica sin conexión.
+
+Aviso de seguridad: PocketMechanic ofrece orientación informativa para bricolaje. Desconecta siempre la alimentación, sigue los manuales del fabricante y acude a un profesional ante riesgos graves de frenos, electricidad o gas."
+pt-BR,Portuguese (Brazil),"PocketMechanic: Auto e Casa","Diagnostique ruídos de motor, vazamentos e códigos com áudio, câmera e guias.","O PocketMechanic ajuda motoristas, moradores e praticantes de manutenção doméstica a diagnosticar ruídos mecânicos, vazamentos e códigos de erro direto pelo celular.
+
+Recursos principais:
+- Sonda acústica de motor e equipamentos: Grave chiados de correia, batidas, ruídos hidráulicos e zumbidos de eletrodomésticos com medidor de nível em tempo real.
+- Inspetor visual com lanterna: Fotografe códigos de erro, fusíveis queimados, mangueiras e conexões usando a lanterna LED integrada para cofres de motor escuros e áreas sob a pia.
+- Orientações baseadas em manuais: Utiliza marca, modelo e ano para listar causas prováveis, ferramentas e peças necessárias, alertas de segurança e checklist passo a passo.
+- Modo voz mãos livres: Converse com o assistente enquanto trabalha sem precisar tocar na tela, com respostas faladas.
+- Garagem e histórico de reparos: Cadastre veículos e aparelhos para carregar o contexto automaticamente em cada inspeção, com sincronização segura na conta e acesso local.
+- Peças e oficinas próximas: Abra o Google Maps diretamente para encontrar autopeças ou oficinas sem permissões extras.
+- Uso flexível de IA e sem anúncios: Conta com cota diária de IA, opção de chave própria do Gemini (BYOK) armazenada apenas no aparelho e guia de referência offline.
+
+Aviso de segurança: O PocketMechanic fornece suporte informativo para reparos. Desligue sempre a energia, siga as recomendações do fabricante e consulte um técnico qualificado para falhas críticas."
+fr-FR,French (France),"PocketMechanic: Auto et Maison","Diagnostiquez bruits moteur, fuites et codes erreur par audio, photo et guides.","PocketMechanic aide les automobilistes, propriétaires et bricoleurs à diagnostiquer les bruits mécaniques, les fuites et les codes erreur depuis leur smartphone.
+
+Fonctionnalités clés :
+- Sonde acoustique moteur et appareils : Enregistrez sifflements de courroie, claquements, bruits de plomberie et bourdonnements avec niveau sonore en direct et écoute immédiate.
+- Inspecteur visuel avec lampe torche : Photographiez voyants, fusibles grillés, durites et codes erreur grâce à la lampe LED intégrée pour les compartiments sombres et sous les éviers.
+- Conseils fondés sur les manuels : Exploite la marque, le modèle et l'année pour proposer les causes probables, les outils et pièces requis, les consignes de sécurité et une liste étape par étape.
+- Mode vocal mains libres : Échangez avec l'assistant pendant vos travaux sans toucher l'écran grâce aux réponses vocales.
+- Garage personnel et journal d'entretien : Enregistrez vos véhicules et appareils pour charger automatiquement le bon contexte lors de chaque inspection, avec synchronisation sécurisée.
+- Pièces et garages à proximité : Ouvrez Google Maps directement pour repérer des pièces détachées ou un atelier proche sans autorisation supplémentaire.
+- Accès IA souple et sans publicité : Inclut un quota quotidien d'IA, l'option clé Gemini personnelle (BYOK) stockée uniquement sur l'appareil et un guide de référence hors ligne.
+
+Avertissement de sécurité : PocketMechanic fournit une aide informative au diagnostic. Coupez toujours l'alimentation, respectez les consignes du constructeur et consultez un spécialiste pour tout risque critique."
+de-DE,German (Germany),"PocketMechanic: Auto & Haus","Diagnose für Motorgeräusche, Lecks und Fehlercodes per Audio, Kamera & Guide.","PocketMechanic unterstützt Autofahrer, Hausbesitzer und Heimwerker bei der schnellen Fehlersuche für mechanische Geräusche, Lecks und Geräte-Fehlercodes direkt auf dem Smartphone.
+
+Wichtige Funktionen:
+- Akustische Motor- & Gerätesonde: Nimmt Riemenquietschen, Klopfen, Rohrgeräusche und Motorbrummen mit Live-Pegelanzeige und direkter Wiedergabe auf.
+- Visueller Inspektor mit Taschenlampe: Fotografiert Warnleuchten, Sicherungen, Schläuche und Fehlercodes mit integrierter LED-Werkstattlampe für dunkle Motorräume und Bereiche unter der Spüle.
+- Handbuchgestützte Reparaturhilfe: Nutzt Marke, Modell und Baujahr für wahrscheinliche Ursachen, benötigte Werkzeuge und Ersatzteile, Sicherheitshinweise sowie Schritt-für-Schritt-Checklisten.
+- Freihändiger Sprachmodus: Sprich während der Arbeit direkt mit dem Assistenten, ohne das Display mit öligen Händen zu berühren.
+- Persönliche Garage & Reparaturprotokoll: Speichere Fahrzeuge und Haushaltsgeräte einmalig, damit jede Prüfung sofort den passenden Kontext nutzt, sicher synchronisiert mit deinem Konto.
+- Ersatzteile & Werkstätten in der Nähe: Öffnet Google Maps direkt ohne zusätzliche Berechtigungen für Teilehändler oder Fachbetriebe.
+- Flexible KI-Nutzung & werbefrei: Mit täglichem KI-Kontingent, optionalem eigenen Gemini-Schlüssel (BYOK, nur lokal gespeichert) und Offline-Nachschlagewerk.
+
+Sicherheitshinweis: PocketMechanic dient nur zur informativen Unterstützung. Immer Strom abschalten, Herstellervorgaben beachten und bei kritischen Brems-, Elektro- oder Gasproblemen Fachpersonal hinzuziehen."
+it-IT,Italian (Italy),"PocketMechanic: Auto e Casa","Diagnostica rumori motore, perdite e codici errore con audio, foto e manuali.","PocketMechanic aiuta automobilisti, proprietari di casa e appassionati di fai-da-te a diagnosticare rumori meccanici, perdite e codici errore direttamente dallo smartphone.
+
+Funzionalità principali:
+- Sonda acustica motore ed elettrodomestici: Registra fischi delle cinghie, battiti, rumori idraulici e ronzii con indicatore di livello in tempo reale e riascolto immediato.
+- Ispettore visivo con torcia: Fotografa spie, fusibili bruciati, raccordi e codici errore usando la torcia LED integrata per vani motore bui e spazi sotto il lavello.
+- Guide di riparazione verificate: Incrocia marca, modello e anno per fornire cause probabili, attrezzi e ricambi necessari, avvisi di sicurezza e liste passo dopo passo.
+- Modalità voce vivavoce: Dialoga con l'assistente mentre lavori senza toccare lo schermo grazie alle risposte vocali.
+- Garage personale e registro riparazioni: Salva veicoli e apparecchi per caricare automaticamente il contesto corretto a ogni controllo, con sincronizzazione sicura sul tuo account.
+- Ricambi e officine vicine: Apri direttamente Google Maps per trovare negozi di ricambi o officine senza permessi extra.
+- Accesso IA flessibile e senza pubblicità: Include quota giornaliera IA, opzione chiave Gemini personale (BYOK) salvata solo in locale e guida di riferimento offline.
+
+Nota sulla sicurezza: PocketMechanic offre supporto informativo per il fai-da-te. Scollega sempre l'alimentazione, segui le norme del produttore e rivolgiti a un tecnico qualificato per guasti critici."
+ru-RU,Russian (Russia),"PocketMechanic: Авто и Дом","Диагностика шумов двигателя, утечек и кодов ошибок по аудио, фото и мануалам.","PocketMechanic помогает автовладельцам и домашним мастерам выявлять причины механических шумов, протечек и кодов ошибок бытовой техники прямо со смартфона.
+
+Основные возможности:
+- Акустический зонд двигателя и техники: Записывайте свист ремней, стуки, гул моторов и шум труб с индикатором уровня сигнала и прослушиванием записи.
+- Визуальный осмотр с фонариком: Снимайте индикаторы приборной панели, предохранители, шланги и коды ошибок со встроенным LED-фонариком для темных моторных отсеков и пространства под раковиной.
+- Руководства по марке и модели: Использует марку, модель и год выпуска для подбора вероятных причин, списка инструментов и деталей, мер безопасности и пошагового плана ремонта.
+- Голосовой режим без рук: Общайтесь с помощником голосом во время работы, не касаясь экрана.
+- Личный гараж и журнал ремонтов: Добавьте автомобили и бытовую технику один раз для автоматического подбора контекста при каждой проверке с безопасной синхронизацией в аккаунте.
+- Запчасти и сервисы рядом: Открывает Google Карты напрямую для поиска автозапчастей и мастерских без дополнительных разрешений.
+- Гибкий доступ к ИИ без рекламы: Включает дневной лимит ИИ, поддержку собственного ключа Gemini (BYOK, хранится только на устройстве) и офлайн-справочник.
+
+Предупреждение о безопасности: PocketMechanic предоставляет справочную помощь для самостоятельной диагностики. Всегда отключайте питание, соблюдайте инструкции производителя и обращайтесь к специалистам при критических неисправностях."
+ja-JP,Japanese (Japan),"PocketMechanic：車・家電の故障診断","エンジン異音・水漏れ・エラーコードを音声・カメラ・マニュアルで素早く診断。","PocketMechanicは、車やバイク、水回り、家電製品の異音・漏れ・エラーコードをスマートフォンから手軽に診断できるDIY支援アプリです。
+
+主な機能：
+- エンジン・モーター音響プローブ：ベルト鳴き、ノッキング、配管の異音、モーターのうなりを録音レベル表示付きで収録し、再生確認しながら原因を分析します。
+- ライト付き視覚インスペクター：内蔵LEDライトで暗いエンジンルームやシンク下を照らし、警告灯・ヒューズ切れ・配管・エラーコードを撮影して点検できます。
+- マニュアル照合ガイド：メーカー・型番・年式をもとに推定原因、必要な工具と部品、安全上の注意、ステップ別の修理チェックリストを提示します。
+- ハンズフリー音声モード：作業中で手が離せない時でも画面に触れず音声で質問し、読み上げ回答を聞きながら作業できます。
+- ガレージ管理＆修理履歴：所有する車両や家電を登録しておけば、次回の点検時に自動で機種情報を引き継ぎ、アカウントへ安全に同期されます。
+- 近くの部品店・修理工場検索：追加権限なしでGoogleマップを開き、周辺の部品店や整備工場をすぐ探せます。
+- 柔軟なAI利用＆広告なし：1日のAI利用枠に加え、端末内のみに保存する個人Geminiキー（BYOK）やオフライン参照ガイドに対応しています。
+
+安全上のご注意：本アプリはDIY向けの参考情報を提供します。作業前は必ず電源や火気を遮断し、ブレーキ・電気・ガスなど重大な危険がある場合は専門業者へご相談ください。"
+ko-KR,Korean (South Korea),"PocketMechanic: 차량·가전 진단","엔진 소음, 누수, 오류 코드를 오디오·카메라·매뉴얼로 빠르게 진단하세요.","PocketMechanic은 자동차, 배관, 가전제품의 이상 소음과 누수, 오류 코드를 스마트폰으로 간편하게 진단하도록 돕는 DIY 정비 도우미입니다.
+
+주요 기능:
+- 엔진·모터 음향 프로브: 벨트 소음, 노킹, 배관 소리, 모터 진동음을 실시간 입력 레벨 안내와 함께 녹음하고 재생해 원인을 분석합니다.
+- 손전등 통합 시각 점검: 어두운 엔진룸과 싱크대 아래를 내장 LED 손전등으로 비추며 경고등, 퓨즈, 배관, 오류 코드를 촬영해 점검합니다.
+- 매뉴얼 기반 수리 안내: 제조사·모델명·연식 정보를 바탕으로 추정 원인, 필요한 공구와 부품, 안전 주의사항, 단계별 체크리스트를 제공합니다.
+- 핸즈프리 음성 모드: 작업 중 화면을 만지기 어려울 때 음성으로 질문하고 음성 안내로 답변을 들을 수 있습니다.
+- 내 차고 및 수리 기록: 차량과 가전을 등록해 두면 점검 시 모델 정보가 자동 연동되며 계정에 안전하게 동기화됩니다.
+- 주변 부품점 및 정비소 찾기: 추가 권한 없이 Google 지도를 바로 열어 가까운 부품점이나 정비소를 확인할 수 있습니다.
+- 유연한 AI 선택 및 광고 없는 환경: 일일 AI 사용량, 기기 내부에만 저장되는 개인 Gemini 키(BYOK), 오프라인 참고 가이드를 지원합니다.
+
+안전 안내: 본 앱은 정보 제공 목적의 DIY 진단 도구입니다. 작업 전 반드시 전원을 차단하고 제조사 안전 수칙을 준수하며, 제동·전기·가스 등 중대한 위험은 전문가의 점검을 받으세요."
+zh-CN,Chinese (Simplified),"PocketMechanic：车辆家电维修诊断","通过声音、拍照与维修手册快速诊断发动机异响、漏水与故障码。","PocketMechanic 帮助车主与家庭自助维修爱好者通过手机快速排查机械异响、管道漏水与家电故障码。
+
+核心功能：
+- 发动机与电机声学探针：支持实时音量指引与录音回放，录制皮带啸叫、敲击声、管道异响及电机嗡鸣以分析原因。
+- 内置手电筒视觉检测：自带 LED 维修照明，轻松照亮昏暗发动机舱与水槽下方，拍摄故障灯、保险丝、管件与错误代码。
+- 手册核验维修指南：结合品牌、型号与年份提供可能原因、所需工具与配件、安全提示以及分步检查清单。
+- 免提语音模式：维修双手不便触屏时可直接语音对话，支持语音播报与点击打断。
+- 个人车库与维修日志：一次登记车辆与家电信息，后续检测自动载入型号背景，并安全同步至个人账号。
+- 附近配件与维修店：直接调用 Google 地图查找周边配件店或专业维修点，无需额外权限。
+- 灵活 AI 方式与无广告体验：提供每日 AI 额度、仅本地保存的个人 Gemini 密钥（BYOK）以及离线维修参考。
+
+安全提示：PocketMechanic 仅提供自助排查参考信息。操作前请务必断电并遵守厂商安全规范，如涉及制动、高压电或燃气等严重隐患请联系专业技师。"
+zh-TW,Chinese (Traditional),"PocketMechanic：車輛家電維修診斷","透過錄音、拍照與維修手冊快速診斷引擎異音、漏水與故障碼。","PocketMechanic 協助車主與居家自助維修愛好者透過手機快速排查機械異音、管線漏水與家電故障碼。
+
+核心功能：
+- 引擎與馬達聲學探針：提供即時音量指引與錄音回放，錄製皮帶異音、敲擊聲、管路聲響與馬達嗡鳴以分析原因。
+- 內建手電筒視覺檢測：整合 LED 維修手電筒，照亮昏暗引擎室與水槽下方，拍攝警示燈、保險絲、接頭與錯誤代碼。
+- 手冊核驗維修指南：結合品牌、型號與年份提供可能故障原因、所需工具與零件、安全提醒及分步檢查清單。
+- 免持語音模式：雙手忙碌或沾油時無須觸控螢幕即可語音互動，支援語音朗讀與輕觸中斷。
+- 個人車庫與維修日誌：一次登錄車輛與家電資料，後續檢測自動載入型號資訊並安全同步至個人帳號。
+- 附近零件與維修廠：直接開啟 Google 地圖搜尋周邊零件行或專業維修廠，無須額外權限。
+- 彈性 AI 選擇與無廣告介面：提供每日 AI 額度、僅存於本機的個人 Gemini 金鑰（BYOK）以及離線維修參考。
+
+安全提醒：PocketMechanic 僅供自助排查參考。作業前請務必斷電並遵循原廠安全規範，遇煞車、高壓電或瓦斯等重大風險請尋求合格技師協助。"
+ar,Arabic,"PocketMechanic: تشخيص الأعطال","شخّص أصوات المحرك والتسريبات ورموز الأعطال بالصوت والكاميرا والأدلة.","يساعد تطبيق PocketMechanic مالكي السيارات والمنازل وهواة الصيانة الذاتية على تشخيص الأصوات الميكانيكية والتسريبات ورموز أعطال الأجهزة مباشرة عبر الهاتف.
+
+المزايا الرئيسية:
+- مسبار صوت المحرك والأجهزة: سجّل صرير السيور والطرق وأصوات الأنابيب وطنين المحركات مع مؤشر مستوى الصوت المباشر وإعادة الاستماع.
+- الفاحص البصري مع مصباح مدمج: التقط صوراً لمؤشرات لوحة القيادة والفيوزات والوصلات ورموز الأعطال باستخدام مصباح LED المدمج لإضاءة الأماكن المظلمة.
+- إرشادات صيانة موثقة: يعتمد على الشركة والطراز وسنة الصنع لتقديم الأسباب المحتملة والأدوات والقطع المطلوبة وتحذيرات السلامة وقائمة خطوات الإصلاح.
+- الوضع الصوتي بدون يدين: تحدث مع المساعد أثناء العمل دون لمس الشاشة مع ردود صوتية واضحة.
+- المرآب الشخصي وسجل الصيانة: سجّل مركباتك وأجهزتك مرة واحدة ليتم تحميل بياناتها تلقائياً في كل فحص مع مزامنة آمنة لحسابك.
+- قطع الغيار والورش القريبة: يفتح خرائط Google مباشرة للبحث عن متاجر القطع أو الورش دون أذونات إضافية.
+- خيارات ذكاء اصطناعي مرنة وبدون إعلانات: يشمل حصة يومية للذكاء الاصطناعي وإمكانية استخدام مفتاح Gemini الشخصي (BYOK) المحفوظ محلياً فقط، بالإضافة إلى مرجع صيانة دون إنترنت.
+
+تنبيه سلامة: يقدم PocketMechanic إرشادات معلوماتية فقط. افصل الطاقة دائماً واتبع تعليمات الشركة المصنعة واستعن بفني معتمد للأعطال الخطيرة في المكابح أو الكهرباء أو الغاز."
+hi-IN,Hindi (India),"PocketMechanic: कार व घर जांच","इंजन की आवाज़, रिसाव और एरर कोड की पहचान ऑडियो, कैमरा व मैनुअल से करें।","PocketMechanic वाहन मालिकों और घरेलू मरम्मत करने वालों को फ़ोन से ही मशीनी आवाज़, पानी के रिसाव और उपकरणों के एरर कोड समझने में मदद करता है।
+
+मुख्य विशेषताएँ:
+- इंजन व मोटर ऑडियो प्रोब: बेल्ट की चीं-चीं, खटखट, पाइप की आवाज़ और मोटर गूंज को लाइव साउंड लेवल व प्लेबैक के साथ रिकॉर्ड और विश्लेषित करें।
+- टॉर्च सहित विज़ुअल इंस्पेक्टर: अंधेरे इंजन बे या सिंक के नीचे देखने के लिए बिल्ट-इन LED टॉर्च के साथ एरर कोड, फ़्यूज़ और पाइप फिटिंग की फ़ोटो लें।
+- मैनुअल आधारित मरम्मत मार्गदर्शन: मेक, मॉडल और वर्ष के आधार पर संभावित कारण, ज़रूरी औज़ार व पुर्ज़े, सुरक्षा चेतावनी और चरण-दर-चरण सूची देखें।
+- हैंड्स-फ्री वॉइस मोड: काम करते समय स्क्रीन छुए बिना बोलकर सवाल पूछें और आवाज़ में उत्तर सुनें।
+- पर्सनल गैरेज और रिपेयर लॉग: अपने वाहन व उपकरण एक बार जोड़ें ताकि हर जांच में सही मॉडल संदर्भ अपने आप लोड हो और खाते में सुरक्षित सिंक रहे।
+- नज़दीकी पुर्ज़े और वर्कशॉप: बिना अतिरिक्त अनुमति के सीधे Google Maps में पास के पार्ट्स स्टोर या मैकेनिक खोजें।
+- लचीला AI विकल्प और विज्ञापन-मुक्त अनुभव: दैनिक AI सीमा, केवल डिवाइस पर सुरक्षित निजी Gemini कुंजी (BYOK) और ऑफ़लाइन संदर्भ गाइड शामिल है।
+
+सुरक्षा सूचना: PocketMechanic केवल जानकारीपूर्ण सहायता प्रदान करता है। किसी भी जांच से पहले बिजली बंद करें, निर्माता के सुरक्षा निर्देशों का पालन करें और ब्रेक, बिजली या गैस जैसी गंभीर समस्याओं के लिए प्रमाणित तकनीशियन से संपर्क करें।"
+id,Indonesian,"PocketMechanic: Cek Mesin","Diagnosis suara mesin, kebocoran & kode error via audio, kamera, dan panduan.","PocketMechanic membantu pemilik kendaraan dan rumah tangga mendiagnosis suara mekanis, kebocoran pipa, serta kode error peralatan langsung dari ponsel.
+
+Fitur Utama:
+- Probe Akustik Mesin & Peralatan: Rekam decitan sabuk, ketukan, suara pipa, dan dengungan motor dengan panduan level suara real-time dan pratinjau pemutaran.
+- Inspektor Visual dengan Senter: Foto lampu indikator, sekring, selang, dan kode error dengan senter LED bawaan untuk ruang mesin gelap dan area bawah wastafel.
+- Panduan Perbaikan Terverifikasi: Menggunakan merek, model, dan tahun untuk menampilkan kemungkinan penyebab, alat dan suku cadang, peringatan keselamatan, serta daftar langkah perbaikan.
+- Mode Suara Bebas Genggam: Diskusikan langkah pemeriksaan tanpa menyentuh layar saat tangan sibuk atau kotor, lengkap dengan balasan suara.
+- Garasi Pribadi & Riwayat Perbaikan: Daftarkan kendaraan dan peralatan sekali agar konteks model otomatis termuat saat inspeksi dan tersinkronisasi aman ke akun Anda.
+- Suku Cadang & Bengkel Terdekat: Buka Google Maps langsung untuk mencari toko suku cadang atau bengkel tanpa izin tambahan.
+- Akses AI Fleksibel & Bebas Iklan: Menyediakan kuota AI harian, opsi kunci Gemini pribadi (BYOK) yang tersimpan lokal di perangkat, serta panduan referensi offline.
+
+Peringatan Keselamatan: PocketMechanic hanya memberikan panduan informasi perbaikan mandiri. Selalu matikan daya listrik, ikuti petunjuk pabrikan, dan hubungi teknisi resmi untuk risiko kritis."
+vi,Vietnamese,"PocketMechanic: Sửa Xe & Nhà","Chẩn đoán tiếng động cơ, rò rỉ và mã lỗi bằng âm thanh, camera và tài liệu.","PocketMechanic hỗ trợ chủ xe và người tự sửa chữa tại nhà kiểm tra tiếng ồn cơ khí, rò rỉ đường ống và mã lỗi thiết bị ngay trên điện thoại.
+
+Tính năng nổi bật:
+- Đầu dò âm thanh động cơ & thiết bị: Ghi âm tiếng rít dây curoa, tiếng gõ, tiếng ống nước và tiếng ù mô-tơ kèm thước đo mức âm trực tiếp và nghe lại nhanh.
+- Kiểm tra hình ảnh kèm đèn pin: Chụp đèn báo lỗi, cầu chì, khớp nối và mã lỗi với đèn pin LED tích hợp để soi khoang máy tối và gầm bồn rửa.
+- Hướng dẫn dựa trên tài liệu: Dùng hãng, đời máy và năm sản xuất để đưa ra nguyên nhân khả dĩ, dụng cụ và linh kiện cần thiết, cảnh báo an toàn cùng danh sách sửa chữa từng bước.
+- Chế độ giọng nói rảnh tay: Hỏi đáp trực tiếp bằng giọng nói khi tay đang bận hoặc dính dầu mà không cần chạm màn hình.
+- Nhà xe cá nhân & Nhật ký sửa chữa: Lưu thông tin xe và thiết bị một lần để tự động tải đúng ngữ cảnh khi kiểm tra, đồng bộ an toàn với tài khoản của bạn.
+- Tìm phụ tùng & tiệm sửa gần đây: Mở thẳng Google Maps tìm cửa hàng linh kiện hoặc thợ sửa gần bạn mà không cần thêm quyền truy cập.
+- Tùy chọn AI linh hoạt & Không quảng cáo: Có hạn mức AI hằng ngày, tùy chọn dùng khóa Gemini cá nhân (BYOK) chỉ lưu trên máy và tài liệu tham khảo ngoại tuyến.
+
+Lưu ý an toàn: PocketMechanic chỉ cung cấp thông tin hỗ trợ tham khảo. Luôn ngắt nguồn điện, tuân thủ hướng dẫn của nhà sản xuất và liên hệ kỹ thuật viên chuyên nghiệp với các sự cố nguy hiểm."
+th,Thai,"PocketMechanic: ตรวจรถและบ้าน","วินิจฉัยเสียงเครื่องยนต์ รอยรั่ว และรหัสข้อผิดพลาดด้วยเสียง กล้อง และคู่มือ","PocketMechanic ช่วยเจ้าของรถและผู้ดูแลบ้านตรวจสอบเสียงเครื่องยนต์ รอยรั่วท่อน้ำ และรหัสข้อผิดพลาดของเครื่องใช้ไฟฟ้าได้ทันทีจากโทรศัพท์
+
+ความสามารถหลัก:
+- หัววัดเสียงเครื่องยนต์และมอเตอร์: บันทึกเสียงสายพานดัง เสียงเคาะ เสียงท่อประปา และเสียงมอเตอร์ พร้อมแถบวัดระดับเสียงแบบเรียลไทม์และเล่นซ้ำเพื่อตรวจสอบ
+- ตัวตรวจด้วยกล้องพร้อมไฟฉายในตัว: ถ่ายภาพไฟเตือน ฟิวส์ขาด ท่อยาง และรหัสข้อผิดพลาด พร้อมไฟฉาย LED สำหรับส่องห้องเครื่องที่มืดหรือใต้อ่างล้างจาน
+- แนวทางซ่อมแซมอ้างอิงคู่มือ: ใช้ข้อมูลยี่ห้อ รุ่น และปีเพื่อแสดงสาเหตุที่เป็นไปได้ เครื่องมือและอะไหล่ที่ต้องใช้ คำเตือนความปลอดภัย และรายการตรวจสอบทีละขั้น
+- โหมดเสียงแฮนด์ฟรี: สอบถามและรับฟังคำตอบด้วยเสียงขณะมือเปื้อนหรือกำลังทำงานโดยไม่ต้องแตะหน้าจอ
+- โรงรถส่วนตัวและประวัติการซ่อม: ลงทะเบียนรถและเครื่องใช้ไฟฟ้าไว้ล่วงหน้าเพื่อให้ดึงข้อมูลรุ่นอัตโนมัติทุกครั้งที่ตรวจ พร้อมซิงค์อย่างปลอดภัยกับบัญชีของคุณ
+- ค้นหาร้านอะไหล่และอู่ใกล้เคียง: เปิด Google Maps โดยตรงเพื่อค้นหาร้านอะไหล่หรือช่างซ่อมใกล้บ้านโดยไม่ขอสิทธิ์เพิ่มเติม
+- ทางเลือก AI ที่ยืดหยุ่นและไร้โฆษณา: มีโควตา AI รายวัน รองรับคีย์ Gemini ส่วนตัว (BYOK) ที่เก็บไว้เฉพาะบนอุปกรณ์ และคู่มืออ้างอิงแบบออฟไลน์
+
+คำเตือนความปลอดภัย: แอปนี้ให้ข้อมูลเพื่อช่วยตรวจสอบเบื้องต้นเท่านั้น โปรดตัดไฟก่อนซ่อม ปฏิบัติตามคู่มือผู้ผลิต และติดต่อช่างผู้เชี่ยวชาญเมื่อพบความเสี่ยงร้ายแรง"
+tr-TR,Turkish (Turkey),"PocketMechanic: Arıza Teşhisi","Motor sesi, sızıntı ve hata kodlarını ses, kamera ve kılavuzlarla teşhis edin.","PocketMechanic, araç sahiplerinin ve ev tamiriyle ilgilenenlerin mekanik sesleri, su sızıntılarını ve cihaz hata kodlarını telefonlarıyla hızlıca incelemesine yardımcı olur.
+
+Öne Çıkan Özellikler:
+- Akustik Motor ve Cihaz Probu: Kayış sesleri, vuruntular, tesisat gürültüleri ve motor uğultularını canlı seviye göstergesi ve ön izleme ile kaydedip analiz edin.
+- Fenerli Görsel İnceleyici: Karanlık motor bölmeleri ve lavabo altları için dahili LED fenerle arıza ışıklarını, sigortaları, hortumları ve hata kodlarını fotoğraflayın.
+- Kılavuz Destekli Onarım Rehberi: Marka, model ve yıl bilgisine göre olası nedenleri, gerekli alet ve parçaları, güvenlik uyarılarını ve adım adım kontrol listesini sunar.
+- Eller Serbest Ses Modu: Elleriniz yağlı veya meşgulken ekrana dokunmadan asistanla konuşarak sesli yanıt alın.
+- Kişisel Garaj ve Onarım Kaydı: Araç ve cihazlarınızı bir kez kaydedin; her incelemede doğru model bilgisi otomatik yüklensin ve hesabınızla güvenle eşitlensin.
+- Yakındaki Parça ve Servisler: Ek izin gerekmeden doğrudan Google Haritalar üzerinden yedek parça veya yakın servisleri bulun.
+- Esnek Yapay Zeka ve Reklamsız Deneyim: Günlük AI hakkı, yalnızca cihazda saklanan kişisel Gemini anahtarı (BYOK) ve çevrimdışı mekanik rehber içerir.
+
+Güvenlik Uyarısı: PocketMechanic yalnızca bilgilendirme amaçlı kendin-yap rehberliği sunar. İşlem öncesi mutlaka enerjiyi kesin, üretici talimatlarına uyun ve kritik arızalarda uzman teknisyene başvurun."
+pl-PL,Polish (Poland),"PocketMechanic: Auto i Dom","Diagnozuj dźwięki silnika, wycieki i kody błędów przez audio, foto i poradniki.","PocketMechanic pomaga kierowcom i majsterkowiczom diagnozować dźwięki mechaniczne, wycieki oraz kody błędów urządzeń bezpośrednio na telefonie.
+
+Najważniejsze funkcje:
+- Sonda akustyczna silnika i sprzętu: Nagrywaj piski pasków, stuki, odgłosy rur i buczenie silników z podglądem poziomu dźwięku na żywo oraz odsłuchem.
+- Wizualny inspektor z latarką: Fotografuj kontrolki, bezpieczniki, przewody i kody błędów z wbudowaną latarką LED do ciemnych komór silnika i przestrzeni pod zlewem.
+- Wskazówki oparte na instrukcjach: Na podstawie marki, modelu i rocznika przedstawia prawdopodobne przyczyny, potrzebne narzędzia i części, ostrzeżenia bezpieczeństwa oraz listę kroków.
+- Tryb głosowy bez użycia rąk: Rozmawiaj z asystentem podczas naprawy bez dotykania ekranu, korzystając z odpowiedzi głosowych.
+- Osobisty garaż i dziennik napraw: Zapisz pojazdy i sprzęty raz, aby każda inspekcja automatycznie wczytywała właściwy kontekst i bezpiecznie synchronizowała historię z kontem.
+- Części i warsztaty w pobliżu: Otwieraj Mapy Google bezpośrednio, by znaleźć sklepy z częściami lub warsztaty bez dodatkowych uprawnień.
+- Elastyczny dostęp do AI bez reklam: Zawiera dzienny limit AI, opcję własnego klucza Gemini (BYOK) zapisanego wyłącznie lokalnie oraz bazę wiedzy offline.
+
+Informacja o bezpieczeństwie: PocketMechanic ma charakter wyłącznie informacyjny. Zawsze odłącz zasilanie, przestrzegaj zaleceń producenta i przy poważnych usterkach skonsultuj się z wykwalifikowanym mechanikiem."
+nl-NL,Dutch (Netherlands),"PocketMechanic: Auto & Huis","Diagnoseer motorgeluiden, lekkages en foutcodes met audio, camera en gidsen.","PocketMechanic helpt autobezitters en doe-het-zelvers om mechanische geluiden, lekkages en foutcodes van apparaten direct met hun telefoon te onderzoeken.
+
+Belangrijkste functies:
+- Akoestische motor- en apparaatprobe: Neem piepende riemen, tikken, leidinggeluiden en motorbrom op met live geluidsniveau-indicator en directe weergave.
+- Visuele inspecteur met zaklamp: Fotografeer waarschuwingslampjes, zekeringen, slangen en foutcodes met de ingebouwde LED-zaklamp voor donkere motorruimtes en onder de gootsteen.
+- Handleidinggestuurde reparatiehulp: Gebruikt merk, model en bouwjaar voor waarschijnlijke oorzaken, benodigd gereedschap en onderdelen, veiligheidswaarschuwingen en een stappenplan.
+- Handsfree spraakmodus: Overleg tijdens het sleutelen zonder het scherm aan te raken, met gesproken antwoorden.
+- Persoonlijke garage & reparatielogboek: Registreer voertuigen en apparaten eenmalig zodat elke inspectie direct de juiste gegevens laadt, veilig gesynchroniseerd met je account.
+- Onderdelen & garages in de buurt: Open Google Maps direct om onderdelenwinkels of garages te vinden zonder extra machtigingen.
+- Flexibele AI-opties & reclamevrij: Inclusief dagelijks AI-limiet, optionele eigen Gemini-sleutel (BYOK, uitsluitend lokaal opgeslagen) en een offline naslagwerk.
+
+Veiligheidsmelding: PocketMechanic biedt uitsluitend informatieve ondersteuning. Schakel altijd de stroom uit, volg fabrikantvoorschriften en schakel bij ernstige rem-, stroom- of gasproblemen een vakman in."
+uk,Ukrainian,"PocketMechanic: Авто і Дім","Діагностика шумів двигуна, протікань і кодів помилок за аудіо, фото й мануалом.","PocketMechanic допомагає автовласникам і домашнім майстрам швидко діагностувати механічні шуми, протікання та коди помилок побутової техніки зі смартфона.
+
+Основні можливості:
+- Акустичний зонд двигуна та техніки: Записуйте свист ременів, стукіт, шум труб і гул моторів з індикатором рівня сигналу в реальному часі та прослуховуванням.
+- Візуальний інспектор із ліхтариком: Фотографуйте індикатори панелі, запобіжники, шланги та коди помилок за допомогою вбудованого LED-ліхтарика для темних відсіків двигуна чи простору під раковиною.
+- Поради на основі інструкцій: Враховує марку, модель і рік випуску, пропонуючи ймовірні причини, перелік інструментів і запчастин, застереження безпеки та покроковий план ремонту.
+- Голосовий режим без рук: Спілкуйтеся з помічником голосом під час роботи, не торкаючись екрана.
+- Особистий гараж і журнал ремонтів: Додайте авто та прилади один раз для автоматичного завантаження потрібного контексту під час кожної перевірки з надійною синхронізацією.
+- Запчастини та сервіси поруч: Відкриває Карти Google напряму для пошуку запчастин або майстерень без зайвих дозволів.
+- Гнучкий доступ до ШІ без реклами: Містить щоденний ліміт ШІ, підтримку особистого ключа Gemini (BYOK, зберігається лише локально) та офлайн-довідник.
+
+Застереження щодо безпеки: PocketMechanic надає довідкову інформацію для самостійної перевірки. Завжди вимикайте живлення, дотримуйтесь інструкцій виробника та звертайтеся до фахівців у разі небезпечних несправностей."
+sv-SE,Swedish (Sweden),"PocketMechanic: Bil & Hem Fix","Diagnostisera motorljud, läckor och felkoder med ljud, kamera och manualer.","PocketMechanic hjälper bilägare och hemmafixare att felsöka mekaniska ljud, vattenläckor och felkoder på hushållsapparater direkt i mobilen.
+
+Huvudfunktioner:
+- Akustisk motor- och apparatsond: Spela in remgnissel, knackningar, rörljud och motorbrum med direkt nivåmätare och uppspelning.
+- Visuell inspektör med ficklampa: Fotografera varningslampor, säkringar, slangar och felkoder med inbyggd LED-ficklampa för mörka motorrum och utrymmen under diskbänken.
+- Manualbaserad reparationshjälp: Använder märke, modell och årsmodell för att ge troliga orsaker, nödvändiga verktyg och reservdelar, säkerhetsvarningar och steg-för-steg-checklistor.
+- Handsfree röstläge: Prata med assistenten medan händerna är upptagna eller oljiga utan att röra skärmen.
+- Personligt garage och reparationslogg: Registrera fordon och apparater en gång så laddas rätt modellinformation automatiskt vid varje kontroll, säkert synkroniserat med ditt konto.
+- Reservdelar och verkstäder i närheten: Öppnar Google Maps direkt utan extra behörigheter för att hitta delar eller verkstäder.
+- Flexibel AI och reklamfri upplevelse: Inkluderar daglig AI-kvot, valfri egen Gemini-nyckel (BYOK, lagrad enbart lokalt) samt en offline-referensguide.
+
+Säkerhetsinformation: PocketMechanic ger endast vägledande felsökningshjälp. Bryt alltid strömmen, följ tillverkarens säkerhetsanvisningar och kontakta behörig tekniker vid allvarliga broms-, el- eller gasfel."

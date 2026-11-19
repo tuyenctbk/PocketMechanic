@@ -1,0 +1,177 @@
+<resources>
+    <!-- Core Identity & Navigation -->
+    <string name="app_name">PocketMechanic</string>
+    <string name="app_tagline">视觉与声学自助诊断工具</string>
+    <string name="sign_in_google">使用 Google 登录</string>
+    <string name="signing_in">正在登录…</string>
+    <string name="sign_out">退出登录</string>
+    <string name="nav_audio">声学</string>
+    <string name="nav_workbench">检测</string>
+    <string name="nav_hands_free">免提</string>
+    <string name="nav_logs">维修日志</string>
+    <string name="nav_garage">车库</string>
+    <string name="splash_calibrating">正在校准声学与视觉探针…</string>
+
+    <!-- Auth / Onboarding -->
+    <string name="auth_hero_headline">数秒内诊断发动机异响、漏水与故障代码。</string>
+    <string name="auth_feature_audio_title">声学模式诊断</string>
+    <string name="auth_feature_audio_desc">录制皮带啸叫、敲击声和电机嗡鸣，精准分析故障原因。</string>
+    <string name="auth_feature_vision_title">视觉检测与手电筒</string>
+    <string name="auth_feature_vision_desc">配合内置手电筒拍摄故障码、熔断保险丝与管道接头。</string>
+    <string name="auth_feature_manuals_title">搜索核验维修手册</string>
+    <string name="auth_feature_manuals_desc">按具体品牌与型号交叉比对维修指南及安全警告。</string>
+    <string name="auth_feature_voice_title">免提语音模式</string>
+    <string name="auth_feature_voice_desc">维修时无需触碰屏幕，直接与助手语音对话。</string>
+    <string name="auth_sync_footnote">安全同步您的车库设备与维修记录到个人账号。</string>
+
+    <!-- Flashlight & Hardware -->
+    <string name="torch_toggle">开关手电筒</string>
+    <string name="torch_light_on">照明开启</string>
+    <string name="torch_light_off">手电筒</string>
+    <string name="torch_card_title_on">维修手电筒已开启</string>
+    <string name="torch_card_title_off">维修手电筒</string>
+    <string name="torch_card_desc_on">正在照明昏暗的发动机舱与水槽下方</string>
+    <string name="torch_card_desc_off">开启 LED 照明检查昏暗的机舱或管道</string>
+    <string name="torch_card_unavailable">未在此设备上检测到相机闪光灯</string>
+
+    <!-- Audio Capture & Workbench -->
+    <string name="audio_capture_title">发动机与电机声学探针</string>
+    <string name="vision_capture_title">视觉故障与代码检测器</string>
+    <string name="hands_free_title">免提语音技师</string>
+    <string name="error_empty_input">请先录制声音、添加照片或描述问题。</string>
+    <string name="permission_mic_required">需要麦克风权限以录制机械异响或语音指令。</string>
+    <string name="permission_camera_required">需要相机权限以检查部件、泄漏和故障代码。</string>
+    <string name="audio_profile_engine">发动机舱</string>
+    <string name="audio_profile_plumbing">水暖管道</string>
+    <string name="audio_profile_appliance">家用电器</string>
+    <string name="audio_placement_engine">距发动机、皮带或歧管 15–30 厘米，避开排气气流</string>
+    <string name="audio_placement_plumbing">开水或排水时靠近水管、存水弯或阀门录制</string>
+    <string name="audio_placement_appliance">设备运行时靠近电机、滚筒或冷凝器面板</string>
+    <string name="audio_playback_play">试听录制的声音</string>
+    <string name="audio_playback_stop">停止试听</string>
+    <string name="audio_signal_quiet">请再靠近些</string>
+    <string name="audio_signal_optimal">音量最佳</string>
+    <string name="audio_signal_clipping">声音过大</string>
+    <string name="audio_context_header">声源与型号信息</string>
+    <string name="audio_make_model_label">品牌与型号（可选）</string>
+    <string name="audio_symptom_label">异响在何时出现？</string>
+    <string name="audio_analyze_cta">分析机械声音</string>
+    <string name="audio_analyzing_cta">正在分析声学特征…</string>
+    <string name="audio_capture_another">录制其他声音</string>
+
+    <string name="workbench_header">今天检查什么设备？</string>
+    <string name="workbench_make_model_label">品牌、型号与年份（用于检索手册）</string>
+    <string name="workbench_symptom_label">症状、故障码或背景说明（可选）</string>
+    <string name="workbench_mode_audio">声学</string>
+    <string name="workbench_mode_camera">拍照</string>
+    <string name="workbench_mode_code">代码 / 文本</string>
+    <string name="workbench_run_diagnosis">开始手册核验诊断</string>
+    <string name="workbench_analyzing">正在分析并检索手册…</string>
+    <string name="workbench_start_new">开始新检测</string>
+    <string name="dictate_symptoms">语音听写症状</string>
+
+    <!-- Diagnostic Result & Maps Finder -->
+    <string name="result_likely_culprit">可能故障原因</string>
+    <string name="result_save_report">保存报告</string>
+    <string name="result_saved_to_log">已保存</string>
+    <string name="result_share">分享</string>
+    <string name="result_share_full">分享维修报告</string>
+    <string name="result_diy_checklist">分步自助维修清单</string>
+    <string name="result_parts_tools">所需工具与配件</string>
+    <string name="result_grounded_sources">参考维修手册与来源</string>
+    <string name="result_followup_header">继续追问</string>
+    <string name="result_followup_hint">询问扭矩参数、安全提示或下一步操作…</string>
+    <string name="nearby_help_header">附近配件店与维修点</string>
+    <string name="nearby_help_urgent">严重程度较高 — 使用 Google 地图快速查找附近维修店或配件。</string>
+    <string name="nearby_help_standard">直接打开 Google 地图，无需额外权限或 API 费用。</string>
+    <string name="find_parts_nearby">查找配件</string>
+    <string name="find_pro_nearby">附近维修店</string>
+
+    <!-- Hands-Free Voice -->
+    <string name="hands_free_banner">免触控语音维修模式</string>
+    <string name="hands_free_general_assistant">通用维修助手</string>
+    <string name="hands_free_loop_enabled">连续语音对话循环</string>
+    <string name="hands_free_tap_record">点击录制语音与声音</string>
+    <string name="hands_free_tap_start">点击屏幕任意处开始说话</string>
+    <string name="hands_free_listening">正在聆听… 请自然说话</string>
+    <string name="hands_free_thinking">正在查阅手册并诊断…</string>
+    <string name="hands_free_speaking">正在播报回复…（点击打断）</string>
+    <string name="hands_free_pause">暂停免提会话</string>
+
+    <!-- Garage & Repair Log -->
+    <string name="garage_stat_units">设备</string>
+    <string name="garage_stat_diagnoses">诊断</string>
+    <string name="garage_stat_fixed">已修复</string>
+    <string name="garage_empty_title">登记您的车辆与家电</string>
+    <string name="garage_empty_desc">保存准确的品牌与型号，诊断时 PocketMechanic 会自动匹配对应维修手册。</string>
+    <string name="garage_add_first">添加首个设备</string>
+    <string name="garage_inspect_unit">检测此设备</string>
+    <string name="garage_add_equipment">添加设备</string>
+    <string name="garage_edit_equipment">编辑设备</string>
+    <string name="garage_field_nickname">昵称 *</string>
+    <string name="garage_field_make_model">品牌与型号</string>
+    <string name="garage_field_year_serial">年份 / 序列号</string>
+    <string name="garage_field_notes">保养备注</string>
+    <string name="action_save">保存</string>
+    <string name="action_cancel">取消</string>
+    <string name="action_retry">重试</string>
+    <string name="action_byok">BYOK</string>
+    <string name="action_offline">离线</string>
+    <string name="action_close">关闭</string>
+    <string name="history_search_hint">搜索历史诊断、型号或故障原因…</string>
+
+    <!-- AI Engine, Quota & BYOK -->
+    <string name="ai_engine_settings_title">AI 引擎与 BYOK</string>
+    <string name="ai_engine_settings_subtitle">每日免费额度、自有 Gemini 密钥或离线参考</string>
+    <string name="ai_quota_reached_title">今日免费 AI 额度已用完（%1$d/%2$d）</string>
+    <string name="ai_quota_reached_desc">将于 UTC 零点自动重置，或立即选择以下方式继续诊断：</string>
+    <string name="ai_choose_byok_cta">使用个人 Gemini 密钥（BYOK • 无限次）</string>
+    <string name="ai_choose_supporter_cta">支持扩容</string>
+    <string name="ai_choose_offline_cta">离线参考</string>
+    <string name="ai_get_key_cta">前往 AI Studio 获取 Gemini API 密钥</string>
+    <string name="ai_key_input_label">个人 Gemini API 密钥</string>
+    <string name="ai_test_save_key">测试并保存</string>
+    <string name="ai_testing_key">测试中…</string>
+    <string name="ai_clear_key">清除</string>
+    <string name="ai_privacy_note">仅保存在本机私密存储中，绝不会上传至云端日志。</string>
+
+    <!-- Support, Engagement Auto-Popups & Privacy -->
+    <string name="support_development_title">支持独立开发</string>
+    <string name="support_development_subtitle">100% 无广告的独立自助维修工具</string>
+    <string name="support_about_header">支持与关于 POCKETMECHANIC</string>
+    <string name="support_view_options">查看支持方式</string>
+    <string name="support_supporter_options">支持者选项</string>
+    <string name="support_inline_title">诊断已完成 — 帮上忙了吗？</string>
+    <string name="support_inline_subtitle">请独立开发者喝杯咖啡或解锁活跃支持者徽章</string>
+    <string name="active_supporter_badge">活跃支持者</string>
+    <string name="action_rate">评分</string>
+    <string name="action_share">分享</string>
+    <string name="action_update">更新</string>
+    <string name="privacy_policy_title">隐私政策</string>
+    <string name="event_log_label">应用事件日志（已记录 %1$d 条）</string>
+
+    <!-- Localized Smart Auto-Popups (Update, Rate, Share, Support Milestone) -->
+    <string name="share_app_subject">推荐 PocketMechanic — 视觉与声学自助诊断</string>
+    <string name="rate_app_title">PocketMechanic 帮您省下跑修车厂的麻烦了吗？</string>
+    <string name="rate_app_message">如果诊断帮您定位了故障，在 Play 商店留下评分可以帮助更多车主和动手达人。</string>
+    <string name="rate_app_primary">去评分</string>
+    <string name="rate_app_later">以后再说</string>
+    <string name="rate_app_opt_out">已评分 / 不再提示</string>
+
+    <string name="update_app_title">发现新版本</string>
+    <string name="update_app_message">PocketMechanic 新版本已就绪，带来更高的声学与故障诊断准确度。</string>
+    <string name="update_app_primary">立即更新</string>
+    <string name="update_app_later">稍后</string>
+    <string name="update_app_opt_out">跳过此版本</string>
+
+    <string name="share_popup_title">将 PocketMechanic 分享给朋友</string>
+    <string name="share_popup_message">身边有人正为皮带异响、故障码或水管漏水发愁吗？把 PocketMechanic 发给他们吧。</string>
+    <string name="share_popup_primary">分享应用</string>
+    <string name="share_popup_later">稍后</string>
+    <string name="share_popup_opt_out">不感兴趣</string>
+
+    <string name="milestone_popup_title">维修里程碑：已完成 %1$d 次诊断！</string>
+    <string name="milestone_popup_message">感谢社区支持者，PocketMechanic 始终保持无广告。愿意请开发者喝杯咖啡吗？</string>
+    <string name="milestone_popup_primary">支持方式</string>
+    <string name="milestone_popup_later">暂不</string>
+</resources>

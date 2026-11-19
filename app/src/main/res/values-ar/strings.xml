@@ -1,0 +1,177 @@
+<resources>
+    <!-- Core Identity & Navigation -->
+    <string name="app_name">PocketMechanic</string>
+    <string name="app_tagline">تشخيص الأعطال بالصوت والصورة</string>
+    <string name="sign_in_google">تسجيل الدخول عبر Google</string>
+    <string name="signing_in">جارٍ تسجيل الدخول…</string>
+    <string name="sign_out">تسجيل الخروج</string>
+    <string name="nav_audio">الصوت</string>
+    <string name="nav_workbench">الفحص</string>
+    <string name="nav_hands_free">بدون يدين</string>
+    <string name="nav_logs">السجل</string>
+    <string name="nav_garage">المرآب</string>
+    <string name="splash_calibrating">جارٍ معايرة مستشعرات الصوت والصورة…</string>
+
+    <!-- Auth / Onboarding -->
+    <string name="auth_hero_headline">شخّص أصوات المحرك والتسريبات ورموز الأعطال في ثوانٍ.</string>
+    <string name="auth_feature_audio_title">تشخيص الأنماط الصوتية</string>
+    <string name="auth_feature_audio_desc">سجّل صرير السيور والطرق وطنين المحرك لتحديد السبب المحتمل.</string>
+    <string name="auth_feature_vision_title">الفحص البصري والمصباح</string>
+    <string name="auth_feature_vision_desc">صوّر رموز الأعطال والفيوزات التالفة والوصلات بمصباح مدمج.</string>
+    <string name="auth_feature_manuals_title">أدلة إصلاح موثقة بالبحث</string>
+    <string name="auth_feature_manuals_desc">يطابق أدلة الصيانة وتحذيرات السلامة وفق الشركة والطراز بدقة.</string>
+    <string name="auth_feature_voice_title">الوضع الصوتي بدون يدين</string>
+    <string name="auth_feature_voice_desc">تحدث مع المساعد أثناء العمل دون الحاجة للمس الشاشة.</string>
+    <string name="auth_sync_footnote">يزامن معدات المرآب وسجلات الإصلاح بأمان مع حسابك.</string>
+
+    <!-- Flashlight & Hardware -->
+    <string name="torch_toggle">تشغيل أو إيقاف المصباح</string>
+    <string name="torch_light_on">المصباح يعمل</string>
+    <string name="torch_light_off">مصباح</string>
+    <string name="torch_card_title_on">مصباح الورشة قيد التشغيل</string>
+    <string name="torch_card_title_off">مصباح الورشة</string>
+    <string name="torch_card_desc_on">إضاءة حجرة المحرك المظلمة وأسفل الحوض</string>
+    <string name="torch_card_desc_off">شغّل مصباح LED لإضاءة المحرك أو الأنابيب المظلمة</string>
+    <string name="torch_card_unavailable">لم يتم اكتشاف فلاش كاميرا على هذا الجهاز</string>
+
+    <!-- Audio Capture & Workbench -->
+    <string name="audio_capture_title">مسبار صوت المحرك والأجهزة</string>
+    <string name="vision_capture_title">فاحص الأعطال والرموز البصري</string>
+    <string name="hands_free_title">الميكانيكي الصوتي بدون يدين</string>
+    <string name="error_empty_input">يرجى تسجيل صوت أو إرفاق صورة أو وصف المشكلة أولاً.</string>
+    <string name="permission_mic_required">يلزم إذن الميكروفون للاستماع إلى الأصوات الميكانيكية أو الأوامر الصوتية.</string>
+    <string name="permission_camera_required">يلزم إذن الكاميرا لفحص القطع والتسريبات ورموز الأعطال.</string>
+    <string name="audio_profile_engine">حجرة المحرك</string>
+    <string name="audio_profile_plumbing">السباكة</string>
+    <string name="audio_profile_appliance">جهاز منزلي</string>
+    <string name="audio_placement_engine">أمسك الهاتف على بُعد 15–30 سم من المحرك أو السير وتجنب هواء العادم</string>
+    <string name="audio_placement_plumbing">قرّب الهاتف من الأنبوب أو السيفون أو المحبس أثناء تدفق الماء</string>
+    <string name="audio_placement_appliance">قرّب الهاتف من المحرك أو الأسطوانة أو المكثف أثناء التشغيل</string>
+    <string name="audio_playback_play">تشغيل الصوت المسجل</string>
+    <string name="audio_playback_stop">إيقاف التشغيل</string>
+    <string name="audio_signal_quiet">اقترب أكثر</string>
+    <string name="audio_signal_optimal">مستوى مثالي</string>
+    <string name="audio_signal_clipping">مرتفع جداً</string>
+    <string name="audio_context_header">مصدر الصوت وتفاصيل الطراز</string>
+    <string name="audio_make_model_label">الشركة والطراز (اختياري)</string>
+    <string name="audio_symptom_label">متى يظهر الصوت؟</string>
+    <string name="audio_analyze_cta">تحليل الصوت الميكانيكي</string>
+    <string name="audio_analyzing_cta">جارٍ تحليل النمط الصوتي…</string>
+    <string name="audio_capture_another">تسجيل صوت آخر</string>
+
+    <string name="workbench_header">ماذا نفحص اليوم؟</string>
+    <string name="workbench_make_model_label">الشركة والطراز والسنة (لمطابقة الدليل)</string>
+    <string name="workbench_symptom_label">الأعراض أو رموز الأعطال أو التفاصيل (اختياري)</string>
+    <string name="workbench_mode_audio">صوت</string>
+    <string name="workbench_mode_camera">كاميرا</string>
+    <string name="workbench_mode_code">رمز / نص</string>
+    <string name="workbench_run_diagnosis">بدء التشخيص الموثق</string>
+    <string name="workbench_analyzing">جارٍ التحليل والبحث في الأدلة…</string>
+    <string name="workbench_start_new">بدء فحص جديد</string>
+    <string name="dictate_symptoms">إملاء الأعراض بالصوت</string>
+
+    <!-- Diagnostic Result & Maps Finder -->
+    <string name="result_likely_culprit">السبب المرجح</string>
+    <string name="result_save_report">حفظ التقرير</string>
+    <string name="result_saved_to_log">تم الحفظ</string>
+    <string name="result_share">مشاركة</string>
+    <string name="result_share_full">مشاركة تقرير الإصلاح</string>
+    <string name="result_diy_checklist">قائمة خطوات الإصلاح الذاتي</string>
+    <string name="result_parts_tools">الأدوات وقطع الغيار المطلوبة</string>
+    <string name="result_grounded_sources">أدلة الإصلاح والمصادر</string>
+    <string name="result_followup_header">اطرح سؤالاً إضافياً</string>
+    <string name="result_followup_hint">اسأل عن عزم الشد أو السلامة أو الخطوة التالية…</string>
+    <string name="nearby_help_header">قطع الغيار والورش القريبة</string>
+    <string name="nearby_help_urgent">خطورة عالية — اعثر بسرعة على ورشة قريبة أو قطع غيار عبر خرائط Google.</string>
+    <string name="nearby_help_standard">يفتح خرائط Google مباشرة بدون أذونات إضافية أو رسوم.</string>
+    <string name="find_parts_nearby">بحث عن قطع</string>
+    <string name="find_pro_nearby">ورشة قريبة</string>
+
+    <!-- Hands-Free Voice -->
+    <string name="hands_free_banner">الوضع الصوتي أثناء العمل</string>
+    <string name="hands_free_general_assistant">مساعد الورشة العام</string>
+    <string name="hands_free_loop_enabled">محادثة صوتية مستمرة</string>
+    <string name="hands_free_tap_record">انقر لتسجيل الصوت والكلام</string>
+    <string name="hands_free_tap_start">انقر في أي مكان لبدء التحدث</string>
+    <string name="hands_free_listening">جارٍ الاستماع… تحدث بطبيعية</string>
+    <string name="hands_free_thinking">جارٍ البحث في الأدلة والتشخيص…</string>
+    <string name="hands_free_speaking">جارٍ قراءة الرد… (انقر للمقاطعة)</string>
+    <string name="hands_free_pause">إيقاف الجلسة مؤقتاً</string>
+
+    <!-- Garage & Repair Log -->
+    <string name="garage_stat_units">الوحدات</string>
+    <string name="garage_stat_diagnoses">التشخيصات</string>
+    <string name="garage_stat_fixed">تم الإصلاح</string>
+    <string name="garage_empty_title">سجّل مركباتك وأجهزتك</string>
+    <string name="garage_empty_desc">احفظ تفاصيل الشركة والطراز ليجلب PocketMechanic دليل الصيانة الصحيح تلقائياً.</string>
+    <string name="garage_add_first">إضافة أول جهاز</string>
+    <string name="garage_inspect_unit">فحص هذه الوحدة</string>
+    <string name="garage_add_equipment">إضافة جهاز</string>
+    <string name="garage_edit_equipment">تعديل الجهاز</string>
+    <string name="garage_field_nickname">الاسم المختصر *</string>
+    <string name="garage_field_make_model">الشركة والطراز</string>
+    <string name="garage_field_year_serial">السنة / الرقم التسلسلي</string>
+    <string name="garage_field_notes">ملاحظات الصيانة</string>
+    <string name="action_save">حفظ</string>
+    <string name="action_cancel">إلغاء</string>
+    <string name="action_retry">إعادة المحاولة</string>
+    <string name="action_byok">BYOK</string>
+    <string name="action_offline">بدون إنترنت</string>
+    <string name="action_close">إغلاق</string>
+    <string name="history_search_hint">ابحث في التشخيصات أو الطرازات أو الأعطال…</string>
+
+    <!-- AI Engine, Quota & BYOK -->
+    <string name="ai_engine_settings_title">محرك الذكاء الاصطناعي وBYOK</string>
+    <string name="ai_engine_settings_subtitle">الحصة اليومية المجانية أو مفتاح Gemini الشخصي أو المرجع دون إنترنت</string>
+    <string name="ai_quota_reached_title">تم استهلاك حصة اليوم (%1$d/%2$d)</string>
+    <string name="ai_quota_reached_desc">تتجدد تلقائياً منتصف الليل بتوقيت UTC — أو واصل الفحص الآن عبر الخيارات أدناه:</string>
+    <string name="ai_choose_byok_cta">استخدام مفتاح Gemini الشخصي (BYOK • غير محدود)</string>
+    <string name="ai_choose_supporter_cta">دعم وترقية</string>
+    <string name="ai_choose_offline_cta">مرجع محلي</string>
+    <string name="ai_get_key_cta">احصل على مفتاح Gemini API من AI Studio</string>
+    <string name="ai_key_input_label">مفتاح Gemini API الشخصي</string>
+    <string name="ai_test_save_key">اختبار وحفظ</string>
+    <string name="ai_testing_key">جارٍ الاختبار…</string>
+    <string name="ai_clear_key">مسح</string>
+    <string name="ai_privacy_note">يُحفظ محلياً على جهازك فقط ولا يُرفع إلى السحابة أبداً.</string>
+
+    <!-- Support, Engagement Auto-Popups & Privacy -->
+    <string name="support_development_title">دعم التطوير</string>
+    <string name="support_development_subtitle">أداة صيانة مستقلة خالية من الإعلانات 100%</string>
+    <string name="support_about_header">الدعم وحول POCKETMECHANIC</string>
+    <string name="support_view_options">عرض خيارات الدعم</string>
+    <string name="support_supporter_options">خيارات الداعم</string>
+    <string name="support_inline_title">اكتمل التشخيص — هل أفادك اليوم؟</string>
+    <string name="support_inline_subtitle">ادعم المطور المستقل أو افتح شارة الداعم النشط</string>
+    <string name="active_supporter_badge">داعم نشط</string>
+    <string name="action_rate">تقييم</string>
+    <string name="action_share">مشاركة</string>
+    <string name="action_update">تحديث</string>
+    <string name="privacy_policy_title">سياسة الخصوصية</string>
+    <string name="event_log_label">سجل أحداث التطبيق (%1$d مسجل)</string>
+
+    <!-- Localized Smart Auto-Popups (Update, Rate, Share, Support Milestone) -->
+    <string name="share_app_subject">جرّب PocketMechanic — تشخيص الأعطال بالصوت والصورة</string>
+    <string name="rate_app_title">هل وفّر عليك PocketMechanic زيارة الورشة؟</string>
+    <string name="rate_app_message">إذا ساعدك التشخيص في اكتشاف العطل، فإن تقييمك على متجر Play يساعد الآخرين في العثور علينا.</string>
+    <string name="rate_app_primary">تقييم التطبيق</string>
+    <string name="rate_app_later">لاحقاً</string>
+    <string name="rate_app_opt_out">تم التقييم / لا تسأل مجدداً</string>
+
+    <string name="update_app_title">يتوفر تحديث جديد</string>
+    <string name="update_app_message">يتوفر إصدار أحدث من PocketMechanic بدقة صوتية وتشخيصية محسّنة.</string>
+    <string name="update_app_primary">تحديث الآن</string>
+    <string name="update_app_later">لاحقاً</string>
+    <string name="update_app_opt_out">تخطي الإصدار</string>
+
+    <string name="share_popup_title">شارك PocketMechanic مع صديق</string>
+    <string name="share_popup_message">هل تعرف شخصاً يتحقق من صوت سير أو رمز عطل أو تسريب ماء؟ أرسل له PocketMechanic.</string>
+    <string name="share_popup_primary">مشاركة التطبيق</string>
+    <string name="share_popup_later">لاحقاً</string>
+    <string name="share_popup_opt_out">غير مهتم</string>
+
+    <string name="milestone_popup_title">إنجاز الورشة: %1$d تشخيصاً!</string>
+    <string name="milestone_popup_message">يبقى PocketMechanic خالياً من الإعلانات بفضل دعم المجتمع. هل تود تقديم كوب قهوة للمطور؟</string>
+    <string name="milestone_popup_primary">خيارات الدعم</string>
+    <string name="milestone_popup_later">ليس الآن</string>
+</resources>

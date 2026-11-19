@@ -1,0 +1,177 @@
+<resources>
+    <!-- Core Identity & Navigation -->
+    <string name="app_name">PocketMechanic</string>
+    <string name="app_tagline">Visuell &amp; Ljudbaserad Diagnos</string>
+    <string name="sign_in_google">Logga in med Google</string>
+    <string name="signing_in">Loggar in…</string>
+    <string name="sign_out">Logga ut</string>
+    <string name="nav_audio">Ljud</string>
+    <string name="nav_workbench">Inspektera</string>
+    <string name="nav_hands_free">Handsfree</string>
+    <string name="nav_logs">Loggbok</string>
+    <string name="nav_garage">Garage</string>
+    <string name="splash_calibrating">KALIBRERAR AKUSTISKA &amp; VISUELLA SENSORER…</string>
+
+    <!-- Auth / Onboarding -->
+    <string name="auth_hero_headline">Diagnostisera motorljud, läckor &amp; felkoder på några sekunder.</string>
+    <string name="auth_feature_audio_title">Ljudmönsterdiagnos</string>
+    <string name="auth_feature_audio_desc">Spela in remgnissel, knackningar och motorbrum för direkt felanalys.</string>
+    <string name="auth_feature_vision_title">Kamera- &amp; ficklampsinspektör</string>
+    <string name="auth_feature_vision_desc">Fota felkoder, säkringar och kopplingar med inbyggd ficklampa.</string>
+    <string name="auth_feature_manuals_title">Sökverifierade manualer</string>
+    <string name="auth_feature_manuals_desc">Matchar reparationsguider och säkerhetsvarningar för exakt märke &amp; modell.</string>
+    <string name="auth_feature_voice_title">Handsfree röstläge</string>
+    <string name="auth_feature_voice_desc">Prata med assistenten utan att röra skärmen medan du mekar.</string>
+    <string name="auth_sync_footnote">Synkar din garageutrustning &amp; reparationsloggar säkert med ditt konto.</string>
+
+    <!-- Flashlight & Hardware -->
+    <string name="torch_toggle">Växla ficklampa</string>
+    <string name="torch_light_on">LAMPA PÅ</string>
+    <string name="torch_light_off">LAMPA</string>
+    <string name="torch_card_title_on">VERKSTADSLAMPA PÅ</string>
+    <string name="torch_card_title_off">VERKSTADSLAMPA</string>
+    <string name="torch_card_desc_on">Lyser upp mörka motorrum &amp; utrymmen under diskbänken</string>
+    <string name="torch_card_desc_off">Tänd LED-ficklampan för mörka motorrum eller rör</string>
+    <string name="torch_card_unavailable">Ingen kamerablixt hittades på denna enhet</string>
+
+    <!-- Audio Capture & Workbench -->
+    <string name="audio_capture_title">Akustisk motor- &amp; ljudsond</string>
+    <string name="vision_capture_title">Visuell fel- &amp; kodinspektör</string>
+    <string name="hands_free_title">Handsfree röstmekaniker</string>
+    <string name="error_empty_input">Spela in ljud, bifoga ett foto eller beskriv problemet först.</string>
+    <string name="permission_mic_required">Mikrofonbehörighet krävs för att lyssna på mekaniska ljud eller röstkommandon.</string>
+    <string name="permission_camera_required">Kamerabehörighet krävs för att inspektera delar, läckor och felkoder.</string>
+    <string name="audio_profile_engine">Motorrum</string>
+    <string name="audio_profile_plumbing">VVS</string>
+    <string name="audio_profile_appliance">Vitvara</string>
+    <string name="audio_placement_engine">Håll 15–30 cm från motor, rem eller grenrör — undvik avgasflöde</string>
+    <string name="audio_placement_plumbing">Håll nära rör, vattenlås eller ventil när vatten rinner</string>
+    <string name="audio_placement_appliance">Håll nära motor, trumma eller kondensor under aktiv cykel</string>
+    <string name="audio_playback_play">Lyssna på inspelat ljud</string>
+    <string name="audio_playback_stop">Stoppa uppspelning</string>
+    <string name="audio_signal_quiet">Flytta närmare</string>
+    <string name="audio_signal_optimal">Optimal nivå</string>
+    <string name="audio_signal_clipping">För högt</string>
+    <string name="audio_context_header">LJUDKÄLLA &amp; MODELLKONTEXT</string>
+    <string name="audio_make_model_label">Märke &amp; modell (valfritt)</string>
+    <string name="audio_symptom_label">När uppstår ljudet?</string>
+    <string name="audio_analyze_cta">Analysera mekaniskt ljud</string>
+    <string name="audio_analyzing_cta">Analyserar akustiskt mönster…</string>
+    <string name="audio_capture_another">Spela in nytt ljud</string>
+
+    <string name="workbench_header">VAD SKA VI INSPEKTERA?</string>
+    <string name="workbench_make_model_label">Märke, modell &amp; årsmodell (för manualer)</string>
+    <string name="workbench_symptom_label">Symtom, felkoder eller kontext (valfritt)</string>
+    <string name="workbench_mode_audio">Ljud</string>
+    <string name="workbench_mode_camera">Kamera</string>
+    <string name="workbench_mode_code">Kod / Text</string>
+    <string name="workbench_run_diagnosis">Kör diagnos</string>
+    <string name="workbench_analyzing">Analyserar &amp; söker manualer…</string>
+    <string name="workbench_start_new">Starta ny inspektion</string>
+    <string name="dictate_symptoms">Diktera symtom med rösten</string>
+
+    <!-- Diagnostic Result & Maps Finder -->
+    <string name="result_likely_culprit">TROLIG ORSAK</string>
+    <string name="result_save_report">Spara rapport</string>
+    <string name="result_saved_to_log">Sparad</string>
+    <string name="result_share">Dela</string>
+    <string name="result_share_full">Dela reparationsrapport</string>
+    <string name="result_diy_checklist">STEG-FÖR-STEG REPARATIONSLISTA</string>
+    <string name="result_parts_tools">VERKTYG &amp; DELAR SOM BEHÖVS</string>
+    <string name="result_grounded_sources">MANUALER &amp; REPARATIONSKÄLLOR</string>
+    <string name="result_followup_header">STÄLL EN FÖLJDFRÅGA</string>
+    <string name="result_followup_hint">Fråga om åtdragningsmoment, säkerhet eller nästa steg…</string>
+    <string name="nearby_help_header">RESERVDELAR &amp; VERKSTÄDER I NÄRHETEN</string>
+    <string name="nearby_help_urgent">Hög allvarlighetsgrad — hitta snabbt verkstad eller reservdelar i Google Maps.</string>
+    <string name="nearby_help_standard">Öppnar Google Maps direkt utan extra behörigheter eller API-avgifter.</string>
+    <string name="find_parts_nearby">Hitta delar</string>
+    <string name="find_pro_nearby">Verkstad nära</string>
+
+    <!-- Hands-Free Voice -->
+    <string name="hands_free_banner">RÖSTLÄGE FÖR OLJIGA HÄNDER</string>
+    <string name="hands_free_general_assistant">Allmän verkstadsassistent</string>
+    <string name="hands_free_loop_enabled">Kontinuerlig samtalsloop</string>
+    <string name="hands_free_tap_record">Tryck för att spela in röst &amp; ljud</string>
+    <string name="hands_free_tap_start">Tryck var som helst för att tala</string>
+    <string name="hands_free_listening">Lyssnar… Prata naturligt</string>
+    <string name="hands_free_thinking">Söker manualer &amp; diagnostiserar…</string>
+    <string name="hands_free_speaking">Läser upp svar… (Tryck för att avbryta)</string>
+    <string name="hands_free_pause">Pausa handsfree-session</string>
+
+    <!-- Garage & Repair Log -->
+    <string name="garage_stat_units">ENHETER</string>
+    <string name="garage_stat_diagnoses">DIAGNOSER</string>
+    <string name="garage_stat_fixed">LAGADE</string>
+    <string name="garage_empty_title">Registrera fordon &amp; apparater</string>
+    <string name="garage_empty_desc">Spara märke &amp; modell så hämtar PocketMechanic automatiskt rätt servicemanual.</string>
+    <string name="garage_add_first">Lägg till första enheten</string>
+    <string name="garage_inspect_unit">Inspektera denna enhet</string>
+    <string name="garage_add_equipment">Lägg till utrustning</string>
+    <string name="garage_edit_equipment">Redigera utrustning</string>
+    <string name="garage_field_nickname">Smeknamn *</string>
+    <string name="garage_field_make_model">Märke &amp; modell</string>
+    <string name="garage_field_year_serial">År / Serienr</string>
+    <string name="garage_field_notes">Serviceanteckningar</string>
+    <string name="action_save">Spara</string>
+    <string name="action_cancel">Avbryt</string>
+    <string name="action_retry">Försök igen</string>
+    <string name="action_byok">BYOK</string>
+    <string name="action_offline">Offline</string>
+    <string name="action_close">Stäng</string>
+    <string name="history_search_hint">Sök tidigare diagnoser, modeller eller fel…</string>
+
+    <!-- AI Engine, Quota & BYOK -->
+    <string name="ai_engine_settings_title">AI-motor &amp; BYOK</string>
+    <string name="ai_engine_settings_subtitle">Daglig gräns, egen Gemini-nyckel eller offline-referens</string>
+    <string name="ai_quota_reached_title">Daglig AI-kvot använd (%1$d/%2$d)</string>
+    <string name="ai_quota_reached_desc">Återställs automatiskt vid midnatt UTC — eller fortsätt direkt nedan:</string>
+    <string name="ai_choose_byok_cta">Använd egen Gemini-nyckel (BYOK • Obegränsad)</string>
+    <string name="ai_choose_supporter_cta">Stöd appen</string>
+    <string name="ai_choose_offline_cta">Offline-ref</string>
+    <string name="ai_get_key_cta">Skaffa Gemini API-nyckel i AI Studio</string>
+    <string name="ai_key_input_label">Personlig Gemini API-nyckel</string>
+    <string name="ai_test_save_key">Testa &amp; spara</string>
+    <string name="ai_testing_key">Testar…</string>
+    <string name="ai_clear_key">Rensa</string>
+    <string name="ai_privacy_note">Lagras endast lokalt på enheten. Laddas aldrig upp till molnet.</string>
+
+    <!-- Support, Engagement Auto-Popups & Privacy -->
+    <string name="support_development_title">Stöd utvecklingen</string>
+    <string name="support_development_subtitle">100 % reklamfritt oberoende verkstadsverktyg</string>
+    <string name="support_about_header">STÖD &amp; OM POCKETMECHANIC</string>
+    <string name="support_view_options">Visa stödalternativ</string>
+    <string name="support_supporter_options">Supporteralternativ</string>
+    <string name="support_inline_title">Diagnos klar — Räddade den dagen?</string>
+    <string name="support_inline_subtitle">Bjud utvecklaren på en kaffe eller lås upp märket Aktiv supporter</string>
+    <string name="active_supporter_badge">Aktiv supporter</string>
+    <string name="action_rate">Betygsätt</string>
+    <string name="action_share">Dela</string>
+    <string name="action_update">Uppdatera</string>
+    <string name="privacy_policy_title">Integritetspolicy</string>
+    <string name="event_log_label">Händelselogg (%1$d spårade)</string>
+
+    <!-- Localized Smart Auto-Popups (Update, Rate, Share, Support Milestone) -->
+    <string name="share_app_subject">Testa PocketMechanic — Visuell &amp; Ljudbaserad Diagnos</string>
+    <string name="rate_app_title">Sparade PocketMechanic dig en resa?</string>
+    <string name="rate_app_message">Om diagnosen hjälpte dig hitta felet hjälper ett snabbt betyg i Play Store andra hemmafixare.</string>
+    <string name="rate_app_primary">Betygsätt app</string>
+    <string name="rate_app_later">Kanske senare</string>
+    <string name="rate_app_opt_out">Redan betygsatt / Fråga inte</string>
+
+    <string name="update_app_title">Uppdatering tillgänglig</string>
+    <string name="update_app_message">En ny version av PocketMechanic finns med förbättrad akustisk och diagnostisk precision.</string>
+    <string name="update_app_primary">Uppdatera nu</string>
+    <string name="update_app_later">Senare</string>
+    <string name="update_app_opt_out">Hoppa över version</string>
+
+    <string name="share_popup_title">Dela PocketMechanic med en vän</string>
+    <string name="share_popup_message">Känner du någon med en gnisslande rem, felkod eller läckande avlopp? Tipsa om PocketMechanic.</string>
+    <string name="share_popup_primary">Dela appen</string>
+    <string name="share_popup_later">Senare</string>
+    <string name="share_popup_opt_out">Inte intresserad</string>
+
+    <string name="milestone_popup_title">Milstolpe: %1$d diagnoser!</string>
+    <string name="milestone_popup_message">PocketMechanic förblir helt reklamfri tack vare våra supportrar. Vill du bjuda utvecklaren på kaffe?</string>
+    <string name="milestone_popup_primary">Stödalternativ</string>
+    <string name="milestone_popup_later">Inte nu</string>
+</resources>

@@ -1,0 +1,177 @@
+<resources>
+    <!-- Core Identity & Navigation -->
+    <string name="app_name">PocketMechanic</string>
+    <string name="app_tagline">Chẩn đoán DIY bằng hình ảnh &amp; âm thanh</string>
+    <string name="sign_in_google">Đăng nhập bằng Google</string>
+    <string name="signing_in">Đang đăng nhập…</string>
+    <string name="sign_out">Đăng xuất</string>
+    <string name="nav_audio">Âm thanh</string>
+    <string name="nav_workbench">Kiểm tra</string>
+    <string name="nav_hands_free">Rảnh tay</string>
+    <string name="nav_logs">Nhật ký</string>
+    <string name="nav_garage">Nhà xe</string>
+    <string name="splash_calibrating">ĐANG HIỆU CHUẨN CẢM BIẾN ÂM THANH &amp; HÌNH ẢNH…</string>
+
+    <!-- Auth / Onboarding -->
+    <string name="auth_hero_headline">Chẩn đoán tiếng ồn động cơ, rò rỉ và mã lỗi chỉ trong vài giây.</string>
+    <string name="auth_feature_audio_title">Chẩn đoán theo mẫu âm thanh</string>
+    <string name="auth_feature_audio_desc">Ghi âm tiếng rít dây curoa, tiếng gõ và tiếng ù động cơ để tìm nguyên nhân.</string>
+    <string name="auth_feature_vision_title">Kiểm tra hình ảnh &amp; đèn pin</string>
+    <string name="auth_feature_vision_desc">Chụp mã lỗi, cầu chì cháy và khớp nối với đèn pin tích hợp sẵn.</string>
+    <string name="auth_feature_manuals_title">Tài liệu xác thực theo tìm kiếm</string>
+    <string name="auth_feature_manuals_desc">Đối chiếu hướng dẫn sửa chữa và cảnh báo an toàn đúng theo hãng và đời máy.</string>
+    <string name="auth_feature_voice_title">Chế độ giọng nói rảnh tay</string>
+    <string name="auth_feature_voice_desc">Trao đổi trực tiếp với trợ lý mà không cần chạm màn hình khi đang sửa chữa.</string>
+    <string name="auth_sync_footnote">Đồng bộ an toàn thiết bị trong Nhà xe và nhật ký sửa chữa với tài khoản của bạn.</string>
+
+    <!-- Flashlight & Hardware -->
+    <string name="torch_toggle">Bật hoặc tắt đèn pin</string>
+    <string name="torch_light_on">ĐÈN ĐANG BẬT</string>
+    <string name="torch_light_off">ĐÈN PIN</string>
+    <string name="torch_card_title_on">ĐÈN PIN XƯỞNG ĐANG BẬT</string>
+    <string name="torch_card_title_off">ĐÈN PIN XƯỞNG</string>
+    <string name="torch_card_desc_on">Đang chiếu sáng khoang động cơ tối và gầm bồn rửa</string>
+    <string name="torch_card_desc_off">Bật đèn LED để soi khoang động cơ tối hoặc đường ống dưới bồn rửa</string>
+    <string name="torch_card_unavailable">Không tìm thấy đèn flash máy ảnh trên thiết bị này</string>
+
+    <!-- Audio Capture & Workbench -->
+    <string name="audio_capture_title">Đầu dò âm thanh động cơ</string>
+    <string name="vision_capture_title">Trình kiểm tra lỗi &amp; mã lỗi</string>
+    <string name="hands_free_title">Thợ máy giọng nói rảnh tay</string>
+    <string name="error_empty_input">Vui lòng ghi âm, đính kèm ảnh hoặc mô tả sự cố trước.</string>
+    <string name="permission_mic_required">Cần quyền micro để lắng nghe âm thanh cơ khí hoặc lệnh giọng nói.</string>
+    <string name="permission_camera_required">Cần quyền máy ảnh để kiểm tra linh kiện, rò rỉ và mã lỗi.</string>
+    <string name="audio_profile_engine">Khoang máy</string>
+    <string name="audio_profile_plumbing">Ống nước</string>
+    <string name="audio_profile_appliance">Gia dụng</string>
+    <string name="audio_placement_engine">Giữ cách động cơ, dây curoa hoặc cổ góp 15–30 cm — tránh luồng khí xả</string>
+    <string name="audio_placement_plumbing">Giữ gần ống nước, xi phông hoặc van khóa khi mở vòi hay xả nước</string>
+    <string name="audio_placement_appliance">Giữ gần động cơ, lồng giặt hoặc dàn ngưng khi thiết bị đang chạy</string>
+    <string name="audio_playback_play">Nghe lại đoạn ghi âm</string>
+    <string name="audio_playback_stop">Dừng phát</string>
+    <string name="audio_signal_quiet">Đưa lại gần hơn</string>
+    <string name="audio_signal_optimal">Mức âm tối ưu</string>
+    <string name="audio_signal_clipping">Quá lớn</string>
+    <string name="audio_context_header">NGUỒN ÂM THANH &amp; ĐỜI MÁY</string>
+    <string name="audio_make_model_label">Hãng &amp; đời máy (không bắt buộc)</string>
+    <string name="audio_symptom_label">Tiếng ồn xuất hiện khi nào?</string>
+    <string name="audio_analyze_cta">Phân tích âm thanh cơ khí</string>
+    <string name="audio_analyzing_cta">Đang phân tích mẫu âm thanh…</string>
+    <string name="audio_capture_another">Ghi âm tiếng khác</string>
+
+    <string name="workbench_header">CHÚNG TA ĐANG KIỂM TRA GÌ?</string>
+    <string name="workbench_make_model_label">Hãng, mẫu và năm sản xuất (để tra cứu tài liệu)</string>
+    <string name="workbench_symptom_label">Triệu chứng, mã lỗi hoặc bối cảnh (không bắt buộc)</string>
+    <string name="workbench_mode_audio">Âm thanh</string>
+    <string name="workbench_mode_camera">Máy ảnh</string>
+    <string name="workbench_mode_code">Mã / Chữ</string>
+    <string name="workbench_run_diagnosis">Chạy chẩn đoán</string>
+    <string name="workbench_analyzing">Đang phân tích &amp; tra tài liệu…</string>
+    <string name="workbench_start_new">Bắt đầu kiểm tra mới</string>
+    <string name="dictate_symptoms">Đọc triệu chứng bằng giọng nói</string>
+
+    <!-- Diagnostic Result & Maps Finder -->
+    <string name="result_likely_culprit">NGUYÊN NHÂN CÓ KHẢ NĂNG CAO</string>
+    <string name="result_save_report">Lưu báo cáo</string>
+    <string name="result_saved_to_log">Đã lưu</string>
+    <string name="result_share">Chia sẻ</string>
+    <string name="result_share_full">Chia sẻ báo cáo sửa chữa</string>
+    <string name="result_diy_checklist">DANH SÁCH SỬA CHỮA TỪNG BƯỚC</string>
+    <string name="result_parts_tools">DỤNG CỤ &amp; LINH KIỆN CẦN THIẾT</string>
+    <string name="result_grounded_sources">TÀI LIỆU &amp; NGUỒN SỬA CHỮA</string>
+    <string name="result_followup_header">ĐẶT CÂU HỎI TIẾP THEO</string>
+    <string name="result_followup_hint">Hỏi về lực siết, an toàn hoặc các bước tiếp theo…</string>
+    <string name="nearby_help_header">PHỤ TÙNG &amp; TIỆM SỬA GẦN ĐÂY</string>
+    <string name="nearby_help_urgent">Mức độ nghiêm trọng cao — nhanh chóng tìm tiệm sửa hoặc phụ tùng trên Google Maps.</string>
+    <string name="nearby_help_standard">Mở thẳng Google Maps không cần thêm quyền hay chi phí API.</string>
+    <string name="find_parts_nearby">Tìm phụ tùng</string>
+    <string name="find_pro_nearby">Tiệm gần đây</string>
+
+    <!-- Hands-Free Voice -->
+    <string name="hands_free_banner">CHẾ ĐỘ GIỌNG NÓI KHI TAY DÍNH DẦU</string>
+    <string name="hands_free_general_assistant">Trợ lý xưởng tổng hợp</string>
+    <string name="hands_free_loop_enabled">Hội thoại liên tục hai chiều</string>
+    <string name="hands_free_tap_record">Chạm để ghi giọng nói &amp; âm thanh</string>
+    <string name="hands_free_tap_start">Chạm bất kỳ đâu để bắt đầu nói</string>
+    <string name="hands_free_listening">Đang nghe… Hãy nói tự nhiên</string>
+    <string name="hands_free_thinking">Đang tra tài liệu &amp; chẩn đoán…</string>
+    <string name="hands_free_speaking">Đang đọc câu trả lời… (Chạm để ngắt)</string>
+    <string name="hands_free_pause">Tạm dừng phiên rảnh tay</string>
+
+    <!-- Garage & Repair Log -->
+    <string name="garage_stat_units">THIẾT BỊ</string>
+    <string name="garage_stat_diagnoses">CHẨN ĐOÁN</string>
+    <string name="garage_stat_fixed">ĐÃ SỬA</string>
+    <string name="garage_empty_title">Đăng ký xe &amp; thiết bị của bạn</string>
+    <string name="garage_empty_desc">Lưu đúng hãng và đời máy để PocketMechanic tự động tra đúng tài liệu hướng dẫn khi chẩn đoán.</string>
+    <string name="garage_add_first">Thêm thiết bị đầu tiên</string>
+    <string name="garage_inspect_unit">Kiểm tra thiết bị này</string>
+    <string name="garage_add_equipment">Thêm thiết bị</string>
+    <string name="garage_edit_equipment">Chỉnh sửa thiết bị</string>
+    <string name="garage_field_nickname">Tên gợi nhớ *</string>
+    <string name="garage_field_make_model">Hãng &amp; đời máy</string>
+    <string name="garage_field_year_serial">Năm / Số sê-ri</string>
+    <string name="garage_field_notes">Ghi chú bảo dưỡng</string>
+    <string name="action_save">Lưu</string>
+    <string name="action_cancel">Hủy</string>
+    <string name="action_retry">Thử lại</string>
+    <string name="action_byok">BYOK</string>
+    <string name="action_offline">Ngoại tuyến</string>
+    <string name="action_close">Đóng</string>
+    <string name="history_search_hint">Tìm chẩn đoán cũ, mẫu máy hoặc nguyên nhân…</string>
+
+    <!-- AI Engine, Quota & BYOK -->
+    <string name="ai_engine_settings_title">Động cơ AI &amp; BYOK</string>
+    <string name="ai_engine_settings_subtitle">Hạn mức miễn phí hằng ngày, khóa Gemini riêng hoặc tài liệu ngoại tuyến</string>
+    <string name="ai_quota_reached_title">Đã dùng hết hạn mức AI hôm nay (%1$d/%2$d)</string>
+    <string name="ai_quota_reached_desc">Tự động đặt lại lúc 00:00 UTC — hoặc tiếp tục chẩn đoán ngay bằng tùy chọn bên dưới:</string>
+    <string name="ai_choose_byok_cta">Dùng khóa Gemini cá nhân (BYOK • Không giới hạn)</string>
+    <string name="ai_choose_supporter_cta">Ủng hộ &amp; mở rộng</string>
+    <string name="ai_choose_offline_cta">Tra ngoại tuyến</string>
+    <string name="ai_get_key_cta">Lấy khóa API Gemini tại AI Studio</string>
+    <string name="ai_key_input_label">Khóa API Gemini cá nhân</string>
+    <string name="ai_test_save_key">Kiểm tra &amp; lưu</string>
+    <string name="ai_testing_key">Đang kiểm tra…</string>
+    <string name="ai_clear_key">Xóa</string>
+    <string name="ai_privacy_note">Chỉ lưu cục bộ trên thiết bị trong tùy chọn riêng tư. Không bao giờ tải lên đám mây.</string>
+
+    <!-- Support, Engagement Auto-Popups & Privacy -->
+    <string name="support_development_title">Ủng hộ phát triển</string>
+    <string name="support_development_subtitle">Công cụ sửa chữa độc lập 100% không quảng cáo</string>
+    <string name="support_about_header">ỦNG HỘ &amp; GIỚI THIỆU POCKETMECHANIC</string>
+    <string name="support_view_options">Xem cách ủng hộ</string>
+    <string name="support_supporter_options">Tùy chọn người ủng hộ</string>
+    <string name="support_inline_title">Đã có chẩn đoán — Có giúp ích hôm nay?</string>
+    <string name="support_inline_subtitle">Mời lập trình viên một ly cà phê hoặc mở khóa huy hiệu Người ủng hộ</string>
+    <string name="active_supporter_badge">Người ủng hộ tích cực</string>
+    <string name="action_rate">Đánh giá</string>
+    <string name="action_share">Chia sẻ</string>
+    <string name="action_update">Cập nhật</string>
+    <string name="privacy_policy_title">Chính sách quyền riêng tư</string>
+    <string name="event_log_label">Nhật ký sự kiện (%1$d đã ghi)</string>
+
+    <!-- Localized Smart Auto-Popups (Update, Rate, Share, Support Milestone) -->
+    <string name="share_app_subject">Dùng thử PocketMechanic — Chẩn đoán DIY âm thanh &amp; hình ảnh</string>
+    <string name="rate_app_title">PocketMechanic có giúp bạn tiết kiệm một chuyến ra tiệm?</string>
+    <string name="rate_app_message">Nếu kết quả chẩn đoán giúp bạn tìm ra lỗi, một đánh giá nhanh trên Play Store sẽ giúp nhiều người tự sửa chữa hơn.</string>
+    <string name="rate_app_primary">Đánh giá ngay</string>
+    <string name="rate_app_later">Để sau</string>
+    <string name="rate_app_opt_out">Đã đánh giá / Không hỏi nữa</string>
+
+    <string name="update_app_title">Đã có bản cập nhật mới</string>
+    <string name="update_app_message">Phiên bản PocketMechanic mới đã sẵn sàng với độ chính xác âm thanh và chẩn đoán cao hơn.</string>
+    <string name="update_app_primary">Cập nhật ngay</string>
+    <string name="update_app_later">Để sau</string>
+    <string name="update_app_opt_out">Bỏ qua phiên bản</string>
+
+    <string name="share_popup_title">Chia sẻ PocketMechanic cho bạn bè</string>
+    <string name="share_popup_message">Có ai đó đang tìm nguyên nhân dây curoa kêu, mã lỗi hay rò rỉ nước? Hãy gửi PocketMechanic cho họ.</string>
+    <string name="share_popup_primary">Chia sẻ ứng dụng</string>
+    <string name="share_popup_later">Để sau</string>
+    <string name="share_popup_opt_out">Không quan tâm</string>
+
+    <string name="milestone_popup_title">Cột mốc xưởng: %1$d lần chẩn đoán!</string>
+    <string name="milestone_popup_message">PocketMechanic luôn 100% không quảng cáo nhờ sự ủng hộ của cộng đồng. Bạn có muốn mời tác giả một ly cà phê?</string>
+    <string name="milestone_popup_primary">Tùy chọn ủng hộ</string>
+    <string name="milestone_popup_later">Để lúc khác</string>
+</resources>

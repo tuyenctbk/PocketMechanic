@@ -1,0 +1,177 @@
+<resources>
+    <!-- Core Identity & Navigation -->
+    <string name="app_name">PocketMechanic</string>
+    <string name="app_tagline">Визуальная и аудио-диагностика</string>
+    <string name="sign_in_google">Войти через Google</string>
+    <string name="signing_in">Выполняется вход…</string>
+    <string name="sign_out">Выйти</string>
+    <string name="nav_audio">Аудио</string>
+    <string name="nav_workbench">Осмотр</string>
+    <string name="nav_hands_free">Без рук</string>
+    <string name="nav_logs">Журнал</string>
+    <string name="nav_garage">Гараж</string>
+    <string name="splash_calibrating">КАЛИБРОВКА АКУСТИЧЕСКИХ И ВИЗУАЛЬНЫХ ДАТЧИКОВ…</string>
+
+    <!-- Auth / Onboarding -->
+    <string name="auth_hero_headline">Диагностируйте шумы двигателя, утечки и коды ошибок за секунды.</string>
+    <string name="auth_feature_audio_title">Аудиодиагностика шумов</string>
+    <string name="auth_feature_audio_desc">Записывайте свист ремней, стуки и гул мотора для поиска причины.</string>
+    <string name="auth_feature_vision_title">Визуальный осмотр и фонарик</string>
+    <string name="auth_feature_vision_desc">Снимайте коды ошибок, предохранители и фитинги со встроенным фонариком.</string>
+    <string name="auth_feature_manuals_title">Проверенные руководства</string>
+    <string name="auth_feature_manuals_desc">Сверяет руководства по ремонту и меры безопасности по марке и модели.</string>
+    <string name="auth_feature_voice_title">Голосовой режим без рук</string>
+    <string name="auth_feature_voice_desc">Общайтесь с помощником голосом, не прикасаясь к экрану.</string>
+    <string name="auth_sync_footnote">Надежно синхронизирует технику в Гараже и историю ремонтов с аккаунтом.</string>
+
+    <!-- Flashlight & Hardware -->
+    <string name="torch_toggle">Переключить фонарик</string>
+    <string name="torch_light_on">СВЕТ ВКЛ</string>
+    <string name="torch_light_off">СВЕТ</string>
+    <string name="torch_card_title_on">ФОНАРИК МАСТЕРСКОЙ ВКЛЮЧЕН</string>
+    <string name="torch_card_title_off">ФОНАРИК МАСТЕРСКОЙ</string>
+    <string name="torch_card_desc_on">Подсветка темных отсеков двигателя и пространства под раковиной</string>
+    <string name="torch_card_desc_off">Включите LED-фонарик для осмотра двигателя или труб</string>
+    <string name="torch_card_unavailable">На этом устройстве не обнаружена вспышка камеры</string>
+
+    <!-- Audio Capture & Workbench -->
+    <string name="audio_capture_title">Акустический зонд двигателя</string>
+    <string name="vision_capture_title">Визуальный инспектор неисправностей</string>
+    <string name="hands_free_title">Голосовой автомеханик</string>
+    <string name="error_empty_input">Сначала запишите звук, прикрепите фото или опишите проблему.</string>
+    <string name="permission_mic_required">Для записи механических шумов и голосовых команд нужен доступ к микрофону.</string>
+    <string name="permission_camera_required">Для осмотра деталей, утечек и кодов ошибок нужен доступ к камере.</string>
+    <string name="audio_profile_engine">Двигатель</string>
+    <string name="audio_profile_plumbing">Сантехника</string>
+    <string name="audio_profile_appliance">Техника</string>
+    <string name="audio_placement_engine">Держите в 15–30 см от двигателя, ремня или коллектора — избегайте выхлопа</string>
+    <string name="audio_placement_plumbing">Держите рядом с трубой, сифоном или вентилем при открытой воде</string>
+    <string name="audio_placement_appliance">Держите рядом с мотором, барабаном или конденсатором во время работы</string>
+    <string name="audio_playback_play">Прослушать запись</string>
+    <string name="audio_playback_stop">Остановить воспроизведение</string>
+    <string name="audio_signal_quiet">Поднесите ближе</string>
+    <string name="audio_signal_optimal">Оптимальный уровень</string>
+    <string name="audio_signal_clipping">Слишком громко</string>
+    <string name="audio_context_header">ИСТОЧНИК ЗВУКА И МОДЕЛЬ</string>
+    <string name="audio_make_model_label">Марка и модель (необязательно)</string>
+    <string name="audio_symptom_label">Когда появляется шум?</string>
+    <string name="audio_analyze_cta">Анализировать механический шум</string>
+    <string name="audio_analyzing_cta">Анализ акустического профиля…</string>
+    <string name="audio_capture_another">Записать другой звук</string>
+
+    <string name="workbench_header">ЧТО МЫ ОСМАТРИВАЕМ?</string>
+    <string name="workbench_make_model_label">Марка, модель и год (для подбора руководств)</string>
+    <string name="workbench_symptom_label">Симптомы, коды ошибок или контекст (необязательно)</string>
+    <string name="workbench_mode_audio">Аудио</string>
+    <string name="workbench_mode_camera">Камера</string>
+    <string name="workbench_mode_code">Код / Текст</string>
+    <string name="workbench_run_diagnosis">Запустить диагностику</string>
+    <string name="workbench_analyzing">Анализ и поиск руководств…</string>
+    <string name="workbench_start_new">Начать новый осмотр</string>
+    <string name="dictate_symptoms">Надиктовать симптомы голосом</string>
+
+    <!-- Diagnostic Result & Maps Finder -->
+    <string name="result_likely_culprit">ВЕРОЯТНАЯ ПРИЧИНА</string>
+    <string name="result_save_report">Сохранить отчет</string>
+    <string name="result_saved_to_log">Сохранено</string>
+    <string name="result_share">Поделиться</string>
+    <string name="result_share_full">Поделиться отчетом</string>
+    <string name="result_diy_checklist">ПОШАГОВЫЙ ПЛАН РЕМОНТА</string>
+    <string name="result_parts_tools">НЕОБХОДИМЫЕ ИНСТРУМЕНТЫ И ДЕТАЛИ</string>
+    <string name="result_grounded_sources">РУКОВОДСТВА И ИСТОЧНИКИ</string>
+    <string name="result_followup_header">ЗАДАТЬ УТОЧНЯЮЩИЙ ВОПРОС</string>
+    <string name="result_followup_hint">Спросите про момент затяжки, безопасность или шаги…</string>
+    <string name="nearby_help_header">ЗАПЧАСТИ И СЕРВИСЫ РЯДОМ</string>
+    <string name="nearby_help_urgent">Высокая серьезность — быстро найдите мастерскую или запчасти в Google Картах.</string>
+    <string name="nearby_help_standard">Открывает Google Карты напрямую без лишних разрешений и платы за API.</string>
+    <string name="find_parts_nearby">Найти запчасти</string>
+    <string name="find_pro_nearby">Сервис рядом</string>
+
+    <!-- Hands-Free Voice -->
+    <string name="hands_free_banner">ГОЛОСОВОЙ РЕЖИМ ДЛЯ РАБОТЫ</string>
+    <string name="hands_free_general_assistant">Общий помощник мастерской</string>
+    <string name="hands_free_loop_enabled">Непрерывный диалог</string>
+    <string name="hands_free_tap_record">Нажмите для записи речи и звука</string>
+    <string name="hands_free_tap_start">Коснитесь экрана, чтобы говорить</string>
+    <string name="hands_free_listening">Слушаю… Говорите свободно</string>
+    <string name="hands_free_thinking">Поиск руководств и диагностика…</string>
+    <string name="hands_free_speaking">Озвучиваю ответ… (Нажмите, чтобы прервать)</string>
+    <string name="hands_free_pause">Приостановить сеанс без рук</string>
+
+    <!-- Garage & Repair Log -->
+    <string name="garage_stat_units">ТЕХНИКА</string>
+    <string name="garage_stat_diagnoses">ДИАГНОСТИК</string>
+    <string name="garage_stat_fixed">РЕМОНТОВ</string>
+    <string name="garage_empty_title">Добавьте авто и бытовую технику</string>
+    <string name="garage_empty_desc">Сохраните марку и модель, чтобы PocketMechanic автоматически находил нужные руководства.</string>
+    <string name="garage_add_first">Добавить первую единицу</string>
+    <string name="garage_inspect_unit">Осмотреть эту технику</string>
+    <string name="garage_add_equipment">Добавить технику</string>
+    <string name="garage_edit_equipment">Изменить технику</string>
+    <string name="garage_field_nickname">Название *</string>
+    <string name="garage_field_make_model">Марка и модель</string>
+    <string name="garage_field_year_serial">Год / Серийный номер</string>
+    <string name="garage_field_notes">Заметки по обслуживанию</string>
+    <string name="action_save">Сохранить</string>
+    <string name="action_cancel">Отмена</string>
+    <string name="action_retry">Повторить</string>
+    <string name="action_byok">BYOK</string>
+    <string name="action_offline">Офлайн</string>
+    <string name="action_close">Закрыть</string>
+    <string name="history_search_hint">Поиск диагностик, моделей или причин…</string>
+
+    <!-- AI Engine, Quota & BYOK -->
+    <string name="ai_engine_settings_title">Движок ИИ и BYOK</string>
+    <string name="ai_engine_settings_subtitle">Дневной лимит, свой ключ Gemini или офлайн-справочник</string>
+    <string name="ai_quota_reached_title">Дневной лимит ИИ исчерпан (%1$d/%2$d)</string>
+    <string name="ai_quota_reached_desc">Обновится в 00:00 UTC — или продолжите диагностику прямо сейчас:</string>
+    <string name="ai_choose_byok_cta">Свой ключ Gemini (BYOK • Без лимита)</string>
+    <string name="ai_choose_supporter_cta">Поддержать</string>
+    <string name="ai_choose_offline_cta">Офлайн-гид</string>
+    <string name="ai_get_key_cta">Получить API-ключ Gemini в AI Studio</string>
+    <string name="ai_key_input_label">Личный API-ключ Gemini</string>
+    <string name="ai_test_save_key">Проверить и сохранить</string>
+    <string name="ai_testing_key">Проверка…</string>
+    <string name="ai_clear_key">Очистить</string>
+    <string name="ai_privacy_note">Хранится только локально на устройстве. Никогда не передается в облачные журналы.</string>
+
+    <!-- Support, Engagement Auto-Popups & Privacy -->
+    <string name="support_development_title">Поддержать разработку</string>
+    <string name="support_development_subtitle">Независимый инструмент для ремонта без рекламы</string>
+    <string name="support_about_header">ПОДДЕРЖКА И О POCKETMECHANIC</string>
+    <string name="support_view_options">Варианты поддержки</string>
+    <string name="support_supporter_options">Опции сторонника</string>
+    <string name="support_inline_title">Диагностика готова — Помогла сегодня?</string>
+    <string name="support_inline_subtitle">Угостите разработчика кофе или откройте значок Активного сторонника</string>
+    <string name="active_supporter_badge">Активный сторонник</string>
+    <string name="action_rate">Оценить</string>
+    <string name="action_share">Поделиться</string>
+    <string name="action_update">Обновить</string>
+    <string name="privacy_policy_title">Политика конфиденциальности</string>
+    <string name="event_log_label">Журнал событий (%1$d записей)</string>
+
+    <!-- Localized Smart Auto-Popups (Update, Rate, Share, Support Milestone) -->
+    <string name="share_app_subject">Попробуйте PocketMechanic — Аудио и фото-диагностика</string>
+    <string name="rate_app_title">PocketMechanic сэкономил поездку в сервис?</string>
+    <string name="rate_app_message">Если диагностика помогла найти неисправность, короткая оценка в Play Store поможет другим мастерам.</string>
+    <string name="rate_app_primary">Оценить приложение</string>
+    <string name="rate_app_later">Позже</string>
+    <string name="rate_app_opt_out">Уже оценил / Не спрашивать</string>
+
+    <string name="update_app_title">Доступно обновление</string>
+    <string name="update_app_message">Вышла новая версия PocketMechanic с улучшенной точностью анализа звуков и неисправностей.</string>
+    <string name="update_app_primary">Обновить сейчас</string>
+    <string name="update_app_later">Позже</string>
+    <string name="update_app_opt_out">Пропустить версию</string>
+
+    <string name="share_popup_title">Поделитесь PocketMechanic с другом</string>
+    <string name="share_popup_message">Кто-то ищет причину свиста ремня, кода ошибки или течи? Отправьте ему PocketMechanic.</string>
+    <string name="share_popup_primary">Поделиться</string>
+    <string name="share_popup_later">Позже</string>
+    <string name="share_popup_opt_out">Не интересно</string>
+
+    <string name="milestone_popup_title">Веха мастерской: %1$d диагностик!</string>
+    <string name="milestone_popup_message">PocketMechanic остается без рекламы благодаря поддержке сообщества. Угостите разработчика кофе?</string>
+    <string name="milestone_popup_primary">Поддержать</string>
+    <string name="milestone_popup_later">Не сейчас</string>
+</resources>

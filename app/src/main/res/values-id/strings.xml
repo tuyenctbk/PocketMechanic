@@ -1,0 +1,177 @@
+<resources>
+    <!-- Core Identity & Navigation -->
+    <string name="app_name">PocketMechanic</string>
+    <string name="app_tagline">Diagnosis DIY Visual &amp; Audio</string>
+    <string name="sign_in_google">Masuk dengan Google</string>
+    <string name="signing_in">Sedang masuk…</string>
+    <string name="sign_out">Keluar</string>
+    <string name="nav_audio">Audio</string>
+    <string name="nav_workbench">Periksa</string>
+    <string name="nav_hands_free">Bebas Genggam</string>
+    <string name="nav_logs">Riwayat</string>
+    <string name="nav_garage">Garasi</string>
+    <string name="splash_calibrating">MENGKALIBRASI SENSOR AKUSTIK &amp; VISUAL…</string>
+
+    <!-- Auth / Onboarding -->
+    <string name="auth_hero_headline">Diagnosis suara mesin, kebocoran &amp; kode error dalam hitungan detik.</string>
+    <string name="auth_feature_audio_title">Diagnosis Pola Audio</string>
+    <string name="auth_feature_audio_desc">Rekam decitan sabuk, ketukan, dan dengungan motor untuk menganalisis penyebabnya.</string>
+    <string name="auth_feature_vision_title">Inspeksi Visual &amp; Senter</string>
+    <string name="auth_feature_vision_desc">Foto kode error, sekring putus, dan sambungan pipa dengan senter bawaan.</string>
+    <string name="auth_feature_manuals_title">Manual Terverifikasi Pencarian</string>
+    <string name="auth_feature_manuals_desc">Mencocokkan panduan perbaikan dan peringatan keselamatan sesuai merek &amp; model.</string>
+    <string name="auth_feature_voice_title">Mode Suara Bebas Genggam</string>
+    <string name="auth_feature_voice_desc">Bicara langsung dengan asisten tanpa menyentuh layar saat bekerja.</string>
+    <string name="auth_sync_footnote">Menyinkronkan peralatan Garasi &amp; riwayat perbaikan DIY dengan aman ke akun Anda.</string>
+
+    <!-- Flashlight & Hardware -->
+    <string name="torch_toggle">Alihkan Senter</string>
+    <string name="torch_light_on">LAMPU NYALA</string>
+    <string name="torch_light_off">SENTER</string>
+    <string name="torch_card_title_on">SENTER BENGKEL MENYALA</string>
+    <string name="torch_card_title_off">SENTER BENGKEL</string>
+    <string name="torch_card_desc_on">Menerangi ruang mesin gelap &amp; area bawah wastafel</string>
+    <string name="torch_card_desc_off">Nyalakan senter LED untuk ruang mesin gelap atau bawah wastafel</string>
+    <string name="torch_card_unavailable">Tidak ada lampu kilat kamera yang terdeteksi di perangkat ini</string>
+
+    <!-- Audio Capture & Workbench -->
+    <string name="audio_capture_title">Probe Akustik Mesin &amp; Motor</string>
+    <string name="vision_capture_title">Inspektor Visual Kerusakan &amp; Kode</string>
+    <string name="hands_free_title">Mekanik Suara Bebas Genggam</string>
+    <string name="error_empty_input">Silakan rekam audio, lampirkan foto, atau jelaskan masalah terlebih dahulu.</string>
+    <string name="permission_mic_required">Izin mikrofon diperlukan untuk merekam suara mekanis atau perintah suara.</string>
+    <string name="permission_camera_required">Izin kamera diperlukan untuk memeriksa komponen, kebocoran, dan kode error.</string>
+    <string name="audio_profile_engine">Ruang Mesin</string>
+    <string name="audio_profile_plumbing">Pipa Air</string>
+    <string name="audio_profile_appliance">Peralatan Rumah</string>
+    <string name="audio_placement_engine">Pegang 15–30 cm dari mesin, sabuk, atau manifold — hindari aliran knalpot</string>
+    <string name="audio_placement_plumbing">Dekatkan ke pipa, sifon, atau katup saat keran atau saluran air dibuka</string>
+    <string name="audio_placement_appliance">Dekatkan ke motor, drum, atau panel kondensor saat mesin beroperasi</string>
+    <string name="audio_playback_play">Putar rekaman audio</string>
+    <string name="audio_playback_stop">Hentikan pemutaran</string>
+    <string name="audio_signal_quiet">Dekatkan lagi</string>
+    <string name="audio_signal_optimal">Level optimal</string>
+    <string name="audio_signal_clipping">Terlalu keras</string>
+    <string name="audio_context_header">SUMBER SUARA &amp; KONTEKS MODEL</string>
+    <string name="audio_make_model_label">Merek &amp; Model (opsional)</string>
+    <string name="audio_symptom_label">Kapan suara muncul?</string>
+    <string name="audio_analyze_cta">Analisis Suara Mekanis</string>
+    <string name="audio_analyzing_cta">Menganalisis Pola Akustik…</string>
+    <string name="audio_capture_another">Rekam Suara Lain</string>
+
+    <string name="workbench_header">APA YANG KITA PERIKSA?</string>
+    <string name="workbench_make_model_label">Merek, Model &amp; Tahun (untuk pencarian manual)</string>
+    <string name="workbench_symptom_label">Gejala, kode error, atau konteks (opsional)</string>
+    <string name="workbench_mode_audio">Audio</string>
+    <string name="workbench_mode_camera">Kamera</string>
+    <string name="workbench_mode_code">Kode / Teks</string>
+    <string name="workbench_run_diagnosis">Jalankan Diagnosis</string>
+    <string name="workbench_analyzing">Menganalisis &amp; Mencari Manual…</string>
+    <string name="workbench_start_new">Mulai Pemeriksaan Baru</string>
+    <string name="dictate_symptoms">Dikte gejala dengan suara</string>
+
+    <!-- Diagnostic Result & Maps Finder -->
+    <string name="result_likely_culprit">KEMUNGKINAN PENYEBAB</string>
+    <string name="result_save_report">Simpan Laporan</string>
+    <string name="result_saved_to_log">Tersimpan</string>
+    <string name="result_share">Bagikan</string>
+    <string name="result_share_full">Bagikan Laporan Perbaikan</string>
+    <string name="result_diy_checklist">DAFTAR PERBAIKAN LANGKAH DEMI LANGKAH</string>
+    <string name="result_parts_tools">ALAT &amp; SUKU CADANG YANG DIBUTUHKAN</string>
+    <string name="result_grounded_sources">MANUAL &amp; SUMBER PERBAIKAN</string>
+    <string name="result_followup_header">AJUKAN PERTANYAAN LANJUTAN</string>
+    <string name="result_followup_hint">Tanyakan torsi baut, keselamatan, atau langkah berikutnya…</string>
+    <string name="nearby_help_header">SUKU CADANG &amp; BENGKEL TERDEKAT</string>
+    <string name="nearby_help_urgent">Tingkat keparahan tinggi — temukan bengkel atau suku cadang terdekat di Google Maps.</string>
+    <string name="nearby_help_standard">Membuka Google Maps langsung tanpa izin tambahan atau biaya API.</string>
+    <string name="find_parts_nearby">Cari Suku Cadang</string>
+    <string name="find_pro_nearby">Bengkel Terdekat</string>
+
+    <!-- Hands-Free Voice -->
+    <string name="hands_free_banner">MODE SUARA SAAT TANGAN KOTOR</string>
+    <string name="hands_free_general_assistant">Asisten Bengkel Umum</string>
+    <string name="hands_free_loop_enabled">Percakapan berkelanjutan dua arah</string>
+    <string name="hands_free_tap_record">Ketuk untuk merekam suara &amp; audio</string>
+    <string name="hands_free_tap_start">Ketuk di mana saja untuk mulai bicara</string>
+    <string name="hands_free_listening">Mendengarkan… Bicara dengan santai</string>
+    <string name="hands_free_thinking">Mencari Manual &amp; Mendiagnosis…</string>
+    <string name="hands_free_speaking">Membacakan Jawaban… (Ketuk untuk jeda)</string>
+    <string name="hands_free_pause">Jeda Sesi Bebas Genggam</string>
+
+    <!-- Garage & Repair Log -->
+    <string name="garage_stat_units">UNIT</string>
+    <string name="garage_stat_diagnoses">DIAGNOSIS</string>
+    <string name="garage_stat_fixed">SELESAI</string>
+    <string name="garage_empty_title">Daftarkan Kendaraan &amp; Peralatan Anda</string>
+    <string name="garage_empty_desc">Simpan merek &amp; model agar PocketMechanic otomatis mengambil buku panduan yang tepat saat diagnosis.</string>
+    <string name="garage_add_first">Tambah Peralatan Pertama</string>
+    <string name="garage_inspect_unit">Periksa Unit Ini</string>
+    <string name="garage_add_equipment">Tambah Peralatan</string>
+    <string name="garage_edit_equipment">Edit Peralatan</string>
+    <string name="garage_field_nickname">Nama Panggilan *</string>
+    <string name="garage_field_make_model">Merek &amp; Model</string>
+    <string name="garage_field_year_serial">Tahun / Nomor Seri</string>
+    <string name="garage_field_notes">Catatan Servis</string>
+    <string name="action_save">Simpan</string>
+    <string name="action_cancel">Batal</string>
+    <string name="action_retry">Coba Lagi</string>
+    <string name="action_byok">BYOK</string>
+    <string name="action_offline">Offline</string>
+    <string name="action_close">Tutup</string>
+    <string name="history_search_hint">Cari riwayat diagnosis, model, atau penyebab…</string>
+
+    <!-- AI Engine, Quota & BYOK -->
+    <string name="ai_engine_settings_title">Mesin AI &amp; BYOK</string>
+    <string name="ai_engine_settings_subtitle">Kuota harian gratis, kunci Gemini pribadi, atau referensi offline</string>
+    <string name="ai_quota_reached_title">Kuota AI Harian Terpakai (%1$d/%2$d)</string>
+    <string name="ai_quota_reached_desc">Diatur ulang otomatis pukul 00:00 UTC — atau lanjutkan diagnosis sekarang dengan pilihan berikut:</string>
+    <string name="ai_choose_byok_cta">Gunakan Kunci Gemini Pribadi (BYOK • Tanpa Batas)</string>
+    <string name="ai_choose_supporter_cta">Dukung &amp; Tambah</string>
+    <string name="ai_choose_offline_cta">Ref. Offline</string>
+    <string name="ai_get_key_cta">Dapatkan Kunci API Gemini di AI Studio</string>
+    <string name="ai_key_input_label">Kunci API Gemini Pribadi</string>
+    <string name="ai_test_save_key">Uji &amp; Simpan</string>
+    <string name="ai_testing_key">Menguji…</string>
+    <string name="ai_clear_key">Hapus</string>
+    <string name="ai_privacy_note">Disimpan khusus di perangkat secara lokal. Tidak pernah diunggah ke log cloud.</string>
+
+    <!-- Support, Engagement Auto-Popups & Privacy -->
+    <string name="support_development_title">Dukung Pengembangan</string>
+    <string name="support_development_subtitle">Alat bengkel DIY independen 100% bebas iklan</string>
+    <string name="support_about_header">DUKUNGAN &amp; TENTANG POCKETMECHANIC</string>
+    <string name="support_view_options">Lihat Opsi Dukungan</string>
+    <string name="support_supporter_options">Opsi Pendukung</string>
+    <string name="support_inline_title">Diagnosis Selesai — Membantu Hari Ini?</string>
+    <string name="support_inline_subtitle">Traktir pengembang kopi atau buka lencana Pendukung Aktif</string>
+    <string name="active_supporter_badge">Pendukung Aktif</string>
+    <string name="action_rate">Beri Rating</string>
+    <string name="action_share">Bagikan</string>
+    <string name="action_update">Perbarui</string>
+    <string name="privacy_policy_title">Kebijakan Privasi</string>
+    <string name="event_log_label">Log Aktivitas (%1$d tercatat)</string>
+
+    <!-- Localized Smart Auto-Popups (Update, Rate, Share, Support Milestone) -->
+    <string name="share_app_subject">Coba PocketMechanic — Diagnosis DIY Visual &amp; Audio</string>
+    <string name="rate_app_title">PocketMechanic Menghemat Perjalanan ke Bengkel?</string>
+    <string name="rate_app_message">Jika diagnosis kami membantu menemukan masalahnya, ulasan singkat di Play Store sangat membantu pengguna lain.</string>
+    <string name="rate_app_primary">Beri Rating</string>
+    <string name="rate_app_later">Nanti Saja</string>
+    <string name="rate_app_opt_out">Sudah Dinilai / Jangan Tanya</string>
+
+    <string name="update_app_title">Pembaruan Tersedia</string>
+    <string name="update_app_message">Versi terbaru PocketMechanic telah hadir dengan akurasi akustik dan diagnosis yang lebih baik.</string>
+    <string name="update_app_primary">Perbarui Sekarang</string>
+    <string name="update_app_later">Nanti</string>
+    <string name="update_app_opt_out">Lewati Versi Ini</string>
+
+    <string name="share_popup_title">Bagikan PocketMechanic ke Teman</string>
+    <string name="share_popup_message">Ada kenalan yang sedang mengecek sabuk berdecit, kode error, atau pipa bocor? Kirimkan PocketMechanic.</string>
+    <string name="share_popup_primary">Bagikan Aplikasi</string>
+    <string name="share_popup_later">Nanti</string>
+    <string name="share_popup_opt_out">Tidak Tertarik</string>
+
+    <string name="milestone_popup_title">Pencapaian Bengkel: %1$d Diagnosis!</string>
+    <string name="milestone_popup_message">PocketMechanic tetap 100% bebas iklan berkat dukungan komunitas. Mau traktir pengembang secangkir kopi?</string>
+    <string name="milestone_popup_primary">Opsi Dukungan</string>
+    <string name="milestone_popup_later">Lain Kali</string>
+</resources>

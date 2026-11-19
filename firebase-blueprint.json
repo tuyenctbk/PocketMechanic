@@ -1,0 +1,84 @@
+{
+  "entities": {
+    "Equipment": {
+      "title": "Equipment",
+      "description": "A user-owned vehicle, appliance, HVAC unit, plumbing fixture, or yard tool tracked in the PocketMechanic garage.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Firebase Auth UID of the owner." },
+        "name": { "type": "string", "description": "Display name of the equipment." },
+        "category": {
+          "type": "string",
+          "enum": ["VEHICLE", "APPLIANCE", "PLUMBING", "HVAC", "YARD_TOOL", "OTHER"],
+          "description": "Equipment category."
+        },
+        "makeModel": { "type": "string", "description": "Optional manufacturer and model identifier." },
+        "yearOrSerial": { "type": "string", "description": "Optional year or serial number." },
+        "notes": { "type": "string", "description": "Optional maintenance notes." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp on creation (FieldValue.serverTimestamp())." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server timestamp on last update (FieldValue.serverTimestamp())." }
+      },
+      "required": ["userId", "name", "category", "createdAt", "updatedAt"]
+    },
+    "DiagnosticReport": {
+      "title": "DiagnosticReport",
+      "description": "A saved AI-assisted mechanical, plumbing, or appliance diagnostic session with repair steps and grounded sources.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Firebase Auth UID of the owner." },
+        "title": { "type": "string", "description": "Short diagnostic title." },
+        "category": {
+          "type": "string",
+          "enum": ["VEHICLE", "APPLIANCE", "PLUMBING", "HVAC", "YARD_TOOL", "OTHER"]
+        },
+        "mode": {
+          "type": "string",
+          "enum": ["AUDIO", "VISION", "VOICE", "TEXT"]
+        },
+        "equipmentName": { "type": "string", "description": "Make/model or equipment label inspected." },
+        "severity": {
+          "type": "string",
+          "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
+        },
+        "primaryCulprit": { "type": "string", "description": "Most likely mechanical or electrical fault." },
+        "confidencePercent": { "type": "integer", "description": "Estimated confidence score 0-100." },
+        "summary": { "type": "string", "description": "Detailed diagnostic explanation." },
+        "safetyWarnings": { "type": "array", "description": "Bounded list of safety precautions." },
+        "diySteps": { "type": "array", "description": "Bounded list of step-by-step DIY repair actions." },
+        "partsTools": { "type": "array", "description": "Bounded list of needed tools or replacement parts." },
+        "sourceEntries": { "type": "array", "description": "Bounded list of grounded reference entries encoded as title||uri." },
+        "resolved": { "type": "boolean", "description": "Whether the issue has been marked fixed." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp on creation (FieldValue.serverTimestamp())." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server timestamp on last update (FieldValue.serverTimestamp())." }
+      },
+      "required": [
+        "userId",
+        "title",
+        "category",
+        "mode",
+        "equipmentName",
+        "severity",
+        "primaryCulprit",
+        "confidencePercent",
+        "summary",
+        "safetyWarnings",
+        "diySteps",
+        "partsTools",
+        "sourceEntries",
+        "resolved",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/equipment/{equipmentId}": {
+      "schema": { "$ref": "#/entities/Equipment" },
+      "description": "User-scoped garage and home equipment registry."
+    },
+    "/users/{userId}/diagnostics/{diagnosticId}": {
+      "schema": { "$ref": "#/entities/DiagnosticReport" },
+      "description": "User-scoped saved AI diagnostic reports and DIY repair logs."
+    }
+  }
+}

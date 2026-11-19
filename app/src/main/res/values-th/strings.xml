@@ -1,0 +1,177 @@
+<resources>
+    <!-- Core Identity & Navigation -->
+    <string name="app_name">PocketMechanic</string>
+    <string name="app_tagline">ผู้ช่วยวินิจฉัยงานซ่อมด้วยภาพและเสียง</string>
+    <string name="sign_in_google">เข้าสู่ระบบด้วย Google</string>
+    <string name="signing_in">กำลังเข้าสู่ระบบ…</string>
+    <string name="sign_out">ออกจากระบบ</string>
+    <string name="nav_audio">เสียง</string>
+    <string name="nav_workbench">ตรวจสอบ</string>
+    <string name="nav_hands_free">แฮนด์ฟรี</string>
+    <string name="nav_logs">บันทึกซ่อม</string>
+    <string name="nav_garage">โรงรถ</string>
+    <string name="splash_calibrating">กำลังปรับเทียบเซ็นเซอร์เสียงและภาพ…</string>
+
+    <!-- Auth / Onboarding -->
+    <string name="auth_hero_headline">วินิจฉัยเสียงเครื่องยนต์ รอยรั่ว และรหัสข้อผิดพลาดในไม่กี่วินาที</string>
+    <string name="auth_feature_audio_title">วินิจฉัยรูปแบบเสียง</string>
+    <string name="auth_feature_audio_desc">บันทึกเสียงสายพานดัง เสียงเคาะ และเสียงมอเตอร์เพื่อวิเคราะห์สาเหตุ</string>
+    <string name="auth_feature_vision_title">ตรวจด้วยกล้องและไฟฉาย</string>
+    <string name="auth_feature_vision_desc">ถ่ายภาพรหัสข้อผิดพลาด ฟิวส์ขาด และข้อต่อท่อพร้อมไฟฉายในตัว</string>
+    <string name="auth_feature_manuals_title">คู่มืออ้างอิงจากการค้นหา</string>
+    <string name="auth_feature_manuals_desc">เทียบเคียงคู่มือซ่อมและคำเตือนความปลอดภัยตรงตามยี่ห้อและรุ่น</string>
+    <string name="auth_feature_voice_title">โหมดเสียงแฮนด์ฟรี</string>
+    <string name="auth_feature_voice_desc">พูดคุยโต้ตอบกับผู้ช่วยได้โดยไม่ต้องแตะหน้าจอขณะซ่อม</string>
+    <string name="auth_sync_footnote">ซิงค์ข้อมูลอุปกรณ์ในโรงรถและบันทึกการซ่อมไปยังบัญชีของคุณอย่างปลอดภัย</string>
+
+    <!-- Flashlight & Hardware -->
+    <string name="torch_toggle">เปิดหรือปิดไฟฉาย</string>
+    <string name="torch_light_on">เปิดไฟอยู่</string>
+    <string name="torch_light_off">ไฟฉาย</string>
+    <string name="torch_card_title_on">ไฟฉายช่างเปิดอยู่</string>
+    <string name="torch_card_title_off">ไฟฉายช่าง</string>
+    <string name="torch_card_desc_on">กำลังส่องสว่างห้องเครื่องที่มืดและใต้อ่างล้างจาน</string>
+    <string name="torch_card_desc_off">เปิดไฟฉาย LED เพื่อส่องห้องเครื่องหรือท่อใต้อ่างที่มืด</string>
+    <string name="torch_card_unavailable">ไม่พบแฟลชกล้องบนอุปกรณ์นี้</string>
+
+    <!-- Audio Capture & Workbench -->
+    <string name="audio_capture_title">หัววัดเสียงเครื่องยนต์และมอเตอร์</string>
+    <string name="vision_capture_title">ตัวตรวจสอบอาการเสียและรหัสข้อผิดพลาด</string>
+    <string name="hands_free_title">ช่างเสียงแฮนด์ฟรี</string>
+    <string name="error_empty_input">โปรดบันทึกเสียง แนบรูปภาพ หรืออธิบายอาการก่อน</string>
+    <string name="permission_mic_required">จำเป็นต้องได้รับสิทธิ์ไมโครโฟนเพื่อฟังเสียงเครื่องจักรหรือคำสั่งเสียง</string>
+    <string name="permission_camera_required">จำเป็นต้องได้รับสิทธิ์กล้องเพื่อตรวจสอบอะไหล่ รอยรั่ว และรหัสข้อผิดพลาด</string>
+    <string name="audio_profile_engine">ห้องเครื่อง</string>
+    <string name="audio_profile_plumbing">งานประปา</string>
+    <string name="audio_profile_appliance">เครื่องใช้ไฟฟ้า</string>
+    <string name="audio_placement_engine">ถือห่างจากเครื่องยนต์ สายพาน หรือท่อร่วม 15–30 ซม. — หลีกเลี่ยงลมท่อไอเสีย</string>
+    <string name="audio_placement_plumbing">ถือใกล้ท่อ ดักกลิ่น หรือวาล์วน้ำขณะเปิดก๊อกหรือระบายน้ำ</string>
+    <string name="audio_placement_appliance">ถือใกล้มอเตอร์ ถังซัก หรือแผงคอยล์ร้อนขณะเครื่องทำงาน</string>
+    <string name="audio_playback_play">ฟังเสียงที่บันทึกไว้</string>
+    <string name="audio_playback_stop">หยุดการเล่นเสียง</string>
+    <string name="audio_signal_quiet">เข้าใกล้อีกนิด</string>
+    <string name="audio_signal_optimal">ระดับเสียงเหมาะสม</string>
+    <string name="audio_signal_clipping">ดังเกินไป</string>
+    <string name="audio_context_header">แหล่งกำเนิดเสียงและข้อมูลรุ่น</string>
+    <string name="audio_make_model_label">ยี่ห้อและรุ่น (ไม่บังคับ)</string>
+    <string name="audio_symptom_label">เสียงผิดปกติเกิดขึ้นเมื่อใด?</string>
+    <string name="audio_analyze_cta">วิเคราะห์เสียงเครื่องจักร</string>
+    <string name="audio_analyzing_cta">กำลังวิเคราะห์รูปแบบเสียง…</string>
+    <string name="audio_capture_another">บันทึกเสียงอื่น</string>
+
+    <string name="workbench_header">เรากำลังตรวจสอบอะไรอยู่?</string>
+    <string name="workbench_make_model_label">ยี่ห้อ รุ่น และปี (สำหรับค้นหาคู่มือ)</string>
+    <string name="workbench_symptom_label">อาการ รหัสข้อผิดพลาด หรือรายละเอียด (ไม่บังคับ)</string>
+    <string name="workbench_mode_audio">เสียง</string>
+    <string name="workbench_mode_camera">กล้อง</string>
+    <string name="workbench_mode_code">รหัส / ข้อความ</string>
+    <string name="workbench_run_diagnosis">เริ่มการวินิจฉัย</string>
+    <string name="workbench_analyzing">กำลังวิเคราะห์และค้นหาคู่มือ…</string>
+    <string name="workbench_start_new">เริ่มการตรวจสอบใหม่</string>
+    <string name="dictate_symptoms">บอกอาการด้วยเสียง</string>
+
+    <!-- Diagnostic Result & Maps Finder -->
+    <string name="result_likely_culprit">สาเหตุที่เป็นไปได้</string>
+    <string name="result_save_report">บันทึกรายงาน</string>
+    <string name="result_saved_to_log">บันทึกแล้ว</string>
+    <string name="result_share">แชร์</string>
+    <string name="result_share_full">แชร์รายงานการซ่อม</string>
+    <string name="result_diy_checklist">รายการตรวจสอบการซ่อมทีละขั้น</string>
+    <string name="result_parts_tools">เครื่องมือและอะไหล่ที่ต้องใช้</string>
+    <string name="result_grounded_sources">คู่มือซ่อมและแหล่งอ้างอิง</string>
+    <string name="result_followup_header">ถามคำถามเพิ่มเติม</string>
+    <string name="result_followup_hint">สอบถามค่าแรงบิด ความปลอดภัย หรือขั้นตอนถัดไป…</string>
+    <string name="nearby_help_header">ร้านอะไหล่และอู่ซ่อมใกล้เคียง</string>
+    <string name="nearby_help_urgent">ระดับความรุนแรงสูง — ค้นหาอู่ซ่อมหรือร้านอะไหล่ใกล้คุณได้ทันทีบน Google Maps</string>
+    <string name="nearby_help_standard">เปิด Google Maps โดยตรงโดยไม่ขอสิทธิ์เพิ่มและไม่มีค่า API</string>
+    <string name="find_parts_nearby">หาอะไหล่</string>
+    <string name="find_pro_nearby">อู่ใกล้เคียง</string>
+
+    <!-- Hands-Free Voice -->
+    <string name="hands_free_banner">โหมดเสียงสำหรับมือเปื้อนน้ำมัน</string>
+    <string name="hands_free_general_assistant">ผู้ช่วยงานช่างทั่วไป</string>
+    <string name="hands_free_loop_enabled">สนทนาต่อเนื่องอัตโนมัติ</string>
+    <string name="hands_free_tap_record">แตะเพื่อบันทึกเสียงพูดและเสียงเครื่อง</string>
+    <string name="hands_free_tap_start">แตะที่ใดก็ได้เพื่อเริ่มพูด</string>
+    <string name="hands_free_listening">กำลังฟัง… พูดได้ตามปกติ</string>
+    <string name="hands_free_thinking">กำลังค้นหาคู่มือและวินิจฉัย…</string>
+    <string name="hands_free_speaking">กำลังอ่านคำตอบ… (แตะเพื่อหยุด)</string>
+    <string name="hands_free_pause">พักโหมดแฮนด์ฟรี</string>
+
+    <!-- Garage & Repair Log -->
+    <string name="garage_stat_units">อุปกรณ์</string>
+    <string name="garage_stat_diagnoses">วินิจฉัย</string>
+    <string name="garage_stat_fixed">ซ่อมแล้ว</string>
+    <string name="garage_empty_title">ลงทะเบียนรถและเครื่องใช้ของคุณ</string>
+    <string name="garage_empty_desc">บันทึกยี่ห้อและรุ่นให้ครบถ้วนเพื่อให้ PocketMechanic ดึงคู่มือซ่อมที่ตรงรุ่นโดยอัตโนมัติ</string>
+    <string name="garage_add_first">เพิ่มอุปกรณ์แรก</string>
+    <string name="garage_inspect_unit">ตรวจสอบอุปกรณ์นี้</string>
+    <string name="garage_add_equipment">เพิ่มอุปกรณ์</string>
+    <string name="garage_edit_equipment">แก้ไขอุปกรณ์</string>
+    <string name="garage_field_nickname">ชื่อเรียก *</string>
+    <string name="garage_field_make_model">ยี่ห้อและรุ่น</string>
+    <string name="garage_field_year_serial">ปี / หมายเลขเครื่อง</string>
+    <string name="garage_field_notes">บันทึกการบำรุงรักษา</string>
+    <string name="action_save">บันทึก</string>
+    <string name="action_cancel">ยกเลิก</string>
+    <string name="action_retry">ลองใหม่</string>
+    <string name="action_byok">BYOK</string>
+    <string name="action_offline">ออฟไลน์</string>
+    <string name="action_close">ปิด</string>
+    <string name="history_search_hint">ค้นหาประวัติการวินิจฉัย รุ่น หรือสาเหตุ…</string>
+
+    <!-- AI Engine, Quota & BYOK -->
+    <string name="ai_engine_settings_title">ระบบ AI และ BYOK</string>
+    <string name="ai_engine_settings_subtitle">โควตาฟรีรายวัน คีย์ Gemini ส่วนตัว หรือคู่มือออฟไลน์</string>
+    <string name="ai_quota_reached_title">ใช้โควตา AI รายวันครบแล้ว (%1$d/%2$d)</string>
+    <string name="ai_quota_reached_desc">รีเซ็ตอัตโนมัติตอนเที่ยงคืน UTC หรือดำเนินการต่อได้ทันทีด้วยตัวเลือกด้านล่าง:</string>
+    <string name="ai_choose_byok_cta">ใช้คีย์ Gemini ส่วนตัว (BYOK • ไม่จำกัด)</string>
+    <string name="ai_choose_supporter_cta">สนับสนุนและเพิ่มสิทธิ์</string>
+    <string name="ai_choose_offline_cta">อ้างอิงออฟไลน์</string>
+    <string name="ai_get_key_cta">รับคีย์ API ของ Gemini ที่ AI Studio</string>
+    <string name="ai_key_input_label">คีย์ API Gemini ส่วนตัว</string>
+    <string name="ai_test_save_key">ทดสอบและบันทึก</string>
+    <string name="ai_testing_key">กำลังทดสอบ…</string>
+    <string name="ai_clear_key">ล้างค่า</string>
+    <string name="ai_privacy_note">จัดเก็บเฉพาะในอุปกรณ์นี้เท่านั้น ไม่มีการอัปโหลดขึ้นคลาวด์</string>
+
+    <!-- Support, Engagement Auto-Popups & Privacy -->
+    <string name="support_development_title">สนับสนุนการพัฒนา</string>
+    <string name="support_development_subtitle">เครื่องมืองานช่างอิสระ ปลอดโฆษณา 100%</string>
+    <string name="support_about_header">สนับสนุนและเกี่ยวกับ POCKETMECHANIC</string>
+    <string name="support_view_options">ดูตัวเลือกการสนับสนุน</string>
+    <string name="support_supporter_options">ตัวเลือกผู้สนับสนุน</string>
+    <string name="support_inline_title">วินิจฉัยเสร็จแล้ว — ช่วยคุณได้ไหม?</string>
+    <string name="support_inline_subtitle">เลี้ยงกาแฟนักพัฒนาหรือปลดล็อกป้ายผู้สนับสนุน</string>
+    <string name="active_supporter_badge">ผู้สนับสนุน</string>
+    <string name="action_rate">ให้คะแนน</string>
+    <string name="action_share">แชร์</string>
+    <string name="action_update">อัปเดต</string>
+    <string name="privacy_policy_title">นโยบายความเป็นส่วนตัว</string>
+    <string name="event_log_label">บันทึกเหตุการณ์แอป (%1$d รายการ)</string>
+
+    <!-- Localized Smart Auto-Popups (Update, Rate, Share, Support Milestone) -->
+    <string name="share_app_subject">ลองใช้ PocketMechanic — แอปวินิจฉัยงานซ่อมด้วยภาพและเสียง</string>
+    <string name="rate_app_title">PocketMechanic ช่วยประหยัดเวลาไปอู่ได้ไหม?</string>
+    <string name="rate_app_message">หากผลการวินิจฉัยช่วยหาสาเหตุได้ การให้คะแนนบน Play Store จะช่วยให้ผู้ใช้คนอื่นค้นพบแอปนี้</string>
+    <string name="rate_app_primary">ให้คะแนนแอป</string>
+    <string name="rate_app_later">ไว้ทีหลัง</string>
+    <string name="rate_app_opt_out">ให้คะแนนแล้ว / ไม่ต้องถามอีก</string>
+
+    <string name="update_app_title">มีอัปเดตพร้อมใช้งาน</string>
+    <string name="update_app_message">PocketMechanic เวอร์ชันใหม่พร้อมให้ดาวน์โหลดแล้ว พร้อมความแม่นยำด้านเสียงและการวินิจฉัยที่ดียิ่งขึ้น</string>
+    <string name="update_app_primary">อัปเดตตอนนี้</string>
+    <string name="update_app_later">ภายหลัง</string>
+    <string name="update_app_opt_out">ข้ามเวอร์ชันนี้</string>
+
+    <string name="share_popup_title">แชร์ PocketMechanic ให้เพื่อน</string>
+    <string name="share_popup_message">มีคนรู้จักกำลังตรวจสายพานดัง รหัสข้อผิดพลาด หรือท่อรั่วอยู่ไหม? ส่ง PocketMechanic ให้ลองใช้เลย</string>
+    <string name="share_popup_primary">แชร์แอป</string>
+    <string name="share_popup_later">ภายหลัง</string>
+    <string name="share_popup_opt_out">ไม่สนใจ</string>
+
+    <string name="milestone_popup_title">ความสำเร็จงานช่าง: วินิจฉัยครบ %1$d ครั้ง!</string>
+    <string name="milestone_popup_message">PocketMechanic ยังคงไร้โฆษณา 100% ได้ด้วยแรงสนับสนุนจากผู้ใช้ อยากเลี้ยงกาแฟนักพัฒนาไหม?</string>
+    <string name="milestone_popup_primary">ดูวิธีสนับสนุน</string>
+    <string name="milestone_popup_later">ไว้คราวหน้า</string>
+</resources>

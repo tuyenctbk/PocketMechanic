@@ -1,0 +1,177 @@
+<resources>
+    <!-- Core Identity & Navigation -->
+    <string name="app_name">PocketMechanic</string>
+    <string name="app_tagline">Visuele &amp; Audio DIY-diagnose</string>
+    <string name="sign_in_google">Inloggen met Google</string>
+    <string name="signing_in">Inloggen…</string>
+    <string name="sign_out">Uitloggen</string>
+    <string name="nav_audio">Audio</string>
+    <string name="nav_workbench">Inspectie</string>
+    <string name="nav_hands_free">Handsfree</string>
+    <string name="nav_logs">Logboek</string>
+    <string name="nav_garage">Garage</string>
+    <string name="splash_calibrating">AKOESTISCHE &amp; VISUELE SENSOREN KALIBREREN…</string>
+
+    <!-- Auth / Onboarding -->
+    <string name="auth_hero_headline">Diagnoseer motorgeluiden, lekkages &amp; foutcodes binnen enkele seconden.</string>
+    <string name="auth_feature_audio_title">Geluidsdiagnose</string>
+    <string name="auth_feature_audio_desc">Neem piepende riemen, tikken en brommen op voor directe oorzaakanalyse.</string>
+    <string name="auth_feature_vision_title">Visuele inspectie &amp; zaklamp</string>
+    <string name="auth_feature_vision_desc">Fotografeer foutcodes, zekeringen en koppelingen met ingebouwde zaklamp.</string>
+    <string name="auth_feature_manuals_title">Geverifieerde handleidingen</string>
+    <string name="auth_feature_manuals_desc">Koppelt reparatiegidsen en veiligheidswaarschuwingen aan exact merk &amp; model.</string>
+    <string name="auth_feature_voice_title">Handsfree spraakmodus</string>
+    <string name="auth_feature_voice_desc">Praat met de assistent zonder het scherm aan te raken tijdens het klussen.</string>
+    <string name="auth_sync_footnote">Synchroniseert je Garage-apparatuur &amp; reparatielogboeken veilig met je account.</string>
+
+    <!-- Flashlight & Hardware -->
+    <string name="torch_toggle">Zaklamp schakelen</string>
+    <string name="torch_light_on">LICHT AAN</string>
+    <string name="torch_light_off">ZAKLAMP</string>
+    <string name="torch_card_title_on">WERKPLAATSLAMP AAN</string>
+    <string name="torch_card_title_off">WERKPLAATSLAMP</string>
+    <string name="torch_card_desc_on">Verlicht donkere motorruimtes &amp; plekken onder de gootsteen</string>
+    <string name="torch_card_desc_off">Schakel LED-zaklamp in voor donkere motorruimtes of leidingen</string>
+    <string name="torch_card_unavailable">Geen cameraflitser gevonden op dit apparaat</string>
+
+    <!-- Audio Capture & Workbench -->
+    <string name="audio_capture_title">Akoestische motor- &amp; geluidsprobe</string>
+    <string name="vision_capture_title">Visuele storings- &amp; code-inspecteur</string>
+    <string name="hands_free_title">Handsfree spraakmonteur</string>
+    <string name="error_empty_input">Neem eerst audio op, voeg een foto toe of beschrijf het probleem.</string>
+    <string name="permission_mic_required">Microfoonrechten zijn nodig om geluiden of spraakopdrachten op te nemen.</string>
+    <string name="permission_camera_required">Camerarechten zijn nodig om onderdelen, lekkages en foutcodes te inspecteren.</string>
+    <string name="audio_profile_engine">Motorruimte</string>
+    <string name="audio_profile_plumbing">Loodgieterij</string>
+    <string name="audio_profile_appliance">Apparaat</string>
+    <string name="audio_placement_engine">Houd 15–30 cm van motor, riem of spruitstuk — vermijd uitlaatgassen</string>
+    <string name="audio_placement_plumbing">Houd bij leiding, sifon of afsluiter terwijl kraan of afvoer loopt</string>
+    <string name="audio_placement_appliance">Houd bij motor, trommel of condensatorpaneel tijdens actieve cyclus</string>
+    <string name="audio_playback_play">Opgenomen audio afspelen</string>
+    <string name="audio_playback_stop">Afspelen stoppen</string>
+    <string name="audio_signal_quiet">Houd dichterbij</string>
+    <string name="audio_signal_optimal">Optimaal niveau</string>
+    <string name="audio_signal_clipping">Te luid</string>
+    <string name="audio_context_header">GELUIDSBRON &amp; MODELCONTEXT</string>
+    <string name="audio_make_model_label">Merk &amp; model (optioneel)</string>
+    <string name="audio_symptom_label">Wanneer hoor je het geluid?</string>
+    <string name="audio_analyze_cta">Mechanisch geluid analyseren</string>
+    <string name="audio_analyzing_cta">Akoestisch patroon analyseren…</string>
+    <string name="audio_capture_another">Ander geluid opnemen</string>
+
+    <string name="workbench_header">WAT INSPECTEREN WE?</string>
+    <string name="workbench_make_model_label">Merk, model &amp; bouwjaar (voor handleidingen)</string>
+    <string name="workbench_symptom_label">Symptomen, foutcodes of context (optioneel)</string>
+    <string name="workbench_mode_audio">Audio</string>
+    <string name="workbench_mode_camera">Camera</string>
+    <string name="workbench_mode_code">Code / Tekst</string>
+    <string name="workbench_run_diagnosis">Diagnose uitvoeren</string>
+    <string name="workbench_analyzing">Analyseren &amp; handleidingen zoeken…</string>
+    <string name="workbench_start_new">Nieuwe inspectie starten</string>
+    <string name="dictate_symptoms">Symptomen inspreken</string>
+
+    <!-- Diagnostic Result & Maps Finder -->
+    <string name="result_likely_culprit">WAARSCHIJNLIJKE OORZAAK</string>
+    <string name="result_save_report">Rapport opslaan</string>
+    <string name="result_saved_to_log">Opgeslagen</string>
+    <string name="result_share">Delen</string>
+    <string name="result_share_full">Reparatierapport delen</string>
+    <string name="result_diy_checklist">STAP-VOOR-STAP REPARATIECHECKLIST</string>
+    <string name="result_parts_tools">BENODIGD GEREEDSCHAP &amp; ONDERDELEN</string>
+    <string name="result_grounded_sources">HANDLEIDINGEN &amp; BRONNEN</string>
+    <string name="result_followup_header">VERVOLGVRAAG STELLEN</string>
+    <string name="result_followup_hint">Vraag naar aanhaalmoment, veiligheid of volgende stappen…</string>
+    <string name="nearby_help_header">ONDERDELEN &amp; GARAGES IN DE BUURT</string>
+    <string name="nearby_help_urgent">Hoge urgentie — vind snel een garage of onderdelen via Google Maps.</string>
+    <string name="nearby_help_standard">Opent Google Maps direct zonder extra machtigingen of API-kosten.</string>
+    <string name="find_parts_nearby">Onderdelen</string>
+    <string name="find_pro_nearby">Garage zoeken</string>
+
+    <!-- Hands-Free Voice -->
+    <string name="hands_free_banner">SPRAAKMODUS VOOR VUILE HANDEN</string>
+    <string name="hands_free_general_assistant">Algemene werkplaatsassistent</string>
+    <string name="hands_free_loop_enabled">Continu gesprek in lus</string>
+    <string name="hands_free_tap_record">Tik om spraak &amp; geluid op te nemen</string>
+    <string name="hands_free_tap_start">Tik overal om te beginnen met praten</string>
+    <string name="hands_free_listening">Luisteren… Spreek natuurlijk</string>
+    <string name="hands_free_thinking">Handleidingen zoeken &amp; diagnosticeren…</string>
+    <string name="hands_free_speaking">Antwoord wordt voorgelezen… (Tik om te onderbreken)</string>
+    <string name="hands_free_pause">Handsfree sessie pauzeren</string>
+
+    <!-- Garage & Repair Log -->
+    <string name="garage_stat_units">APPARATEN</string>
+    <string name="garage_stat_diagnoses">DIAGNOSES</string>
+    <string name="garage_stat_fixed">OPGELOST</string>
+    <string name="garage_empty_title">Registreer je voertuigen &amp; apparaten</string>
+    <string name="garage_empty_desc">Sla merk &amp; model op zodat PocketMechanic automatisch de juiste handleiding ophaalt.</string>
+    <string name="garage_add_first">Eerste item toevoegen</string>
+    <string name="garage_inspect_unit">Dit item inspecteren</string>
+    <string name="garage_add_equipment">Apparaat toevoegen</string>
+    <string name="garage_edit_equipment">Apparaat bewerken</string>
+    <string name="garage_field_nickname">Naam *</string>
+    <string name="garage_field_make_model">Merk &amp; model</string>
+    <string name="garage_field_year_serial">Jaar / Serienr.</string>
+    <string name="garage_field_notes">Onderhoudsnotities</string>
+    <string name="action_save">Opslaan</string>
+    <string name="action_cancel">Annuleren</string>
+    <string name="action_retry">Opnieuw</string>
+    <string name="action_byok">BYOK</string>
+    <string name="action_offline">Offline</string>
+    <string name="action_close">Sluiten</string>
+    <string name="history_search_hint">Zoek eerdere diagnoses, modellen of oorzaken…</string>
+
+    <!-- AI Engine, Quota & BYOK -->
+    <string name="ai_engine_settings_title">AI-engine &amp; BYOK</string>
+    <string name="ai_engine_settings_subtitle">Dagelijks limiet, eigen Gemini-sleutel of offline naslagwerk</string>
+    <string name="ai_quota_reached_title">Dagelijks AI-limiet gebruikt (%1$d/%2$d)</string>
+    <string name="ai_quota_reached_desc">Reset automatisch om 00:00 UTC — of ga meteen door met onderstaande opties:</string>
+    <string name="ai_choose_byok_cta">Gebruik eigen Gemini-sleutel (BYOK • Onbeperkt)</string>
+    <string name="ai_choose_supporter_cta">Steunen</string>
+    <string name="ai_choose_offline_cta">Offline gids</string>
+    <string name="ai_get_key_cta">Haal een Gemini API-sleutel in AI Studio</string>
+    <string name="ai_key_input_label">Persoonlijke Gemini API-sleutel</string>
+    <string name="ai_test_save_key">Testen &amp; opslaan</string>
+    <string name="ai_testing_key">Testen…</string>
+    <string name="ai_clear_key">Wissen</string>
+    <string name="ai_privacy_note">Alleen lokaal op dit apparaat opgeslagen. Wordt nooit geüpload naar de cloud.</string>
+
+    <!-- Support, Engagement Auto-Popups & Privacy -->
+    <string name="support_development_title">Steun de ontwikkeling</string>
+    <string name="support_development_subtitle">100% reclamevrije onafhankelijke klustool</string>
+    <string name="support_about_header">STEUN &amp; OVER POCKETMECHANIC</string>
+    <string name="support_view_options">Steunopties bekijken</string>
+    <string name="support_supporter_options">Supporteropties</string>
+    <string name="support_inline_title">Diagnose klaar — Heeft het geholpen?</string>
+    <string name="support_inline_subtitle">Trakteer de ontwikkelaar op koffie of ontgrendel de Supporter-badge</string>
+    <string name="active_supporter_badge">Actieve supporter</string>
+    <string name="action_rate">Beoordelen</string>
+    <string name="action_share">Delen</string>
+    <string name="action_update">Updaten</string>
+    <string name="privacy_policy_title">Privacybeleid</string>
+    <string name="event_log_label">Gebeurtenislogboek (%1$d geregistreerd)</string>
+
+    <!-- Localized Smart Auto-Popups (Update, Rate, Share, Support Milestone) -->
+    <string name="share_app_subject">Probeer PocketMechanic — Visuele &amp; Audio DIY-diagnose</string>
+    <string name="rate_app_title">Heeft PocketMechanic je een rit bespaard?</string>
+    <string name="rate_app_message">Als onze diagnose hielp het probleem te vinden, helpt een Play Store-beoordeling andere klussers.</string>
+    <string name="rate_app_primary">App beoordelen</string>
+    <string name="rate_app_later">Later</string>
+    <string name="rate_app_opt_out">Al beoordeeld / Niet meer vragen</string>
+
+    <string name="update_app_title">Werkplaatsupdate gereed</string>
+    <string name="update_app_message">Een nieuwere versie van PocketMechanic is beschikbaar met betere akoestische en diagnoseprecisie.</string>
+    <string name="update_app_primary">Nu updaten</string>
+    <string name="update_app_later">Later</string>
+    <string name="update_app_opt_out">Versie overslaan</string>
+
+    <string name="share_popup_title">Deel PocketMechanic met een vriend</string>
+    <string name="share_popup_message">Ken je iemand met een piepende riem, foutcode of lekkende gootsteen? Deel PocketMechanic.</string>
+    <string name="share_popup_primary">App delen</string>
+    <string name="share_popup_later">Later</string>
+    <string name="share_popup_opt_out">Geen interesse</string>
+
+    <string name="milestone_popup_title">Mijlpaal: %1$d diagnoses!</string>
+    <string name="milestone_popup_message">PocketMechanic blijft 100% reclamevrij dankzij supporters. De ontwikkelaar op een koffie trakteren?</string>
+    <string name="milestone_popup_primary">Steunopties</string>
+    <string name="milestone_popup_later">Niet nu</string>
+</resources>

@@ -1,0 +1,6 @@
+{
+  "name": "PocketMechanic",
+  "description": "Visual and audio AI DIY mechanic and handyman diagnoser for engine noises, plumbing leaks, and error codes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

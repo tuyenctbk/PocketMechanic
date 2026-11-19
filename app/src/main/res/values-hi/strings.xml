@@ -1,0 +1,177 @@
+<resources>
+    <!-- Core Identity & Navigation -->
+    <string name="app_name">PocketMechanic</string>
+    <string name="app_tagline">विज़ुअल और ऑडियो DIY निदान</string>
+    <string name="sign_in_google">Google से साइन इन करें</string>
+    <string name="signing_in">साइन इन हो रहा है…</string>
+    <string name="sign_out">साइन आउट</string>
+    <string name="nav_audio">ऑडियो</string>
+    <string name="nav_workbench">जांच</string>
+    <string name="nav_hands_free">हैंड्स-फ्री</string>
+    <string name="nav_logs">रिपोर्ट लॉग</string>
+    <string name="nav_garage">गैरेज</string>
+    <string name="splash_calibrating">ऑडियो और विज़न सेंसर कैलिब्रेट हो रहे हैं…</string>
+
+    <!-- Auth / Onboarding -->
+    <string name="auth_hero_headline">इंजन की आवाज़, रिसाव और एरर कोड की पहचान कुछ सेकंड में करें।</string>
+    <string name="auth_feature_audio_title">ऑडियो पैटर्न निदान</string>
+    <string name="auth_feature_audio_desc">बेल्ट की चीं-चीं, खटखट और मोटर की गूंज रिकॉर्ड करके कारण पहचानें।</string>
+    <string name="auth_feature_vision_title">विज़ुअल जांच और टॉर्च</string>
+    <string name="auth_feature_vision_desc">बिल्ट-इन टॉर्च के साथ एरर कोड, जले फ़्यूज़ और पाइप फिटिंग की फ़ोटो लें।</string>
+    <string name="auth_feature_manuals_title">सर्च-आधारित रिपेयर मैनुअल</string>
+    <string name="auth_feature_manuals_desc">सटीक मेक और मॉडल के अनुसार रिपेयर गाइड व सुरक्षा चेतावनी मिलान करता है।</string>
+    <string name="auth_feature_voice_title">हैंड्स-फ्री वॉइस मोड</string>
+    <string name="auth_feature_voice_desc">काम करते समय स्क्रीन को छुए बिना असिस्टेंट से बातचीत करें।</string>
+    <string name="auth_sync_footnote">आपके गैरेज उपकरण और DIY मरम्मत लॉग को खाते में सुरक्षित सिंक करता है।</string>
+
+    <!-- Flashlight & Hardware -->
+    <string name="torch_toggle">टॉर्च चालू या बंद करें</string>
+    <string name="torch_light_on">लाइट चालू</string>
+    <string name="torch_light_off">टॉर्च</string>
+    <string name="torch_card_title_on">वर्कशॉप टॉर्च चालू है</string>
+    <string name="torch_card_title_off">वर्कशॉप टॉर्च</string>
+    <string name="torch_card_desc_on">अंधेरे इंजन बे और सिंक के नीचे रोशनी कर रहा है</string>
+    <string name="torch_card_desc_off">अंधेरे इंजन बे या सिंक के नीचे देखने के लिए LED टॉर्च चालू करें</string>
+    <string name="torch_card_unavailable">इस डिवाइस पर कैमरा फ्लैश नहीं मिला</string>
+
+    <!-- Audio Capture & Workbench -->
+    <string name="audio_capture_title">इंजन और मोटर ऑडियो प्रोब</string>
+    <string name="vision_capture_title">विज़ुअल फ़ॉल्ट और कोड इंस्पेक्टर</string>
+    <string name="hands_free_title">हैंड्स-फ्री वॉइस मैकेनिक</string>
+    <string name="error_empty_input">कृपया पहले ऑडियो रिकॉर्ड करें, फ़ोटो जोड़ें या समस्या लिखें।</string>
+    <string name="permission_mic_required">मशीन की आवाज़ या वॉइस कमांड सुनने के लिए माइक्रोफ़ोन अनुमति आवश्यक है।</string>
+    <string name="permission_camera_required">पुर्ज़े, रिसाव और एरर कोड जांचने के लिए कैमरा अनुमति आवश्यक है।</string>
+    <string name="audio_profile_engine">इंजन बे</string>
+    <string name="audio_profile_plumbing">प्लंबिंग</string>
+    <string name="audio_profile_appliance">घरेलू उपकरण</string>
+    <string name="audio_placement_engine">इंजन, बेल्ट या मैनिफोल्ड से 15–30 सेमी दूर रखें — एग्ज़ॉस्ट हवा से बचें</string>
+    <string name="audio_placement_plumbing">नल या ड्रेन चलाते समय पाइप, ट्रैप या वाल्व के पास रखें</string>
+    <string name="audio_placement_appliance">चलते हुए मोटर, ड्रम या कंडेनसर पैनल के पास रखें</string>
+    <string name="audio_playback_play">रिकॉर्ड किया ऑडियो सुनें</string>
+    <string name="audio_playback_stop">प्लेबैक रोकें</string>
+    <string name="audio_signal_quiet">थोड़ा और पास लाएं</string>
+    <string name="audio_signal_optimal">उत्तम स्तर</string>
+    <string name="audio_signal_clipping">बहुत तेज़ आवाज़</string>
+    <string name="audio_context_header">ध्वनि स्रोत और मॉडल जानकारी</string>
+    <string name="audio_make_model_label">मेक और मॉडल (वैकल्पिक)</string>
+    <string name="audio_symptom_label">आवाज़ कब आती है?</string>
+    <string name="audio_analyze_cta">मशीनी आवाज़ का विश्लेषण करें</string>
+    <string name="audio_analyzing_cta">ध्वनि पैटर्न का विश्लेषण हो रहा है…</string>
+    <string name="audio_capture_another">दूसरी आवाज़ रिकॉर्ड करें</string>
+
+    <string name="workbench_header">हम किसकी जांच कर रहे हैं?</string>
+    <string name="workbench_make_model_label">मेक, मॉडल और वर्ष (मैनुअल खोज के लिए)</string>
+    <string name="workbench_symptom_label">लक्षण, एरर कोड या विवरण (वैकल्पिक)</string>
+    <string name="workbench_mode_audio">ऑडियो</string>
+    <string name="workbench_mode_camera">कैमरा</string>
+    <string name="workbench_mode_code">कोड / टेक्स्ट</string>
+    <string name="workbench_run_diagnosis">निदान चलाएं</string>
+    <string name="workbench_analyzing">विश्लेषण और मैनुअल खोज जारी है…</string>
+    <string name="workbench_start_new">नई जांच शुरू करें</string>
+    <string name="dictate_symptoms">बोलकर लक्षण दर्ज करें</string>
+
+    <!-- Diagnostic Result & Maps Finder -->
+    <string name="result_likely_culprit">संभावित कारण</string>
+    <string name="result_save_report">रिपोर्ट सहेजें</string>
+    <string name="result_saved_to_log">सहेजा गया</string>
+    <string name="result_share">साझा करें</string>
+    <string name="result_share_full">रिपेयर रिपोर्ट साझा करें</string>
+    <string name="result_diy_checklist">चरण-दर-चरण मरम्मत सूची</string>
+    <string name="result_parts_tools">आवश्यक औज़ार और पुर्ज़े</string>
+    <string name="result_grounded_sources">रिपेयर मैनुअल और स्रोत</string>
+    <string name="result_followup_header">अगला प्रश्न पूछें</string>
+    <string name="result_followup_hint">टॉर्क मान, सुरक्षा या अगले कदम के बारे में पूछें…</string>
+    <string name="nearby_help_header">नज़दीकी पुर्ज़े और रिपेयर शॉप</string>
+    <string name="nearby_help_urgent">अधिक गंभीरता — Google Maps में तुरंत नज़दीकी वर्कशॉप या पुर्ज़े खोजें।</string>
+    <string name="nearby_help_standard">बिना अतिरिक्त अनुमति या API शुल्क के सीधे Google Maps खोलता है।</string>
+    <string name="find_parts_nearby">पुर्ज़े खोजें</string>
+    <string name="find_pro_nearby">नज़दीकी शॉप</string>
+
+    <!-- Hands-Free Voice -->
+    <string name="hands_free_banner">काम के दौरान हैंड्स-फ्री वॉइस मोड</string>
+    <string name="hands_free_general_assistant">सामान्य वर्कशॉप सहायक</string>
+    <string name="hands_free_loop_enabled">निरंतर बातचीत लूप</string>
+    <string name="hands_free_tap_record">आवाज़ और ध्वनि रिकॉर्ड करने के लिए टैप करें</string>
+    <string name="hands_free_tap_start">बोलने के लिए कहीं भी टैप करें</string>
+    <string name="hands_free_listening">सुन रहा है… सामान्य रूप से बोलें</string>
+    <string name="hands_free_thinking">मैनुअल खोज और निदान जारी है…</string>
+    <string name="hands_free_speaking">उत्तर सुनाया जा रहा है… (रोकने के लिए टैप करें)</string>
+    <string name="hands_free_pause">हैंड्स-फ्री सत्र रोकें</string>
+
+    <!-- Garage & Repair Log -->
+    <string name="garage_stat_units">उपकरण</string>
+    <string name="garage_stat_diagnoses">निदान</string>
+    <string name="garage_stat_fixed">मरम्मत पूर्ण</string>
+    <string name="garage_empty_title">अपने वाहन और उपकरण जोड़ें</string>
+    <string name="garage_empty_desc">मेक और मॉडल सहेजें ताकि जांच के समय PocketMechanic सही सर्विस मैनुअल अपने आप खोज सके।</string>
+    <string name="garage_add_first">पहला उपकरण जोड़ें</string>
+    <string name="garage_inspect_unit">इस इकाई की जांच करें</string>
+    <string name="garage_add_equipment">उपकरण जोड़ें</string>
+    <string name="garage_edit_equipment">उपकरण संपादित करें</string>
+    <string name="garage_field_nickname">उपनाम *</string>
+    <string name="garage_field_make_model">मेक और मॉडल</string>
+    <string name="garage_field_year_serial">वर्ष / सीरियल नंबर</string>
+    <string name="garage_field_notes">सर्विस नोट्स</string>
+    <string name="action_save">सहेजें</string>
+    <string name="action_cancel">रद्द करें</string>
+    <string name="action_retry">पुनः प्रयास</string>
+    <string name="action_byok">BYOK</string>
+    <string name="action_offline">ऑफ़लाइन</string>
+    <string name="action_close">बंद करें</string>
+    <string name="history_search_hint">पिछले निदान, मॉडल या कारण खोजें…</string>
+
+    <!-- AI Engine, Quota & BYOK -->
+    <string name="ai_engine_settings_title">AI इंजन और BYOK</string>
+    <string name="ai_engine_settings_subtitle">दैनिक मुफ़्त सीमा, निजी Gemini कुंजी या ऑफ़लाइन संदर्भ</string>
+    <string name="ai_quota_reached_title">दैनिक मुफ़्त AI सीमा समाप्त (%1$d/%2$d)</string>
+    <string name="ai_quota_reached_desc">मध्यरात्रि UTC पर स्वतः रीसेट होती है — या नीचे से विकल्प चुनकर अभी जारी रखें:</string>
+    <string name="ai_choose_byok_cta">निजी Gemini कुंजी उपयोग करें (BYOK • असीमित)</string>
+    <string name="ai_choose_supporter_cta">समर्थन करें</string>
+    <string name="ai_choose_offline_cta">ऑफ़लाइन गाइड</string>
+    <string name="ai_get_key_cta">AI Studio से Gemini API कुंजी प्राप्त करें</string>
+    <string name="ai_key_input_label">निजी Gemini API कुंजी</string>
+    <string name="ai_test_save_key">जांचें और सहेजें</string>
+    <string name="ai_testing_key">जांच हो रही है…</string>
+    <string name="ai_clear_key">हटाएं</string>
+    <string name="ai_privacy_note">केवल आपके डिवाइस पर स्थानीय रूप से संग्रहीत। क्लाउड पर कभी अपलोड नहीं होती।</string>
+
+    <!-- Support, Engagement Auto-Popups & Privacy -->
+    <string name="support_development_title">विकास का समर्थन करें</string>
+    <string name="support_development_subtitle">100% विज्ञापन-मुक्त स्वतंत्र DIY वर्कशॉप टूल</string>
+    <string name="support_about_header">समर्थन और POCKETMECHANIC के बारे में</string>
+    <string name="support_view_options">समर्थन विकल्प देखें</string>
+    <string name="support_supporter_options">समर्थक विकल्प</string>
+    <string name="support_inline_title">निदान तैयार — क्या इसने मदद की?</string>
+    <string name="support_inline_subtitle">डेवलपर को कॉफ़ी भेंट करें या सक्रिय समर्थक बैज अनलॉक करें</string>
+    <string name="active_supporter_badge">सक्रिय समर्थक</string>
+    <string name="action_rate">रेट करें</string>
+    <string name="action_share">साझा करें</string>
+    <string name="action_update">अपडेट</string>
+    <string name="privacy_policy_title">गोपनीयता नीति</string>
+    <string name="event_log_label">ऐप इवेंट लॉग (%1$d ट्रैक किए गए)</string>
+
+    <!-- Localized Smart Auto-Popups (Update, Rate, Share, Support Milestone) -->
+    <string name="share_app_subject">PocketMechanic आज़माएं — विज़ुअल और ऑडियो DIY निदान</string>
+    <string name="rate_app_title">क्या PocketMechanic ने आपका समय बचाया?</string>
+    <string name="rate_app_message">यदि निदान ने समस्या पहचानने में मदद की, तो Play Store रेटिंग अन्य उपयोगकर्ताओं की मदद करेगी।</string>
+    <string name="rate_app_primary">ऐप रेट करें</string>
+    <string name="rate_app_later">बाद में</string>
+    <string name="rate_app_opt_out">रेट कर दिया / फिर न पूछें</string>
+
+    <string name="update_app_title">अपडेट उपलब्ध है</string>
+    <string name="update_app_message">बेहतर ऑडियो और निदान सटीकता के साथ PocketMechanic का नया संस्करण उपलब्ध है।</string>
+    <string name="update_app_primary">अभी अपडेट करें</string>
+    <string name="update_app_later">बाद में</string>
+    <string name="update_app_opt_out">संस्करण छोड़ें</string>
+
+    <string name="share_popup_title">मित्र के साथ PocketMechanic साझा करें</string>
+    <string name="share_popup_message">क्या कोई आवाज़ करती बेल्ट, एरर कोड या लीक पाइप की जांच कर रहा है? उन्हें PocketMechanic भेजें।</string>
+    <string name="share_popup_primary">ऐप साझा करें</string>
+    <string name="share_popup_later">बाद में</string>
+    <string name="share_popup_opt_out">रुचि नहीं है</string>
+
+    <string name="milestone_popup_title">वर्कशॉप उपलब्धि: %1$d निदान!</string>
+    <string name="milestone_popup_message">समुदाय के समर्थन से PocketMechanic 100% विज्ञापन-मुक्त रहता है। क्या आप डेवलपर को एक कॉफ़ी भेंट करना चाहेंगे?</string>
+    <string name="milestone_popup_primary">समर्थन विकल्प</string>
+    <string name="milestone_popup_later">अभी नहीं</string>
+</resources>

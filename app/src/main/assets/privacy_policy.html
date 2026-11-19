@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — PocketMechanic</title>
+  <style>
+    :root {
+      --bg: #0e131a;
+      --surface: #161f2b;
+      --border: #263447;
+      --text: #e8eef5;
+      --muted: #9eb0c7;
+      --accent: #f59e0b;
+      --cyan: #22d3ee;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 16px 12px 32px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 820px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 18px;
+    }
+    h1 { margin: 0 0 6px; font-size: 1.5rem; color: var(--accent); }
+    .meta {
+      color: var(--muted);
+      font-size: 0.86rem;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+    }
+    h2 { margin-top: 22px; margin-bottom: 8px; font-size: 1.08rem; color: var(--cyan); }
+    p, li { color: var(--text); font-size: 0.92rem; }
+    ul { padding-left: 18px; }
+    li { margin-bottom: 6px; }
+    .card {
+      background: rgba(14, 19, 26, 0.55);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin: 12px 0;
+    }
+    a { color: var(--cyan); text-decoration: none; }
+    footer {
+      margin-top: 24px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Privacy Policy</h1>
+    <div class="meta">
+      <strong>Application:</strong> PocketMechanic (<code>com.soloprono.pocketmechanic</code>)<br />
+      <strong>Effective Date:</strong> November 19, 2026<br />
+      <strong>Contact:</strong> <a href="mailto:tuyenctbk@gmail.com">tuyenctbk@gmail.com</a>
+    </div>
+
+    <p>
+      PocketMechanic is an ad-free DIY mechanical, automotive, plumbing, and home appliance diagnostic
+      tool. We collect only the minimum data strictly required to operate the features you actively use.
+    </p>
+
+    <h2>1. Information We Collect and How It Is Used</h2>
+    <ul>
+      <li><strong>Account &amp; Sync (Google Sign-In / Firebase Auth):</strong> Your Firebase UID, display name, and email authenticate your session and isolate your personal Garage and Repair Logs in Cloud Firestore.</li>
+      <li><strong>User-Submitted Diagnostic Inputs:</strong> Audio clips, photos, equipment models, and symptom notes you explicitly submit are transmitted over HTTPS to Google's Gemini AI service (via Firebase AI Logic or your optional personal BYOK Gemini API key) solely to generate diagnostic insights. We never record in the background.</li>
+      <li><strong>On-Device History &amp; Preferences:</strong> Local diagnosis history, search index, and your optional personal BYOK API key remain strictly on-device in private Android storage. Your personal API key is never uploaded to cloud logs.</li>
+      <li><strong>Local Event Telemetry:</strong> Lightweight launch/diagnosis counters and prompt cooldown timestamps are stored locally on-device so update, rating, and share prompts never spam you.</li>
+    </ul>
+
+    <h2>2. Device Permissions</h2>
+    <div class="card">
+      <ul>
+        <li><strong>Microphone:</strong> Used only when recording mechanical sounds or during Hands-Free Voice Mode.</li>
+        <li><strong>Camera:</strong> Used only for live part/error-code scanning and controlling the LED inspection flashlight. Gallery selection uses Android's zero-permission Photo Picker.</li>
+        <li><strong>Internet:</strong> Used for sign-in, cloud sync, and online AI diagnostics. Offline Quick-Reference works without internet access.</li>
+        <li><strong>No Location Permission:</strong> Nearby parts and repair shop buttons open Google Maps via standard search intents without requesting GPS permissions.</li>
+      </ul>
+    </div>
+
+    <h2>3. Third-Party Services &amp; Payments</h2>
+    <ul>
+      <li><strong>Google Firebase:</strong> Authentication, Cloud Firestore, App Check, and Firebase AI Logic.</li>
+      <li><strong>Google Play Billing / Review / Updates:</strong> Voluntary supporter donations are processed by Google Play Billing. Optional PayPal and Ko-fi links open externally.</li>
+      <li><strong>Zero Ad Networks:</strong> No ad SDKs and no data selling or brokerage.</li>
+    </ul>
+
+    <h2>4. Data Security &amp; Deletion</h2>
+    <p>
+      All cloud traffic is encrypted via HTTPS/TLS and protected by per-user Firestore rules. You may
+      delete individual Garage items, Repair Log entries, or your BYOK API key inside the app anytime.
+      To request complete cloud account deletion, email <a href="mailto:tuyenctbk@gmail.com">tuyenctbk@gmail.com</a>
+      with subject <em>"PocketMechanic Data Deletion Request"</em> (processed within 7 business days).
+    </p>
+
+    <h2>5. Children's Privacy</h2>
+    <p>
+      PocketMechanic is intended for adult DIYers and does not knowingly collect personal information
+      from children under 13.
+    </p>
+
+    <footer>
+      &copy; 2026 PocketMechanic &bull; <a href="mailto:tuyenctbk@gmail.com">tuyenctbk@gmail.com</a>
+    </footer>
+  </main>
+</body>
+</html>

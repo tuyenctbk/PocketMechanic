@@ -1,0 +1,177 @@
+<resources>
+    <!-- Core Identity & Navigation -->
+    <string name="app_name">PocketMechanic</string>
+    <string name="app_tagline">Görsel ve Sesli Arıza Teşhis Aracı</string>
+    <string name="sign_in_google">Google ile giriş yap</string>
+    <string name="signing_in">Giriş yapılıyor…</string>
+    <string name="sign_out">Çıkış yap</string>
+    <string name="nav_audio">Ses</string>
+    <string name="nav_workbench">İncele</string>
+    <string name="nav_hands_free">Eller Serbest</string>
+    <string name="nav_logs">Kayıtlar</string>
+    <string name="nav_garage">Garaj</string>
+    <string name="splash_calibrating">AKUSTİK VE GÖRSEL SENSÖRLER KALİBRE EDİLİYOR…</string>
+
+    <!-- Auth / Onboarding -->
+    <string name="auth_hero_headline">Motor seslerini, sızıntıları ve hata kodlarını saniyeler içinde teşhis edin.</string>
+    <string name="auth_feature_audio_title">Ses Örüntüsü Teşhisi</string>
+    <string name="auth_feature_audio_desc">Kayış cıyaklamalarını, vuruntuları ve motor uğultularını kaydederek nedeni analiz edin.</string>
+    <string name="auth_feature_vision_title">Görsel Kontrol ve El Feneri</string>
+    <string name="auth_feature_vision_desc">Dahili fenerle hata kodlarını, atmış sigortaları ve bağlantıları fotoğraflayın.</string>
+    <string name="auth_feature_manuals_title">Arama Doğrulamalı Kılavuzlar</string>
+    <string name="auth_feature_manuals_desc">Marka ve modele uygun onarım rehberlerini ve güvenlik uyarılarını eşleştirir.</string>
+    <string name="auth_feature_voice_title">Eller Serbest Ses Modu</string>
+    <string name="auth_feature_voice_desc">Tamir sırasında ekrana dokunmadan asistanla karşılıklı konuşun.</string>
+    <string name="auth_sync_footnote">Garaj ekipmanlarınızı ve onarım kayıtlarınızı hesabınızla güvenle senkronize eder.</string>
+
+    <!-- Flashlight & Hardware -->
+    <string name="torch_toggle">El Fenerini Aç/Kapat</string>
+    <string name="torch_light_on">IŞIK AÇIK</string>
+    <string name="torch_light_off">FENER</string>
+    <string name="torch_card_title_on">ATÖLYE FENERİ AÇIK</string>
+    <string name="torch_card_title_off">ATÖLYE FENERİ</string>
+    <string name="torch_card_desc_on">Karanlık motor bölmelerini ve lavabo altını aydınlatıyor</string>
+    <string name="torch_card_desc_off">Karanlık motor bölmeleri veya lavabo altı için LED feneri açın</string>
+    <string name="torch_card_unavailable">Bu cihazda kamera flaşı algılanmadı</string>
+
+    <!-- Audio Capture & Workbench -->
+    <string name="audio_capture_title">Akustik Motor ve Cihaz Probu</string>
+    <string name="vision_capture_title">Görsel Arıza ve Kod İnceleyici</string>
+    <string name="hands_free_title">Eller Serbest Sesli Usta</string>
+    <string name="error_empty_input">Lütfen önce ses kaydedin, fotoğraf ekleyin veya sorunu yazın.</string>
+    <string name="permission_mic_required">Mekanik sesleri veya sesli komutları dinlemek için mikrofon izni gerekir.</string>
+    <string name="permission_camera_required">Parçaları, sızıntıları ve hata kodlarını incelemek için kamera izni gerekir.</string>
+    <string name="audio_profile_engine">Motor Bölmesi</string>
+    <string name="audio_profile_plumbing">Tesisat</string>
+    <string name="audio_profile_appliance">Beyaz Eşya</string>
+    <string name="audio_placement_engine">Motor, kayış veya manifolddan 15–30 cm uzakta tutun — egzoz akımından kaçının</string>
+    <string name="audio_placement_plumbing">Musluk veya gideri çalıştırırken boru, sifon veya vanaya yakın tutun</string>
+    <string name="audio_placement_appliance">Çalışma sırasında motor, tambur veya kondansatör paneline yakın tutun</string>
+    <string name="audio_playback_play">Kaydedilen sesi dinle</string>
+    <string name="audio_playback_stop">Oynatmayı durdur</string>
+    <string name="audio_signal_quiet">Biraz daha yaklaşın</string>
+    <string name="audio_signal_optimal">İdeal seviye</string>
+    <string name="audio_signal_clipping">Çok yüksek</string>
+    <string name="audio_context_header">SES KAYNAĞI VE MODEL BİLGİSİ</string>
+    <string name="audio_make_model_label">Marka ve Model (isteğe bağlı)</string>
+    <string name="audio_symptom_label">Ses ne zaman oluşuyor?</string>
+    <string name="audio_analyze_cta">Mekanik Sesi Analiz Et</string>
+    <string name="audio_analyzing_cta">Akustik Örüntü Analiz Ediliyor…</string>
+    <string name="audio_capture_another">Başka Ses Kaydet</string>
+
+    <string name="workbench_header">NE İNCELİYORUZ?</string>
+    <string name="workbench_make_model_label">Marka, Model ve Yıl (kılavuz araması için)</string>
+    <string name="workbench_symptom_label">Belirtiler, hata kodları veya detay (isteğe bağlı)</string>
+    <string name="workbench_mode_audio">Ses</string>
+    <string name="workbench_mode_camera">Kamera</string>
+    <string name="workbench_mode_code">Kod / Metin</string>
+    <string name="workbench_run_diagnosis">Teşhisi Başlat</string>
+    <string name="workbench_analyzing">Analiz ediliyor ve kılavuzlar taranıyor…</string>
+    <string name="workbench_start_new">Yeni İnceleme Başlat</string>
+    <string name="dictate_symptoms">Belirtileri sesle dikte et</string>
+
+    <!-- Diagnostic Result & Maps Finder -->
+    <string name="result_likely_culprit">OLASI NEDEN</string>
+    <string name="result_save_report">Raporu Kaydet</string>
+    <string name="result_saved_to_log">Kaydedildi</string>
+    <string name="result_share">Paylaş</string>
+    <string name="result_share_full">Onarım Raporunu Paylaş</string>
+    <string name="result_diy_checklist">ADIM ADIM ONARIM LİSTESİ</string>
+    <string name="result_parts_tools">GEREKLİ ALET VE PARÇALAR</string>
+    <string name="result_grounded_sources">ONARIM KILAVUZLARI VE KAYNAKLAR</string>
+    <string name="result_followup_header">TAKİP SORUSU SOR</string>
+    <string name="result_followup_hint">Tork değerleri, güvenlik veya sonraki adımlar hakkında sorun…</string>
+    <string name="nearby_help_header">YAKINDAKİ PARÇACILAR VE SERVİSLER</string>
+    <string name="nearby_help_urgent">Yüksek öncelik — Google Haritalar\'da yakındaki servisi veya yedek parçayı hemen bulun.</string>
+    <string name="nearby_help_standard">Ek izin veya API ücreti olmadan doğrudan Google Haritalar\'ı açar.</string>
+    <string name="find_parts_nearby">Parça Bul</string>
+    <string name="find_pro_nearby">Yakın Servis</string>
+
+    <!-- Hands-Free Voice -->
+    <string name="hands_free_banner">YAĞLI ELLER İÇİN SES MODU</string>
+    <string name="hands_free_general_assistant">Genel Atölye Asistanı</string>
+    <string name="hands_free_loop_enabled">Kesintisiz karşılıklı konuşma</string>
+    <string name="hands_free_tap_record">Ses ve kayıt için dokunun</string>
+    <string name="hands_free_tap_start">Konuşmaya başlamak için herhangi bir yere dokunun</string>
+    <string name="hands_free_listening">Dinleniyor… Doğal konuşun</string>
+    <string name="hands_free_thinking">Kılavuzlar taranıyor ve teşhis yapılıyor…</string>
+    <string name="hands_free_speaking">Yanıt okunuyor… (Durdurmak için dokunun)</string>
+    <string name="hands_free_pause">Eller Serbest Oturumu Duraklat</string>
+
+    <!-- Garage & Repair Log -->
+    <string name="garage_stat_units">CİHAZ</string>
+    <string name="garage_stat_diagnoses">TEŞHİS</string>
+    <string name="garage_stat_fixed">ONARILDI</string>
+    <string name="garage_empty_title">Araç ve Cihazlarınızı Kaydedin</string>
+    <string name="garage_empty_desc">Teşhis sırasında doğru servis kılavuzunun bulunması için marka ve model bilgilerini kaydedin.</string>
+    <string name="garage_add_first">İlk Ekipmanı Ekle</string>
+    <string name="garage_inspect_unit">Bu Üniteyi İncele</string>
+    <string name="garage_add_equipment">Ekipman Ekle</string>
+    <string name="garage_edit_equipment">Ekipmanı Düzenle</string>
+    <string name="garage_field_nickname">Takma Ad *</string>
+    <string name="garage_field_make_model">Marka ve Model</string>
+    <string name="garage_field_year_serial">Yıl / Seri No</string>
+    <string name="garage_field_notes">Bakım Notları</string>
+    <string name="action_save">Kaydet</string>
+    <string name="action_cancel">İptal</string>
+    <string name="action_retry">Tekrar Dene</string>
+    <string name="action_byok">BYOK</string>
+    <string name="action_offline">Çevrimdışı</string>
+    <string name="action_close">Kapat</string>
+    <string name="history_search_hint">Geçmiş teşhis, model veya arızalarda ara…</string>
+
+    <!-- AI Engine, Quota & BYOK -->
+    <string name="ai_engine_settings_title">Yapay Zeka Motoru ve BYOK</string>
+    <string name="ai_engine_settings_subtitle">Günlük ücretsiz hak, kişisel Gemini anahtarı veya çevrimdışı rehber</string>
+    <string name="ai_quota_reached_title">Günlük Ücretsiz AI Hakkı Doldu (%1$d/%2$d)</string>
+    <string name="ai_quota_reached_desc">UTC gece yarısında sıfırlanır — veya aşağıdaki seçeneklerle hemen devam edin:</string>
+    <string name="ai_choose_byok_cta">Kişisel Gemini Anahtarı Kullan (BYOK • Sınırsız)</string>
+    <string name="ai_choose_supporter_cta">Destekle</string>
+    <string name="ai_choose_offline_cta">Çevrimdışı</string>
+    <string name="ai_get_key_cta">AI Studio\'dan Gemini API Anahtarı Al</string>
+    <string name="ai_key_input_label">Kişisel Gemini API Anahtarı</string>
+    <string name="ai_test_save_key">Test Et ve Kaydet</string>
+    <string name="ai_testing_key">Test ediliyor…</string>
+    <string name="ai_clear_key">Temizle</string>
+    <string name="ai_privacy_note">Yalnızca cihazınızdaki özel tercihlerde saklanır. Asla buluta yüklenmez.</string>
+
+    <!-- Support, Engagement Auto-Popups & Privacy -->
+    <string name="support_development_title">Geliştirmeyi Destekle</string>
+    <string name="support_development_subtitle">%100 reklamsız bağımsız atölye aracı</string>
+    <string name="support_about_header">DESTEK VE POCKETMECHANIC HAKKINDA</string>
+    <string name="support_view_options">Destek Seçenekleri</string>
+    <string name="support_supporter_options">Destekçi Seçenekleri</string>
+    <string name="support_inline_title">Teşhis Hazır — İşinize Yaradı mı?</string>
+    <string name="support_inline_subtitle">Geliştiriciye kahve ısmarlayın veya Aktif Destekçi rozetini açın</string>
+    <string name="active_supporter_badge">Aktif Destekçi</string>
+    <string name="action_rate">Puanla</string>
+    <string name="action_share">Paylaş</string>
+    <string name="action_update">Güncelle</string>
+    <string name="privacy_policy_title">Gizlilik Politikası</string>
+    <string name="event_log_label">Uygulama Olay Günlüğü (%1$d kayıtlı)</string>
+
+    <!-- Localized Smart Auto-Popups (Update, Rate, Share, Support Milestone) -->
+    <string name="share_app_subject">PocketMechanic\'i Dene — Görsel ve Sesli Arıza Teşhisi</string>
+    <string name="rate_app_title">PocketMechanic Sizi Servise Gitmekten Kurtardı mı?</string>
+    <string name="rate_app_message">Teşhis sorunu bulmanıza yardımcı olduysa Play Store\'daki kısa bir puanlama diğer kullanıcılara yol gösterir.</string>
+    <string name="rate_app_primary">Uygulamayı Puanla</string>
+    <string name="rate_app_later">Belki Sonra</string>
+    <string name="rate_app_opt_out">Zaten Puanladım / Sorma</string>
+
+    <string name="update_app_title">Güncelleme Hazır</string>
+    <string name="update_app_message">Daha yüksek akustik ve teşhis doğruluğu sunan yeni PocketMechanic sürümü yayınlandı.</string>
+    <string name="update_app_primary">Şimdi Güncelle</string>
+    <string name="update_app_later">Sonra</string>
+    <string name="update_app_opt_out">Sürümü Atla</string>
+
+    <string name="share_popup_title">PocketMechanic\'i Bir Arkadaşınla Paylaş</string>
+    <string name="share_popup_message">Ses yapan kayış, hata kodu veya su sızıntısıyla uğraşan bir tanıdığınız mı var? PocketMechanic\'i gönderin.</string>
+    <string name="share_popup_primary">Uygulamayı Paylaş</string>
+    <string name="share_popup_later">Sonra</string>
+    <string name="share_popup_opt_out">İlgilenmiyorum</string>
+
+    <string name="milestone_popup_title">Atölye Başarısı: %1$d Teşhis!</string>
+    <string name="milestone_popup_message">PocketMechanic topluluk desteği sayesinde %100 reklamsız kalıyor. Geliştiriciye bir kahve ısmarlamak ister misiniz?</string>
+    <string name="milestone_popup_primary">Destek Seçenekleri</string>
+    <string name="milestone_popup_later">Şimdi Değil</string>
+</resources>

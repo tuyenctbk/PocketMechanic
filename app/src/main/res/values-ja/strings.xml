@@ -1,0 +1,177 @@
+<resources>
+    <!-- Core Identity & Navigation -->
+    <string name="app_name">PocketMechanic</string>
+    <string name="app_tagline">視覚・音響DIY診断ツール</string>
+    <string name="sign_in_google">Googleでログイン</string>
+    <string name="signing_in">ログイン中…</string>
+    <string name="sign_out">ログアウト</string>
+    <string name="nav_audio">音響</string>
+    <string name="nav_workbench">点検</string>
+    <string name="nav_hands_free">ハンズフリー</string>
+    <string name="nav_logs">修理履歴</string>
+    <string name="nav_garage">ガレージ</string>
+    <string name="splash_calibrating">音響・視覚プローブを較正中…</string>
+
+    <!-- Auth / Onboarding -->
+    <string name="auth_hero_headline">エンジン異音、漏れ、エラーコードを数秒で診断。</string>
+    <string name="auth_feature_audio_title">音響パターン診断</string>
+    <string name="auth_feature_audio_desc">ベルト鳴き、ノッキング、モーターのうなり音を録音して原因を分析。</string>
+    <string name="auth_feature_vision_title">視覚検査＆ライト機能</string>
+    <string name="auth_feature_vision_desc">内蔵ライトで暗い場所のエラーコードやヒューズ切れ、配管を撮影。</string>
+    <string name="auth_feature_manuals_title">検索連携マニュアル</string>
+    <string name="auth_feature_manuals_desc">メーカー・型番ごとの修理ガイドと安全注意を照合します。</string>
+    <string name="auth_feature_voice_title">ハンズフリー音声モード</string>
+    <string name="auth_feature_voice_desc">画面に触れず作業しながらアシスタントと対話できます。</string>
+    <string name="auth_sync_footnote">ガレージの登録機器と修理ログをアカウントに安全に同期します。</string>
+
+    <!-- Flashlight & Hardware -->
+    <string name="torch_toggle">ライトを切り替え</string>
+    <string name="torch_light_on">ライト点灯</string>
+    <string name="torch_light_off">ライト</string>
+    <string name="torch_card_title_on">作業用ライト点灯中</string>
+    <string name="torch_card_title_off">作業用ライト</string>
+    <string name="torch_card_desc_on">暗いエンジンルームやシンク下を照らしています</string>
+    <string name="torch_card_desc_off">暗いエンジンルームやシンク下の点検にLEDライトを点灯</string>
+    <string name="torch_card_unavailable">この端末にはカメラフラッシュが検出されません</string>
+
+    <!-- Audio Capture & Workbench -->
+    <string name="audio_capture_title">エンジン・モーター音響プローブ</string>
+    <string name="vision_capture_title">視覚故障＆エラーコード検査</string>
+    <string name="hands_free_title">ハンズフリー音声メカニック</string>
+    <string name="error_empty_input">先に音声を録音するか、写真を添付、または症状を入力してください。</string>
+    <string name="permission_mic_required">機械音の録音や音声操作を行うにはマイク権限が必要です。</string>
+    <string name="permission_camera_required">部品、漏れ、エラーコードを撮影するにはカメラ権限が必要です。</string>
+    <string name="audio_profile_engine">エンジンルーム</string>
+    <string name="audio_profile_plumbing">配管・水回り</string>
+    <string name="audio_profile_appliance">家電製品</string>
+    <string name="audio_placement_engine">エンジン・ベルト・マニホールドから15〜30cm離し、排気流を避けて保持</string>
+    <string name="audio_placement_plumbing">蛇口や排水を動かしながら配管・トラップ・止水栓の近くに保持</string>
+    <string name="audio_placement_appliance">運転中のモーター・ドラム・コンデンサーパネル付近に保持</string>
+    <string name="audio_playback_play">録音した音声を再生</string>
+    <string name="audio_playback_stop">再生を停止</string>
+    <string name="audio_signal_quiet">もっと近づけてください</string>
+    <string name="audio_signal_optimal">最適なレベル</string>
+    <string name="audio_signal_clipping">音が大きすぎます</string>
+    <string name="audio_context_header">音源とモデル情報</string>
+    <string name="audio_make_model_label">メーカー・型番（任意）</string>
+    <string name="audio_symptom_label">どのような時に異音が出ますか？</string>
+    <string name="audio_analyze_cta">機械音を分析</string>
+    <string name="audio_analyzing_cta">音響パターンを分析中…</string>
+    <string name="audio_capture_another">別の音を録音</string>
+
+    <string name="workbench_header">何を点検しますか？</string>
+    <string name="workbench_make_model_label">メーカー・型番・年式（マニュアル検索用）</string>
+    <string name="workbench_symptom_label">症状・エラーコード・状況（任意）</string>
+    <string name="workbench_mode_audio">音響</string>
+    <string name="workbench_mode_camera">カメラ</string>
+    <string name="workbench_mode_code">コード・文章</string>
+    <string name="workbench_run_diagnosis">根拠付き診断を実行</string>
+    <string name="workbench_analyzing">分析およびマニュアル検索中…</string>
+    <string name="workbench_start_new">新しい点検を開始</string>
+    <string name="dictate_symptoms">音声で症状を入力</string>
+
+    <!-- Diagnostic Result & Maps Finder -->
+    <string name="result_likely_culprit">推定される原因</string>
+    <string name="result_save_report">レポート保存</string>
+    <string name="result_saved_to_log">保存済み</string>
+    <string name="result_share">共有</string>
+    <string name="result_share_full">診断レポートを共有</string>
+    <string name="result_diy_checklist">DIY修理チェックリスト</string>
+    <string name="result_parts_tools">必要な工具・部品</string>
+    <string name="result_grounded_sources">参照した修理マニュアル・出典</string>
+    <string name="result_followup_header">追加で質問する</string>
+    <string name="result_followup_hint">規定トルク、安全手順、次のステップを質問…</string>
+    <string name="nearby_help_header">近くの部品店・修理工場</string>
+    <string name="nearby_help_urgent">重要度が高いため、Googleマップで近くの整備工場や部品店を素早く検索できます。</string>
+    <string name="nearby_help_standard">追加の権限やAPI料金なしでGoogleマップを直接開きます。</string>
+    <string name="find_parts_nearby">部品を探す</string>
+    <string name="find_pro_nearby">近くの修理店</string>
+
+    <!-- Hands-Free Voice -->
+    <string name="hands_free_banner">作業中のハンズフリー音声モード</string>
+    <string name="hands_free_general_assistant">一般整備アシスタント</string>
+    <string name="hands_free_loop_enabled">連続対話ループ</string>
+    <string name="hands_free_tap_record">タップして音声と音を録音</string>
+    <string name="hands_free_tap_start">画面をタップして話しかける</string>
+    <string name="hands_free_listening">聞き取り中… 自然に話してください</string>
+    <string name="hands_free_thinking">マニュアル検索・診断中…</string>
+    <string name="hands_free_speaking">回答を読み上げ中…（タップで中断）</string>
+    <string name="hands_free_pause">ハンズフリーを一時停止</string>
+
+    <!-- Garage & Repair Log -->
+    <string name="garage_stat_units">登録数</string>
+    <string name="garage_stat_diagnoses">診断数</string>
+    <string name="garage_stat_fixed">修理完了</string>
+    <string name="garage_empty_title">車両や家電を登録しましょう</string>
+    <string name="garage_empty_desc">メーカーや型番を保存すると、診断時に該当するサービスマニュアルを自動参照します。</string>
+    <string name="garage_add_first">最初の機器を追加</string>
+    <string name="garage_inspect_unit">この機器を点検</string>
+    <string name="garage_add_equipment">機器を追加</string>
+    <string name="garage_edit_equipment">機器を編集</string>
+    <string name="garage_field_nickname">ニックネーム *</string>
+    <string name="garage_field_make_model">メーカー・型番</string>
+    <string name="garage_field_year_serial">年式・製造番号</string>
+    <string name="garage_field_notes">整備メモ</string>
+    <string name="action_save">保存</string>
+    <string name="action_cancel">キャンセル</string>
+    <string name="action_retry">再試行</string>
+    <string name="action_byok">BYOK</string>
+    <string name="action_offline">オフライン</string>
+    <string name="action_close">閉じる</string>
+    <string name="history_search_hint">過去の診断、型番、原因を検索…</string>
+
+    <!-- AI Engine, Quota & BYOK -->
+    <string name="ai_engine_settings_title">AIエンジン＆BYOK</string>
+    <string name="ai_engine_settings_subtitle">1日の無料枠、個人Geminiキー、またはオフライン参照</string>
+    <string name="ai_quota_reached_title">本日の無料AI枠を使い切りました（%1$d/%2$d）</string>
+    <string name="ai_quota_reached_desc">UTC 0時に自動リセットされます。今すぐ続けるには以下から選択してください：</string>
+    <string name="ai_choose_byok_cta">個人Geminiキーを使う（BYOK・無制限）</string>
+    <string name="ai_choose_supporter_cta">応援して拡張</string>
+    <string name="ai_choose_offline_cta">オフライン参照</string>
+    <string name="ai_get_key_cta">AI StudioでGemini APIキーを取得</string>
+    <string name="ai_key_input_label">個人用Gemini APIキー</string>
+    <string name="ai_test_save_key">テストして保存</string>
+    <string name="ai_testing_key">接続確認中…</string>
+    <string name="ai_clear_key">削除</string>
+    <string name="ai_privacy_note">端末内の非公開設定のみに保存され、クラウドへ送信されません。</string>
+
+    <!-- Support, Engagement Auto-Popups & Privacy -->
+    <string name="support_development_title">開発を応援する</string>
+    <string name="support_development_subtitle">広告なしの個人開発DIY整備ツール</string>
+    <string name="support_about_header">サポート＆POCKETMECHANICについて</string>
+    <string name="support_view_options">応援方法を見る</string>
+    <string name="support_supporter_options">サポーター設定</string>
+    <string name="support_inline_title">診断完了 — お役に立ちましたか？</string>
+    <string name="support_inline_subtitle">開発者にコーヒーを贈るかサポーターバッジを解放</string>
+    <string name="active_supporter_badge">アクティブサポーター</string>
+    <string name="action_rate">評価</string>
+    <string name="action_share">共有</string>
+    <string name="action_update">更新</string>
+    <string name="privacy_policy_title">プライバシーポリシー</string>
+    <string name="event_log_label">アプリイベントログ（%1$d件記録）</string>
+
+    <!-- Localized Smart Auto-Popups (Update, Rate, Share, Support Milestone) -->
+    <string name="share_app_subject">PocketMechanic — 視覚＆音響DIY診断アプリ</string>
+    <string name="rate_app_title">PocketMechanicは修理に役立ちましたか？</string>
+    <string name="rate_app_message">原因特定に役立ったなら、Playストアでの評価が他のDIYユーザーの参考になります。</string>
+    <string name="rate_app_primary">アプリを評価</string>
+    <string name="rate_app_later">あとで</string>
+    <string name="rate_app_opt_out">評価済み / 今後表示しない</string>
+
+    <string name="update_app_title">アップデートがあります</string>
+    <string name="update_app_message">音響分析と診断精度が向上した最新版のPocketMechanicが利用可能です。</string>
+    <string name="update_app_primary">今すぐ更新</string>
+    <string name="update_app_later">あとで</string>
+    <string name="update_app_opt_out">この版をスキップ</string>
+
+    <string name="share_popup_title">PocketMechanicを友達に紹介</string>
+    <string name="share_popup_message">ベルト鳴きやエラーコード、水漏れに困っている知り合いにPocketMechanicを共有しませんか？</string>
+    <string name="share_popup_primary">アプリを共有</string>
+    <string name="share_popup_later">あとで</string>
+    <string name="share_popup_opt_out">興味がない</string>
+
+    <string name="milestone_popup_title">達成マイルストーン：%1$d回の診断！</string>
+    <string name="milestone_popup_message">PocketMechanicは皆さまの応援で広告なしを維持しています。開発者にコーヒーを1杯いかがですか？</string>
+    <string name="milestone_popup_primary">応援方法を見る</string>
+    <string name="milestone_popup_later">今はしない</string>
+</resources>
