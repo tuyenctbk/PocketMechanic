@@ -40,8 +40,8 @@ data class AiAccessState(
     val hasByokKey: Boolean get() = byokApiKey.trim().length >= 20
 
     companion object {
-        const val DEFAULT_BYOK_MODEL = "gemini-3.8-flash"
-        const val LITE_BYOK_MODEL = "gemini-3.5-flash-lite"
+        const val DEFAULT_BYOK_MODEL = "gemini-2.5-flash"
+        const val LITE_BYOK_MODEL = "gemini-2.5-flash-lite"
         const val DAILY_FREE_LIMIT = 5
         const val DAILY_SUPPORTER_LIMIT = 25
         const val DAY_MS = 86_400_000L

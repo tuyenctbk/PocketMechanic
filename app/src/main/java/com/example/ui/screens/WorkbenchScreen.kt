@@ -30,9 +30,11 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -80,6 +82,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -110,6 +113,7 @@ import com.example.ui.components.GroundingSourcesSection
 import com.example.ui.components.InlinePostDiagnosisSupportCard
 import com.example.ui.components.InspectionFlashlightToggleCard
 import com.example.ui.components.MechanicalCameraViewfinder
+import com.example.ui.components.workshopFocusRing
 import com.example.ui.theme.DiagnosticCyan
 import com.example.ui.theme.SafetyAmber
 import com.example.ui.theme.StatusCriticalRed
@@ -151,7 +155,7 @@ fun WorkbenchScreen(
     val isTorchOn by torchController.isTorchOn.collectAsStateWithLifecycle()
     val isFlashAvailable by torchController.isFlashAvailable.collectAsStateWithLifecycle()
 
-    var activeMode by remember { mutableStateOf(DiagnosticMode.VISION) }
+    var activeMode by rememberSaveable { mutableStateOf(DiagnosticMode.VISION) }
     var isCameraOpen by remember { mutableStateOf(false) }
     var localNotice by remember { mutableStateOf<String?>(null) }
     var followUpInput by remember { mutableStateOf("") }
@@ -347,19 +351,21 @@ fun WorkbenchScreen(
             }
 
             // Hardware Flashlight Toggle for dark engine bays & under-sink inspections
-            InspectionFlashlightToggleCard(
-                isTorchOn = isTorchOn,
-                isFlashAvailable = isFlashAvailable,
-                onToggle = {
-                    val ok = torchController.toggleTorch()
-                    if (!ok) {
-                        localNotice = context.getString(R.string.torch_card_unavailable)
-                    } else {
-                        localNotice = null
-                        onTorchToggled(torchController.isTorchOn.value)
+            if (isFlashAvailable) {
+                InspectionFlashlightToggleCard(
+                    isTorchOn = isTorchOn,
+                    isFlashAvailable = isFlashAvailable,
+                    onToggle = {
+                        val ok = torchController.toggleTorch()
+                        if (!ok) {
+                            localNotice = context.getString(R.string.torch_card_unavailable)
+                        } else {
+                            localNotice = null
+                            onTorchToggled(torchController.isTorchOn.value)
+                        }
                     }
-                }
-            )
+                )
+            }
 
             // Active Capture Module
             AnimatedContent(
@@ -623,6 +629,7 @@ fun WorkbenchScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(54.dp)
+                    .workshopFocusRing(RoundedCornerShape(16.dp), focusColor = DiagnosticCyan)
                     .testTag("run_diagnosis_button"),
                 shape = RoundedCornerShape(16.dp),
                 colors = ButtonDefaults.buttonColors(

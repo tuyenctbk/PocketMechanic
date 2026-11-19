@@ -5,6 +5,7 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.example.data.local.DiagnosisHistoryDao
 import com.example.data.local.DiagnosisHistoryRepository
+import com.example.data.local.LocalEquipmentRepository
 import com.example.data.local.PocketMechanicDatabase
 import com.example.model.DiagnosticMode
 import com.example.model.DiagnosticResult
@@ -101,5 +102,40 @@ class DiagnosisHistoryDaoTest {
 
         repository.deleteEntry(id)
         assertTrue(repository.observeHistory("user_1").first().isEmpty())
+    }
+
+    @Test
+    fun managesLocalEquipmentCrudInOfflineWorkshopMode() = runBlocking {
+        val equipmentRepo = LocalEquipmentRepository(database.localEquipmentDao())
+        val addedId = equipmentRepo.addEquipment(
+            userId = "local_user",
+            name = "Family Civic",
+            category = EquipmentCategory.VEHICLE,
+            makeModel = "2018 Honda Civic EX",
+            yearOrSerial = "2018",
+            notes = "0W-20 oil"
+        ).getOrThrow()
+
+        val afterAdd = equipmentRepo.observeEquipment("local_user").first()
+        assertEquals(1, afterAdd.size)
+        assertEquals("Family Civic", afterAdd.first().name)
+        assertEquals(EquipmentCategory.VEHICLE, afterAdd.first().categoryEnum())
+
+        equipmentRepo.updateEquipment(
+            userId = "local_user",
+            equipmentId = addedId,
+            name = "Daily Civic",
+            category = EquipmentCategory.VEHICLE,
+            makeModel = "2018 Honda Civic EX",
+            yearOrSerial = "2018",
+            notes = "New belt installed"
+        ).getOrThrow()
+
+        val afterUpdate = equipmentRepo.observeEquipment("local_user").first()
+        assertEquals("Daily Civic", afterUpdate.first().name)
+        assertEquals("New belt installed", afterUpdate.first().notes)
+
+        equipmentRepo.deleteEquipment("local_user", addedId).getOrThrow()
+        assertTrue(equipmentRepo.observeEquipment("local_user").first().isEmpty())
     }
 }

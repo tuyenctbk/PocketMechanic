@@ -14,6 +14,7 @@ import com.example.ai.OfflineDiagnosticReference
 import com.example.data.FirestoreRepository
 import com.example.data.local.DiagnosisHistoryEntity
 import com.example.data.local.DiagnosisHistoryRepository
+import com.example.data.local.LocalEquipmentRepository
 import com.example.model.DiagnosticMode
 import com.example.model.DiagnosticReport
 import com.example.model.DiagnosticResult
@@ -22,6 +23,7 @@ import com.example.model.Equipment
 import com.example.model.EquipmentCategory
 import com.example.model.GroundedSource
 import com.example.model.VoiceTurn
+import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestoreException
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -100,10 +102,18 @@ class MechanicViewModel(
     private val historyRepository: DiagnosisHistoryRepository,
     private val aiService: MechanicAiService,
     private val currentUserId: String,
+    private val localEquipmentRepository: LocalEquipmentRepository? = null,
+    val isCloudAccount: Boolean = repository.isCloudAvailable,
     private val aiAccessRepository: AiAccessRepository? = null,
     isActiveSupporterFlow: Flow<Boolean> = flowOf(false),
     private val eventHooks: WorkshopEventHooks = WorkshopEventHooks.NoOp
 ) : ViewModel() {
+
+    private val useCloudEquipment: Boolean
+        get() = isCloudAccount && repository.isCloudAvailable
+
+    private val isFirebaseAiReady: Boolean
+        get() = runCatching { FirebaseApp.getInstance() }.isSuccess
 
     val aiAccessState: StateFlow<AiAccessState> =
         (aiAccessRepository?.stateFlow ?: flowOf(AiAccessState()))
@@ -123,7 +133,11 @@ class MechanicViewModel(
     val byokVerification: StateFlow<ByokVerificationUiState> = _byokVerification.asStateFlow()
 
     val equipmentState: StateFlow<StreamUiState<List<Equipment>>> =
-        repository.observeEquipment(currentUserId)
+        (if (useCloudEquipment) {
+            repository.observeEquipment(currentUserId)
+        } else {
+            localEquipmentRepository?.observeEquipment(currentUserId) ?: flowOf(emptyList())
+        })
             .map<List<Equipment>, StreamUiState<List<Equipment>>> { StreamUiState.Success(it) }
             .catch { error ->
                 val firestoreError = generateSequence(error) { it.cause }
@@ -141,7 +155,11 @@ class MechanicViewModel(
             )
 
     val diagnosticsState: StateFlow<StreamUiState<List<DiagnosticReport>>> =
-        repository.observeDiagnostics(currentUserId)
+        (if (useCloudEquipment) {
+            repository.observeDiagnostics(currentUserId)
+        } else {
+            flowOf(emptyList())
+        })
             .map<List<DiagnosticReport>, StreamUiState<List<DiagnosticReport>>> { StreamUiState.Success(it) }
             .catch { error ->
                 val firestoreError = generateSequence(error) { it.cause }
@@ -304,7 +322,8 @@ class MechanicViewModel(
     fun runOfflineReferenceFallback(
         mode: DiagnosticMode,
         hasAudio: Boolean = false,
-        hasImage: Boolean = false
+        hasImage: Boolean = false,
+        noticeMessage: String? = null
     ) {
         val category = _selectedCategory.value
         val equipName = _equipmentInput.value.trim()
@@ -316,6 +335,9 @@ class MechanicViewModel(
             hasAudio = hasAudio,
             hasImage = hasImage
         )
+        followUpJob?.cancel()
+        _isFollowUpLoading.value = false
+        _followUpMessages.value = emptyList()
         viewModelScope.launch {
             val localId = runCatching {
                 historyRepository.recordDiagnosis(
@@ -334,6 +356,14 @@ class MechanicViewModel(
                 equipmentName = equipName,
                 localHistoryId = localId,
                 engineSource = AiEngineSource.OFFLINE_REFERENCE
+            )
+            if (!noticeMessage.isNullOrBlank()) {
+                _statusBanner.value = noticeMessage
+            }
+            eventHooks.onDiagnosisCompleted(
+                mode = mode,
+                severity = offlineResult.severity,
+                confidence = offlineResult.confidencePercent
             )
         }
     }
@@ -356,7 +386,7 @@ class MechanicViewModel(
         val resolvedMode = when {
             audioWavBytes != null -> DiagnosticMode.AUDIO
             bitmap != null -> DiagnosticMode.VISION
-            else -> mode
+            else -> DiagnosticMode.TEXT
         }
 
         diagnosisJob?.cancel()
@@ -385,8 +415,19 @@ class MechanicViewModel(
                     return@launch
                 }
 
-                is AiExecutionPlan.UseByok,
-                is AiExecutionPlan.UseFreeShared -> Unit
+                is AiExecutionPlan.UseFreeShared -> {
+                    if (!isFirebaseAiReady && access.preferredMode == AiProviderMode.AUTO_SMART) {
+                        runOfflineReferenceFallback(
+                            mode = resolvedMode,
+                            hasAudio = audioWavBytes != null,
+                            hasImage = bitmap != null,
+                            noticeMessage = "Offline Reference used — add a personal BYOK Gemini key in AI Engine for cloud AI."
+                        )
+                        return@launch
+                    }
+                }
+
+                is AiExecutionPlan.UseByok -> Unit
             }
 
             _diagnosisState.value = DiagnosisUiState.Analyzing
@@ -516,6 +557,11 @@ class MechanicViewModel(
         val current = _diagnosisState.value as? DiagnosisUiState.Ready ?: return
         if (current.savedReportId != null || isSavingCurrentDiagnosis) return
 
+        if (!useCloudEquipment) {
+            _statusBanner.value = "Saved in Device History. Sign in with Google to sync to Cloud Repair Log."
+            return
+        }
+
         isSavingCurrentDiagnosis = true
         viewModelScope.launch {
             try {
@@ -629,7 +675,9 @@ class MechanicViewModel(
                     text = displayUserLine
                 )
 
-                if (plan is AiExecutionPlan.UseOfflineReference) {
+                if (plan is AiExecutionPlan.UseOfflineReference ||
+                    (plan is AiExecutionPlan.UseFreeShared && !isFirebaseAiReady && access.preferredMode == AiProviderMode.AUTO_SMART)
+                ) {
                     val offline = OfflineDiagnosticReference.lookup(
                         category = _selectedCategory.value,
                         equipmentName = _equipmentInput.value,
@@ -642,6 +690,7 @@ class MechanicViewModel(
                         isUser = false,
                         text = spokenOffline
                     )
+                    eventHooks.onHandsFreeTurnCompleted()
                     onReplyReady(spokenOffline)
                     return@launch
                 }
@@ -714,10 +763,21 @@ class MechanicViewModel(
         notes: String
     ) {
         viewModelScope.launch {
-            val result = if (editingId == null) {
-                repository.addEquipment(name, category, makeModel, yearOrSerial, notes).map { }
+            val result = if (useCloudEquipment) {
+                if (editingId == null) {
+                    repository.addEquipment(name, category, makeModel, yearOrSerial, notes).map { }
+                } else {
+                    repository.updateEquipment(editingId, name, category, makeModel, yearOrSerial, notes)
+                }
             } else {
-                repository.updateEquipment(editingId, name, category, makeModel, yearOrSerial, notes)
+                val localRepo = localEquipmentRepository
+                if (localRepo == null) {
+                    Result.failure(IllegalStateException("Local garage storage unavailable."))
+                } else if (editingId == null) {
+                    localRepo.addEquipment(currentUserId, name, category, makeModel, yearOrSerial, notes).map { }
+                } else {
+                    localRepo.updateEquipment(currentUserId, editingId, name, category, makeModel, yearOrSerial, notes)
+                }
             }
             result.onSuccess {
                 eventHooks.onEquipmentSaved(editingId == null)
@@ -730,8 +790,13 @@ class MechanicViewModel(
 
     fun deleteEquipment(equipmentId: String) {
         viewModelScope.launch {
-            repository.deleteEquipment(equipmentId)
-                .onFailure { _statusBanner.value = it.localizedMessage ?: "Delete failed." }
+            val result = if (useCloudEquipment) {
+                repository.deleteEquipment(equipmentId)
+            } else {
+                localEquipmentRepository?.deleteEquipment(currentUserId, equipmentId)
+                    ?: Result.failure(IllegalStateException("Local garage storage unavailable."))
+            }
+            result.onFailure { _statusBanner.value = it.localizedMessage ?: "Delete failed." }
         }
     }
 

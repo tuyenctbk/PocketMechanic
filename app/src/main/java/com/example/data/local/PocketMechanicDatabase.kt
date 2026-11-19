@@ -9,14 +9,15 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Database(
-    entities = [DiagnosisHistoryEntity::class, AppEventEntity::class],
-    version = 2,
+    entities = [DiagnosisHistoryEntity::class, AppEventEntity::class, LocalEquipmentEntity::class],
+    version = 3,
     exportSchema = false
 )
 @TypeConverters(DiagnosisHistoryConverters::class)
 abstract class PocketMechanicDatabase : RoomDatabase() {
     abstract fun diagnosisHistoryDao(): DiagnosisHistoryDao
     abstract fun appEventDao(): AppEventDao
+    abstract fun localEquipmentDao(): LocalEquipmentDao
 
     companion object {
         @Volatile
@@ -45,6 +46,29 @@ abstract class PocketMechanicDatabase : RoomDatabase() {
             }
         }
 
+        val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS `local_equipment` (
+                        `id` TEXT NOT NULL PRIMARY KEY,
+                        `user_id` TEXT NOT NULL,
+                        `name` TEXT NOT NULL,
+                        `category` TEXT NOT NULL,
+                        `make_model` TEXT NOT NULL,
+                        `year_or_serial` TEXT NOT NULL,
+                        `notes` TEXT NOT NULL,
+                        `created_at_millis` INTEGER NOT NULL,
+                        `updated_at_millis` INTEGER NOT NULL
+                    )
+                    """.trimIndent()
+                )
+                db.execSQL(
+                    "CREATE INDEX IF NOT EXISTS `index_local_equipment_user_id_created_at_millis` ON `local_equipment` (`user_id`, `created_at_millis`)"
+                )
+            }
+        }
+
         fun getInstance(context: Context): PocketMechanicDatabase {
             return instance ?: synchronized(this) {
                 instance ?: Room.databaseBuilder(
@@ -52,7 +76,7 @@ abstract class PocketMechanicDatabase : RoomDatabase() {
                     PocketMechanicDatabase::class.java,
                     "pocket_mechanic.db"
                 )
-                    .addMigrations(MIGRATION_1_2)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                     .fallbackToDestructiveMigration(dropAllTables = true)
                     .build()
                     .also { instance = it }

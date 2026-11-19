@@ -21,6 +21,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.Logout
 import androidx.compose.material.icons.rounded.Add
@@ -62,6 +63,7 @@ import androidx.compose.ui.unit.dp
 import androidx.credentials.CredentialManager
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.R
+import com.example.firebase.FirebaseAvailability
 import com.example.model.Equipment
 import com.example.model.EquipmentCategory
 import com.example.ui.EngagementViewModel
@@ -71,12 +73,12 @@ import com.example.ui.auth.signOut
 import com.example.ui.components.ActiveSupporterBadge
 import com.example.ui.components.GarageAiEngineCard
 import com.example.ui.components.SupportAboutAndTelemetrySection
+import com.example.ui.components.workshopFocusRing
 import com.example.ui.theme.DiagnosticCyan
 import com.example.ui.theme.SafetyAmber
+import com.example.ui.theme.StatusCriticalRed
 import com.example.ui.theme.StatusOkGreen
 import com.example.util.findActiveActivity
-import com.google.firebase.Firebase
-import com.google.firebase.auth.auth
 
 @Composable
 fun GarageScreen(
@@ -84,12 +86,15 @@ fun GarageScreen(
     onInspectEquipment: (Equipment) -> Unit,
     modifier: Modifier = Modifier,
     engagementViewModel: EngagementViewModel? = null,
-    onOpenAiSettings: () -> Unit = {}
+    onOpenAiSettings: () -> Unit = {},
+    onSignOutComplete: () -> Unit = {}
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val credentialManager = remember(context) { CredentialManager.create(context) }
-    val user = Firebase.auth.currentUser
+    val user = remember(context, viewModel.isCloudAccount) {
+        if (viewModel.isCloudAccount) FirebaseAvailability.safeAuth(context)?.currentUser else null
+    }
 
     val equipmentState by viewModel.equipmentState.collectAsStateWithLifecycle()
     val localHistory by viewModel.localHistoryState.collectAsStateWithLifecycle()
@@ -106,6 +111,7 @@ fun GarageScreen(
 
     var showEditor by remember { mutableStateOf(false) }
     var editingEquipment by remember { mutableStateOf<Equipment?>(null) }
+    var pendingDeleteEquipment by remember { mutableStateOf<Equipment?>(null) }
 
     Box(modifier = modifier.fillMaxSize()) {
         LazyColumn(
@@ -157,12 +163,14 @@ fun GarageScreen(
                             }
                             Column {
                                 Text(
-                                    text = user?.displayName?.takeIf { it.isNotBlank() } ?: "Workshop Owner",
+                                    text = user?.displayName?.takeIf { it.isNotBlank() }
+                                        ?: stringResource(R.string.local_workshop_owner),
                                     style = MaterialTheme.typography.titleSmall,
                                     color = MaterialTheme.colorScheme.onSurface
                                 )
                                 Text(
-                                    text = user?.email.orEmpty(),
+                                    text = user?.email?.takeIf { it.isNotBlank() }
+                                        ?: stringResource(R.string.local_workshop_subtitle),
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
@@ -176,8 +184,17 @@ fun GarageScreen(
                         }
 
                         OutlinedButton(
-                            onClick = { signOut(credentialManager, scope) },
-                            modifier = Modifier.testTag("sign_out_button"),
+                            onClick = {
+                                signOut(
+                                    context = context,
+                                    credentialManager = credentialManager,
+                                    scope = scope,
+                                    onSignOutComplete = onSignOutComplete
+                                )
+                            },
+                            modifier = Modifier
+                                .workshopFocusRing(RoundedCornerShape(12.dp), focusColor = SafetyAmber)
+                                .testTag("sign_out_button"),
                             shape = RoundedCornerShape(12.dp)
                         ) {
                             Icon(
@@ -325,7 +342,7 @@ fun GarageScreen(
                                     editingEquipment = equipment
                                     showEditor = true
                                 },
-                                onDelete = { viewModel.deleteEquipment(equipment.id) }
+                                onDelete = { pendingDeleteEquipment = equipment }
                             )
                         }
                     }
@@ -380,6 +397,36 @@ fun GarageScreen(
                     notes = notes
                 )
                 showEditor = false
+            }
+        )
+    }
+
+    val deleteTarget = pendingDeleteEquipment
+    if (deleteTarget != null) {
+        AlertDialog(
+            onDismissRequest = { pendingDeleteEquipment = null },
+            title = { Text(stringResource(R.string.confirm_delete_equipment_title)) },
+            text = {
+                Text(stringResource(R.string.confirm_delete_equipment_msg, deleteTarget.name))
+            },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        viewModel.deleteEquipment(deleteTarget.id)
+                        pendingDeleteEquipment = null
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = StatusCriticalRed,
+                        contentColor = Color.White
+                    )
+                ) {
+                    Text(stringResource(R.string.action_delete))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { pendingDeleteEquipment = null }) {
+                    Text(stringResource(R.string.action_cancel))
+                }
             }
         )
     }
@@ -540,7 +587,10 @@ private fun EquipmentEditorDialog(
             )
         },
         text = {
-            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
                 Row(
                     modifier = Modifier.horizontalScroll(rememberScrollState()),
                     horizontalArrangement = Arrangement.spacedBy(6.dp)

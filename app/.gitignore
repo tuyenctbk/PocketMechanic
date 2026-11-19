@@ -1,1 +1,6 @@
 /build
+/release
+*.apk
+*.aab
+*.jks
+*.keystore

@@ -15,10 +15,12 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -37,6 +39,7 @@ import androidx.compose.material.icons.rounded.GraphicEq
 import androidx.compose.material.icons.rounded.Mic
 import androidx.compose.material.icons.rounded.RecordVoiceOver
 import androidx.compose.material.icons.rounded.Stop
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -51,6 +54,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -73,6 +77,7 @@ import com.example.hardware.TorchController
 import com.example.ui.MechanicViewModel
 import com.example.ui.components.GroundingSourcesSection
 import com.example.ui.components.TorchActionButton
+import com.example.ui.components.workshopFocusRing
 import com.example.ui.theme.DiagnosticCyan
 import com.example.ui.theme.SafetyAmber
 import com.example.ui.theme.StatusCriticalRed
@@ -97,8 +102,9 @@ fun HandsFreeScreen(
     val turns by viewModel.voiceTurns.collectAsStateWithLifecycle()
     val equipmentInput by viewModel.equipmentInput.collectAsStateWithLifecycle()
     val isTorchOn by torchController.isTorchOn.collectAsStateWithLifecycle()
+    val isFlashAvailable by torchController.isFlashAvailable.collectAsStateWithLifecycle()
 
-    var autoLoopEnabled by remember { mutableStateOf(true) }
+    var autoLoopEnabled by rememberSaveable { mutableStateOf(true) }
     var voiceNotice by remember { mutableStateOf<String?>(null) }
     var isScreenActive by remember { mutableStateOf(true) }
     val listState = rememberLazyListState()
@@ -209,15 +215,26 @@ fun HandsFreeScreen(
         label = "pulse_scale"
     )
 
-    Box(modifier = modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .widthIn(max = 700.dp)
-                .align(Alignment.TopCenter)
-                .padding(horizontal = 16.dp, vertical = 12.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
+    val triggerQuickPrompt: (String) -> Unit = { promptText ->
+        voiceNotice = null
+        voiceEngine.setThinking()
+        viewModel.sendHandsFreeTurn(
+            spokenText = promptText,
+            audioWavBytes = null,
+            onReplyReady = { reply ->
+                if (isScreenActive) {
+                    voiceEngine.speak(reply) {}
+                }
+            },
+            onError = { msg ->
+                voiceEngine.stopAll()
+                if (isScreenActive) voiceNotice = msg
+            }
+        )
+    }
+
+    val controlsAndOrbPane: @Composable () -> Unit = {
+        Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
             // Top Controls Row (Auto-loop + Torch + Clear)
             Surface(
                 color = MaterialTheme.colorScheme.surface,
@@ -247,17 +264,19 @@ fun HandsFreeScreen(
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
-                        TorchActionButton(
-                            isTorchOn = isTorchOn,
-                            onToggle = {
-                                if (torchController.toggleTorch()) {
-                                    voiceNotice = null
-                                    onTorchToggled(torchController.isTorchOn.value)
-                                } else {
-                                    voiceNotice = context.getString(R.string.torch_card_unavailable)
+                        if (isFlashAvailable) {
+                            TorchActionButton(
+                                isTorchOn = isTorchOn,
+                                onToggle = {
+                                    if (torchController.toggleTorch()) {
+                                        voiceNotice = null
+                                        onTorchToggled(torchController.isTorchOn.value)
+                                    } else {
+                                        voiceNotice = context.getString(R.string.torch_card_unavailable)
+                                    }
                                 }
-                            }
-                        )
+                            )
+                        }
                     }
 
                     Row(
@@ -306,7 +325,11 @@ fun HandsFreeScreen(
                 shape = RoundedCornerShape(24.dp),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .border(1.dp, orbColor.copy(alpha = 0.55f), RoundedCornerShape(24.dp))
+                    .workshopFocusRing(
+                        shape = RoundedCornerShape(24.dp),
+                        focusColor = SafetyAmber,
+                        unfocusedColor = orbColor.copy(alpha = 0.55f)
+                    )
                     .clip(RoundedCornerShape(24.dp))
                     .clickable {
                         if (effectivePhase == HandsFreePhase.LISTENING && speechSupported) {
@@ -411,70 +434,123 @@ fun HandsFreeScreen(
                     Text(stringResource(R.string.hands_free_pause))
                 }
             }
+        }
+    }
 
-            // Transcript Stream
-            LazyColumn(
-                state = listState,
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth(),
-                contentPadding = PaddingValues(bottom = 16.dp),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
-            ) {
-                if (turns.isEmpty()) {
-                    item {
-                        Surface(
-                            color = MaterialTheme.colorScheme.surface,
-                            shape = RoundedCornerShape(16.dp),
-                            modifier = Modifier.fillMaxWidth()
+    val transcriptPane: @Composable (Modifier) -> Unit = { paneMod ->
+        LazyColumn(
+            state = listState,
+            modifier = paneMod.fillMaxWidth(),
+            contentPadding = PaddingValues(bottom = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            if (turns.isEmpty()) {
+                item {
+                    Surface(
+                        color = MaterialTheme.colorScheme.surface,
+                        shape = RoundedCornerShape(16.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .border(1.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(16.dp))
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(16.dp),
+                            verticalArrangement = Arrangement.spacedBy(10.dp)
                         ) {
                             Text(
-                                text = "Ask things like: \"My 2016 Civic has a rhythmic ticking on the passenger side, what should I check?\" or \"What size wrench fits a standard kitchen P-trap nut?\"",
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                modifier = Modifier.padding(16.dp)
+                                text = "TRY ASKING HANDS-FREE",
+                                style = MaterialTheme.typography.labelLarge,
+                                color = DiagnosticCyan
                             )
-                        }
-                    }
-                } else {
-                    items(turns, key = { it.id }) { turn ->
-                        Surface(
-                            color = if (turn.isUser) {
-                                MaterialTheme.colorScheme.primaryContainer
-                            } else {
-                                MaterialTheme.colorScheme.surface
-                            },
-                            shape = RoundedCornerShape(16.dp),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .animateItem()
-                                .border(
-                                    1.dp,
-                                    MaterialTheme.colorScheme.outlineVariant,
-                                    RoundedCornerShape(16.dp)
+                            Text(
+                                text = "Tap a quick scenario below or press the mic orb to talk through your repair step by step:",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                            listOf(
+                                "My engine belt squeals loudly on cold start — what should I check?",
+                                "Washer showing OE drain error code and won't spin",
+                                "Slow drip under kitchen sink P-trap slip nut",
+                                "AC condenser is buzzing and fan won't spin"
+                            ).forEach { samplePrompt ->
+                                FilterChip(
+                                    selected = false,
+                                    onClick = { triggerQuickPrompt(samplePrompt) },
+                                    label = { Text(samplePrompt, style = MaterialTheme.typography.bodySmall) },
+                                    modifier = Modifier.fillMaxWidth()
                                 )
-                        ) {
-                            Column(
-                                modifier = Modifier.padding(14.dp),
-                                verticalArrangement = Arrangement.spacedBy(6.dp)
-                            ) {
-                                Text(
-                                    text = if (turn.isUser) "YOU" else "POCKETMECHANIC",
-                                    style = MaterialTheme.typography.labelSmall,
-                                    color = if (turn.isUser) SafetyAmber else DiagnosticCyan
-                                )
-                                Text(
-                                    text = turn.text,
-                                    style = MaterialTheme.typography.bodyLarge,
-                                    color = MaterialTheme.colorScheme.onSurface
-                                )
-                                if (turn.sources.isNotEmpty()) {
-                                    GroundingSourcesSection(sources = turn.sources)
-                                }
                             }
                         }
                     }
                 }
+            } else {
+                items(turns, key = { it.id }) { turn ->
+                    Surface(
+                        color = if (turn.isUser) {
+                            MaterialTheme.colorScheme.primaryContainer
+                        } else {
+                            MaterialTheme.colorScheme.surface
+                        },
+                        shape = RoundedCornerShape(16.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .animateItem()
+                            .border(
+                                1.dp,
+                                MaterialTheme.colorScheme.outlineVariant,
+                                RoundedCornerShape(16.dp)
+                            )
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(14.dp),
+                            verticalArrangement = Arrangement.spacedBy(6.dp)
+                        ) {
+                            Text(
+                                text = if (turn.isUser) "YOU" else "POCKETMECHANIC",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = if (turn.isUser) SafetyAmber else DiagnosticCyan
+                            )
+                            Text(
+                                text = turn.text,
+                                style = MaterialTheme.typography.bodyLarge,
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                            if (turn.sources.isNotEmpty()) {
+                                GroundingSourcesSection(sources = turn.sources)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    BoxWithConstraints(modifier = modifier.fillMaxSize()) {
+        if (maxWidth >= 760.dp) {
+            Row(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .widthIn(max = 1200.dp)
+                    .align(Alignment.TopCenter)
+                    .padding(horizontal = 20.dp, vertical = 12.dp),
+                horizontalArrangement = Arrangement.spacedBy(18.dp)
+            ) {
+                Box(modifier = Modifier.weight(0.95f).fillMaxHeight()) {
+                    controlsAndOrbPane()
+                }
+                transcriptPane(Modifier.weight(1.05f).fillMaxHeight())
+            }
+        } else {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .widthIn(max = 700.dp)
+                    .align(Alignment.TopCenter)
+                    .padding(horizontal = 16.dp, vertical = 12.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                controlsAndOrbPane()
+                transcriptPane(Modifier.weight(1f))
             }
         }
     }

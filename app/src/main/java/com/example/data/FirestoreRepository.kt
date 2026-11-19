@@ -25,18 +25,30 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.tasks.await
 
 class FirestoreRepository(
-    private val db: FirebaseFirestore,
-    private val auth: FirebaseAuth = Firebase.auth
+    private val db: FirebaseFirestore?,
+    private val auth: FirebaseAuth? = null
 ) {
+    val isCloudAvailable: Boolean
+        get() = db != null && auth?.currentUser != null
+
+    private fun requireDb(): FirebaseFirestore {
+        return db ?: throw IllegalStateException("Cloud sync is unavailable in local workshop mode.")
+    }
+
     private fun requireUserId(): String {
-        return auth.currentUser?.uid
-            ?: throw IllegalStateException("Please sign in with Google to access your repair logs.")
+        return auth?.currentUser?.uid
+            ?: throw IllegalStateException("Sign in with Google to sync your Garage & Repair Logs to the cloud.")
     }
 
     fun observeEquipment(userId: String): Flow<List<Equipment>> = flow {
+        val firestore = db
+        if (firestore == null || auth?.currentUser?.uid != userId) {
+            emit(emptyList())
+            return@flow
+        }
         val path = "users/$userId/equipment"
         emitAll(
-            db.collection("users")
+            firestore.collection("users")
                 .document(userId)
                 .collection("equipment")
                 .orderBy("createdAt", Query.Direction.DESCENDING)
@@ -62,9 +74,14 @@ class FirestoreRepository(
     }
 
     fun observeDiagnostics(userId: String): Flow<List<DiagnosticReport>> = flow {
+        val firestore = db
+        if (firestore == null || auth?.currentUser?.uid != userId) {
+            emit(emptyList())
+            return@flow
+        }
         val path = "users/$userId/diagnostics"
         emitAll(
-            db.collection("users")
+            firestore.collection("users")
                 .document(userId)
                 .collection("diagnostics")
                 .orderBy("createdAt", Query.Direction.DESCENDING)
@@ -96,13 +113,14 @@ class FirestoreRepository(
         yearOrSerial: String,
         notes: String
     ): Result<String> {
-        var docPath = "users/${auth.currentUser?.uid ?: "unauthenticated"}/equipment"
+        var docPath = "users/${auth?.currentUser?.uid ?: "unauthenticated"}/equipment"
         return try {
+            val firestore = requireDb()
             val uid = requireUserId()
             val cleanName = name.trim().take(80)
             require(cleanName.isNotEmpty()) { "Equipment name cannot be blank." }
 
-            val docRef = db.collection("users").document(uid).collection("equipment").document()
+            val docRef = firestore.collection("users").document(uid).collection("equipment").document()
             docPath = docRef.path
 
             val payload = mutableMapOf<String, Any>(
@@ -137,14 +155,15 @@ class FirestoreRepository(
         yearOrSerial: String,
         notes: String
     ): Result<Unit> {
-        var docPath = "users/${auth.currentUser?.uid ?: "unauthenticated"}/equipment/$equipmentId"
+        var docPath = "users/${auth?.currentUser?.uid ?: "unauthenticated"}/equipment/$equipmentId"
         return try {
+            val firestore = requireDb()
             val uid = requireUserId()
             require(equipmentId.isNotBlank()) { "Equipment ID is required." }
             val cleanName = name.trim().take(80)
             require(cleanName.isNotEmpty()) { "Equipment name cannot be blank." }
 
-            val docRef = db.collection("users").document(uid).collection("equipment").document(equipmentId)
+            val docRef = firestore.collection("users").document(uid).collection("equipment").document(equipmentId)
             docPath = docRef.path
 
             docRef.update(
@@ -167,11 +186,12 @@ class FirestoreRepository(
     }
 
     suspend fun deleteEquipment(equipmentId: String): Result<Unit> {
-        var docPath = "users/${auth.currentUser?.uid ?: "unauthenticated"}/equipment/$equipmentId"
+        var docPath = "users/${auth?.currentUser?.uid ?: "unauthenticated"}/equipment/$equipmentId"
         return try {
+            val firestore = requireDb()
             val uid = requireUserId()
             require(equipmentId.isNotBlank()) { "Equipment ID is required." }
-            val docRef = db.collection("users").document(uid).collection("equipment").document(equipmentId)
+            val docRef = firestore.collection("users").document(uid).collection("equipment").document(equipmentId)
             docPath = docRef.path
             docRef.delete().await()
             Result.success(Unit)
@@ -189,10 +209,11 @@ class FirestoreRepository(
         category: EquipmentCategory,
         equipmentName: String
     ): Result<String> {
-        var docPath = "users/${auth.currentUser?.uid ?: "unauthenticated"}/diagnostics"
+        var docPath = "users/${auth?.currentUser?.uid ?: "unauthenticated"}/diagnostics"
         return try {
+            val firestore = requireDb()
             val uid = requireUserId()
-            val docRef = db.collection("users").document(uid).collection("diagnostics").document()
+            val docRef = firestore.collection("users").document(uid).collection("diagnostics").document()
             docPath = docRef.path
 
             val payload = mapOf(
@@ -225,11 +246,12 @@ class FirestoreRepository(
     }
 
     suspend fun toggleDiagnosticResolved(diagnosticId: String, resolved: Boolean): Result<Unit> {
-        var docPath = "users/${auth.currentUser?.uid ?: "unauthenticated"}/diagnostics/$diagnosticId"
+        var docPath = "users/${auth?.currentUser?.uid ?: "unauthenticated"}/diagnostics/$diagnosticId"
         return try {
+            val firestore = requireDb()
             val uid = requireUserId()
             require(diagnosticId.isNotBlank()) { "Diagnostic ID is required." }
-            val docRef = db.collection("users").document(uid).collection("diagnostics").document(diagnosticId)
+            val docRef = firestore.collection("users").document(uid).collection("diagnostics").document(diagnosticId)
             docPath = docRef.path
             docRef.update(
                 mapOf(
@@ -247,11 +269,12 @@ class FirestoreRepository(
     }
 
     suspend fun deleteDiagnostic(diagnosticId: String): Result<Unit> {
-        var docPath = "users/${auth.currentUser?.uid ?: "unauthenticated"}/diagnostics/$diagnosticId"
+        var docPath = "users/${auth?.currentUser?.uid ?: "unauthenticated"}/diagnostics/$diagnosticId"
         return try {
+            val firestore = requireDb()
             val uid = requireUserId()
             require(diagnosticId.isNotBlank()) { "Diagnostic ID is required." }
-            val docRef = db.collection("users").document(uid).collection("diagnostics").document(diagnosticId)
+            val docRef = firestore.collection("users").document(uid).collection("diagnostics").document(diagnosticId)
             docPath = docRef.path
             docRef.delete().await()
             Result.success(Unit)

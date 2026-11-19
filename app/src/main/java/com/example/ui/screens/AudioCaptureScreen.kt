@@ -14,9 +14,11 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -84,6 +86,7 @@ import com.example.ui.components.DiagnosticResultCard
 import com.example.ui.components.GroundingSourcesSection
 import com.example.ui.components.InlinePostDiagnosisSupportCard
 import com.example.ui.components.InspectionFlashlightToggleCard
+import com.example.ui.components.workshopFocusRing
 import com.example.ui.theme.DiagnosticCyan
 import com.example.ui.theme.PocketMechanicTheme
 import com.example.ui.theme.SafetyAmber
@@ -331,412 +334,455 @@ fun AudioCaptureContent(
     var followUpInput by remember { mutableStateOf("") }
     val hasAudioReady = recordedBytesSize != null && recordedBytesSize > 0
 
-    Box(modifier = modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .widthIn(max = 720.dp)
-                .align(Alignment.TopCenter)
-                .verticalScroll(rememberScrollState())
-                .padding(horizontal = 16.dp, vertical = 12.dp),
-            verticalArrangement = Arrangement.spacedBy(14.dp)
-        ) {
-            AcousticProbeConsoleCard(
-                activeProfile = activeProfile,
-                isRecording = isRecording,
-                isPlaying = isPlaying,
-                elapsedMillis = elapsedMillis,
-                maxDurationMs = maxDurationMs,
-                currentDb = currentDb,
-                signalQuality = signalQuality,
-                waveformSamples = waveformSamples,
-                playbackProgress = playbackProgress,
-                recordedBytesSize = recordedBytesSize,
-                onSelectProfile = onSelectProfile,
-                onToggleRecord = onToggleRecord,
-                onTogglePlayback = onTogglePlayback,
-                onClearAudio = onClearAudio
-            )
+    BoxWithConstraints(modifier = modifier.fillMaxSize()) {
+        val isWideLayout = maxWidth >= 760.dp
 
-            InspectionFlashlightToggleCard(
-                isTorchOn = isTorchOn,
-                isFlashAvailable = isFlashAvailable,
-                onToggle = onToggleTorch
-            )
-
-            if (!permissionError.isNullOrBlank()) {
-                Surface(
-                    color = MaterialTheme.colorScheme.errorContainer,
-                    shape = RoundedCornerShape(14.dp),
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text(
-                        text = permissionError,
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onErrorContainer,
-                        modifier = Modifier.padding(14.dp)
-                    )
-                }
-            }
-
-            // Equipment & Noise Pattern Context
-            Surface(
-                color = MaterialTheme.colorScheme.surface,
-                shape = RoundedCornerShape(20.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .border(1.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(20.dp))
-            ) {
-                Column(
-                    modifier = Modifier.padding(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(10.dp)
-                ) {
-                    Text(
-                        text = stringResource(R.string.audio_context_header),
-                        style = MaterialTheme.typography.labelLarge,
-                        color = DiagnosticCyan
-                    )
-
-                    Row(
-                        modifier = Modifier.horizontalScroll(rememberScrollState()),
-                        horizontalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        EquipmentCategory.entries.forEach { category ->
-                            FilterChip(
-                                selected = selectedCategory == category,
-                                onClick = { onSelectCategory(category) },
-                                label = { Text(category.displayName, style = MaterialTheme.typography.labelSmall) },
-                                colors = FilterChipDefaults.filterChipColors(
-                                    selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
-                                    selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer
-                                )
-                            )
-                        }
-                    }
-
-                    if (savedEquipment.isNotEmpty()) {
-                        Row(
-                            modifier = Modifier.horizontalScroll(rememberScrollState()),
-                            horizontalArrangement = Arrangement.spacedBy(8.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                text = "${stringResource(R.string.nav_garage)}:",
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                            savedEquipment.forEach { eq ->
-                                FilterChip(
-                                    selected = equipmentInput.contains(eq.name, ignoreCase = true),
-                                    onClick = { onSelectEquipment(eq) },
-                                    label = { Text(eq.name, style = MaterialTheme.typography.labelSmall) }
-                                )
-                            }
-                        }
-                    }
-
-                    OutlinedTextField(
-                        value = equipmentInput,
-                        onValueChange = onEquipmentInputChange,
-                        label = { Text(stringResource(R.string.audio_make_model_label)) },
-                        placeholder = { Text(activeProfile.equipmentPlaceholder) },
-                        singleLine = true,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .testTag("mechanical_audio_equipment_input"),
-                        shape = RoundedCornerShape(14.dp)
-                    )
-
-                    Row(
-                        modifier = Modifier.horizontalScroll(rememberScrollState()),
-                        horizontalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        activeProfile.symptomChips.forEach { tag ->
-                            FilterChip(
-                                selected = false,
-                                onClick = { onAppendSymptom(tag) },
-                                label = { Text("+ $tag", style = MaterialTheme.typography.labelSmall) }
-                            )
-                        }
-                    }
-
-                    OutlinedTextField(
-                        value = symptomInput,
-                        onValueChange = onSymptomInputChange,
-                        label = { Text(stringResource(R.string.audio_symptom_label)) },
-                        placeholder = { Text(activeProfile.symptomPlaceholder) },
-                        minLines = 2,
-                        maxLines = 3,
-                        trailingIcon = {
-                            IconButton(
-                                onClick = onDictateSymptoms,
-                                modifier = Modifier.testTag("audio_dictate_symptoms_button")
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Rounded.Mic,
-                                    contentDescription = stringResource(R.string.dictate_symptoms),
-                                    tint = DiagnosticCyan
-                                )
-                            }
-                        },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .testTag("mechanical_audio_symptom_input"),
-                        shape = RoundedCornerShape(14.dp)
-                    )
-                }
-            }
-
-            // Analyze Button
-            Button(
-                onClick = onAnalyzeAudio,
-                enabled = (hasAudioReady || symptomInput.isNotBlank()) &&
-                    diagnosisState !is DiagnosisUiState.Analyzing,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(54.dp)
-                    .testTag("mechanical_audio_analyze_button"),
-                shape = RoundedCornerShape(16.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = SafetyAmber,
-                    contentColor = Color(0xFF281800)
+        val probeAndActionPane: @Composable () -> Unit = {
+            Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
+                AcousticProbeConsoleCard(
+                    activeProfile = activeProfile,
+                    isRecording = isRecording,
+                    isPlaying = isPlaying,
+                    elapsedMillis = elapsedMillis,
+                    maxDurationMs = maxDurationMs,
+                    currentDb = currentDb,
+                    signalQuality = signalQuality,
+                    waveformSamples = waveformSamples,
+                    playbackProgress = playbackProgress,
+                    recordedBytesSize = recordedBytesSize,
+                    onSelectProfile = onSelectProfile,
+                    onToggleRecord = onToggleRecord,
+                    onTogglePlayback = onTogglePlayback,
+                    onClearAudio = onClearAudio
                 )
-            ) {
-                if (diagnosisState is DiagnosisUiState.Analyzing) {
-                    CircularProgressIndicator(
-                        modifier = Modifier.size(20.dp),
-                        color = Color(0xFF281800),
-                        strokeWidth = 2.5.dp
+
+                if (isFlashAvailable) {
+                    InspectionFlashlightToggleCard(
+                        isTorchOn = isTorchOn,
+                        isFlashAvailable = isFlashAvailable,
+                        onToggle = onToggleTorch
                     )
-                    Spacer(modifier = Modifier.width(10.dp))
-                    Text(stringResource(R.string.audio_analyzing_cta), style = MaterialTheme.typography.labelLarge)
-                } else {
-                    Icon(Icons.Rounded.AutoFixHigh, contentDescription = null)
-                    Spacer(modifier = Modifier.width(10.dp))
-                    Text(stringResource(R.string.audio_analyze_cta), style = MaterialTheme.typography.labelLarge)
                 }
-            }
 
-            AnimatedVisibility(visible = diagnosisState !is DiagnosisUiState.Idle) {
-                when (diagnosisState) {
-                    is DiagnosisUiState.Idle -> Unit
-                    is DiagnosisUiState.Analyzing -> {
-                        Surface(
-                            color = MaterialTheme.colorScheme.surface,
-                            shape = RoundedCornerShape(18.dp),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .border(1.dp, SafetyAmber.copy(alpha = 0.4f), RoundedCornerShape(18.dp))
-                        ) {
-                            Row(
-                                modifier = Modifier.padding(18.dp),
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(12.dp)
-                            ) {
-                                Icon(
-                                    Icons.Rounded.GraphicEq,
-                                    contentDescription = null,
-                                    tint = SafetyAmber
-                                )
-                                Text(
-                                    text = stringResource(R.string.audio_analyzing_cta),
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                                )
-                            }
-                        }
-                    }
-
-                    is DiagnosisUiState.QuotaChoice -> {
-                        AiQuotaChoiceCard(
-                            usedToday = diagnosisState.usedToday,
-                            dailyLimit = diagnosisState.dailyLimit,
-                            onConfigureByok = onOpenAiSettings,
-                            onUnlockSupporter = onOpenSupportSheet,
-                            onRunOfflineLookup = onRunOfflineFallback
+                if (!permissionError.isNullOrBlank()) {
+                    Surface(
+                        color = MaterialTheme.colorScheme.errorContainer,
+                        shape = RoundedCornerShape(14.dp),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text(
+                            text = permissionError,
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onErrorContainer,
+                            modifier = Modifier.padding(14.dp)
                         )
                     }
+                }
+            }
+        }
 
-                    is DiagnosisUiState.Error -> {
-                        Surface(
-                            color = MaterialTheme.colorScheme.errorContainer,
-                            shape = RoundedCornerShape(16.dp),
-                            modifier = Modifier.fillMaxWidth()
+        val contextAndResultPane: @Composable () -> Unit = {
+            Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
+                // Equipment & Noise Pattern Context
+                Surface(
+                    color = MaterialTheme.colorScheme.surface,
+                    shape = RoundedCornerShape(20.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(1.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(20.dp))
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(10.dp)
+                    ) {
+                        Text(
+                            text = stringResource(R.string.audio_context_header),
+                            style = MaterialTheme.typography.labelLarge,
+                            color = DiagnosticCyan
+                        )
+
+                        Row(
+                            modifier = Modifier.horizontalScroll(rememberScrollState()),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
-                            Column(
-                                modifier = Modifier.padding(16.dp),
-                                verticalArrangement = Arrangement.spacedBy(10.dp)
+                            EquipmentCategory.entries.forEach { category ->
+                                FilterChip(
+                                    selected = selectedCategory == category,
+                                    onClick = { onSelectCategory(category) },
+                                    label = { Text(category.displayName, style = MaterialTheme.typography.labelSmall) },
+                                    colors = FilterChipDefaults.filterChipColors(
+                                        selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                                        selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer
+                                    )
+                                )
+                            }
+                        }
+
+                        if (savedEquipment.isNotEmpty()) {
+                            Row(
+                                modifier = Modifier.horizontalScroll(rememberScrollState()),
+                                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                                verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Text(
-                                    text = diagnosisState.message,
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    color = MaterialTheme.colorScheme.onErrorContainer
+                                    text = "${stringResource(R.string.nav_garage)}:",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
-                                Row(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                                ) {
-                                    OutlinedButton(
-                                        onClick = onAnalyzeAudio,
-                                        modifier = Modifier.weight(1f)
-                                    ) {
-                                        Text(stringResource(R.string.action_retry), maxLines = 1)
-                                    }
-                                    OutlinedButton(
-                                        onClick = onOpenAiSettings,
-                                        modifier = Modifier.weight(1f)
-                                    ) {
-                                        Icon(Icons.Rounded.Key, contentDescription = null, modifier = Modifier.size(15.dp))
-                                        Spacer(modifier = Modifier.width(4.dp))
-                                        Text(stringResource(R.string.action_byok), maxLines = 1)
-                                    }
-                                    OutlinedButton(
-                                        onClick = onRunOfflineFallback,
-                                        modifier = Modifier.weight(1f)
-                                    ) {
-                                        Icon(Icons.Rounded.MenuBook, contentDescription = null, tint = StatusOkGreen, modifier = Modifier.size(15.dp))
-                                        Spacer(modifier = Modifier.width(4.dp))
-                                        Text(stringResource(R.string.action_offline), maxLines = 1)
-                                    }
+                                savedEquipment.forEach { eq ->
+                                    FilterChip(
+                                        selected = equipmentInput.contains(eq.name, ignoreCase = true),
+                                        onClick = { onSelectEquipment(eq) },
+                                        label = { Text(eq.name, style = MaterialTheme.typography.labelSmall) }
+                                    )
                                 }
                             }
                         }
-                    }
 
-                    is DiagnosisUiState.Ready -> {
-                        Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                            DiagnosticResultCard(
-                                result = diagnosisState.result,
-                                isSaved = diagnosisState.savedReportId != null,
-                                onSaveClick = onSaveDiagnosis,
-                                onShareClick = onShareReport,
-                                engineSource = diagnosisState.engineSource,
-                                category = diagnosisState.category
-                            )
+                        OutlinedTextField(
+                            value = equipmentInput,
+                            onValueChange = onEquipmentInputChange,
+                            label = { Text(stringResource(R.string.audio_make_model_label)) },
+                            placeholder = { Text(activeProfile.equipmentPlaceholder) },
+                            singleLine = true,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .testTag("mechanical_audio_equipment_input"),
+                            shape = RoundedCornerShape(14.dp)
+                        )
 
-                            if (showInlineSupportBanner) {
-                                InlinePostDiagnosisSupportCard(
-                                    onSupportClick = onOpenSupportSheet,
-                                    onDismiss = onDismissSupportBanner
+                        Row(
+                            modifier = Modifier.horizontalScroll(rememberScrollState()),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            activeProfile.symptomChips.forEach { tag ->
+                                FilterChip(
+                                    selected = false,
+                                    onClick = { onAppendSymptom(tag) },
+                                    label = { Text("+ $tag", style = MaterialTheme.typography.labelSmall) }
                                 )
                             }
+                        }
 
+                        OutlinedTextField(
+                            value = symptomInput,
+                            onValueChange = onSymptomInputChange,
+                            label = { Text(stringResource(R.string.audio_symptom_label)) },
+                            placeholder = { Text(activeProfile.symptomPlaceholder) },
+                            minLines = 2,
+                            maxLines = 3,
+                            trailingIcon = {
+                                IconButton(
+                                    onClick = onDictateSymptoms,
+                                    modifier = Modifier.testTag("audio_dictate_symptoms_button")
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Rounded.Mic,
+                                        contentDescription = stringResource(R.string.dictate_symptoms),
+                                        tint = DiagnosticCyan
+                                    )
+                                }
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .testTag("mechanical_audio_symptom_input"),
+                            shape = RoundedCornerShape(14.dp)
+                        )
+                    }
+                }
+
+                // Analyze Button
+                Button(
+                    onClick = onAnalyzeAudio,
+                    enabled = (hasAudioReady || symptomInput.isNotBlank()) &&
+                        diagnosisState !is DiagnosisUiState.Analyzing,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(54.dp)
+                        .workshopFocusRing(RoundedCornerShape(16.dp), focusColor = DiagnosticCyan)
+                        .testTag("mechanical_audio_analyze_button"),
+                    shape = RoundedCornerShape(16.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = SafetyAmber,
+                        contentColor = Color(0xFF281800)
+                    )
+                ) {
+                    if (diagnosisState is DiagnosisUiState.Analyzing) {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(20.dp),
+                            color = Color(0xFF281800),
+                            strokeWidth = 2.5.dp
+                        )
+                        Spacer(modifier = Modifier.width(10.dp))
+                        Text(stringResource(R.string.audio_analyzing_cta), style = MaterialTheme.typography.labelLarge)
+                    } else {
+                        Icon(Icons.Rounded.AutoFixHigh, contentDescription = null)
+                        Spacer(modifier = Modifier.width(10.dp))
+                        Text(stringResource(R.string.audio_analyze_cta), style = MaterialTheme.typography.labelLarge)
+                    }
+                }
+
+                AnimatedVisibility(visible = diagnosisState !is DiagnosisUiState.Idle) {
+                    when (diagnosisState) {
+                        is DiagnosisUiState.Idle -> Unit
+                        is DiagnosisUiState.Analyzing -> {
                             Surface(
                                 color = MaterialTheme.colorScheme.surface,
                                 shape = RoundedCornerShape(18.dp),
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .border(
-                                        1.dp,
-                                        MaterialTheme.colorScheme.outlineVariant,
-                                        RoundedCornerShape(18.dp)
+                                    .border(1.dp, SafetyAmber.copy(alpha = 0.4f), RoundedCornerShape(18.dp))
+                            ) {
+                                Row(
+                                    modifier = Modifier.padding(18.dp),
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                                ) {
+                                    Icon(
+                                        Icons.Rounded.GraphicEq,
+                                        contentDescription = null,
+                                        tint = SafetyAmber
                                     )
+                                    Text(
+                                        text = stringResource(R.string.audio_analyzing_cta),
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
+                            }
+                        }
+
+                        is DiagnosisUiState.QuotaChoice -> {
+                            AiQuotaChoiceCard(
+                                usedToday = diagnosisState.usedToday,
+                                dailyLimit = diagnosisState.dailyLimit,
+                                onConfigureByok = onOpenAiSettings,
+                                onUnlockSupporter = onOpenSupportSheet,
+                                onRunOfflineLookup = onRunOfflineFallback
+                            )
+                        }
+
+                        is DiagnosisUiState.Error -> {
+                            Surface(
+                                color = MaterialTheme.colorScheme.errorContainer,
+                                shape = RoundedCornerShape(16.dp),
+                                modifier = Modifier.fillMaxWidth()
                             ) {
                                 Column(
                                     modifier = Modifier.padding(16.dp),
                                     verticalArrangement = Arrangement.spacedBy(10.dp)
                                 ) {
                                     Text(
-                                        text = stringResource(R.string.result_followup_header),
-                                        style = MaterialTheme.typography.labelLarge,
-                                        color = DiagnosticCyan
+                                        text = diagnosisState.message,
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        color = MaterialTheme.colorScheme.onErrorContainer
                                     )
-
-                                    followUpMessages.forEach { msg ->
-                                        Surface(
-                                            color = if (msg.isUser) {
-                                                MaterialTheme.colorScheme.primaryContainer
-                                            } else {
-                                                MaterialTheme.colorScheme.surfaceVariant
-                                            },
-                                            shape = RoundedCornerShape(14.dp),
-                                            modifier = Modifier.fillMaxWidth()
-                                        ) {
-                                            Column(
-                                                modifier = Modifier.padding(12.dp),
-                                                verticalArrangement = Arrangement.spacedBy(6.dp)
-                                            ) {
-                                                Text(
-                                                    text = if (msg.isUser) "You" else stringResource(R.string.app_name),
-                                                    style = MaterialTheme.typography.labelSmall,
-                                                    color = if (msg.isUser) SafetyAmber else DiagnosticCyan
-                                                )
-                                                Text(
-                                                    text = msg.text,
-                                                    style = MaterialTheme.typography.bodyMedium,
-                                                    color = MaterialTheme.colorScheme.onSurface
-                                                )
-                                                if (msg.sources.isNotEmpty()) {
-                                                    GroundingSourcesSection(sources = msg.sources)
-                                                }
-                                            }
-                                        }
-                                    }
-
                                     Row(
                                         modifier = Modifier.fillMaxWidth(),
-                                        verticalAlignment = Alignment.CenterVertically,
                                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                                     ) {
-                                        OutlinedTextField(
-                                            value = followUpInput,
-                                            onValueChange = { followUpInput = it },
-                                            placeholder = { Text(stringResource(R.string.result_followup_hint)) },
-                                            singleLine = true,
-                                            modifier = Modifier
-                                                .weight(1f)
-                                                .testTag("audio_followup_input"),
-                                            shape = RoundedCornerShape(12.dp)
-                                        )
-                                        IconButton(
-                                            onClick = {
-                                                val q = followUpInput.trim()
-                                                if (q.isNotEmpty()) {
-                                                    followUpInput = ""
-                                                    onSendFollowUp(q)
-                                                }
-                                            },
-                                            enabled = followUpInput.isNotBlank() && !isFollowUpLoading,
-                                            modifier = Modifier
-                                                .size(48.dp)
-                                                .clip(CircleShape)
-                                                .background(MaterialTheme.colorScheme.secondaryContainer)
-                                                .testTag("audio_followup_send_button")
+                                        OutlinedButton(
+                                            onClick = onAnalyzeAudio,
+                                            modifier = Modifier.weight(1f)
                                         ) {
-                                            if (isFollowUpLoading) {
-                                                CircularProgressIndicator(
-                                                    modifier = Modifier.size(18.dp),
-                                                    strokeWidth = 2.dp
-                                                )
-                                            } else {
-                                                Icon(
-                                                    Icons.AutoMirrored.Rounded.Send,
-                                                    contentDescription = stringResource(R.string.result_followup_header),
-                                                    tint = DiagnosticCyan
-                                                )
-                                            }
+                                            Text(stringResource(R.string.action_retry), maxLines = 1)
+                                        }
+                                        OutlinedButton(
+                                            onClick = onOpenAiSettings,
+                                            modifier = Modifier.weight(1f)
+                                        ) {
+                                            Icon(Icons.Rounded.Key, contentDescription = null, modifier = Modifier.size(15.dp))
+                                            Spacer(modifier = Modifier.width(4.dp))
+                                            Text(stringResource(R.string.action_byok), maxLines = 1)
+                                        }
+                                        OutlinedButton(
+                                            onClick = onRunOfflineFallback,
+                                            modifier = Modifier.weight(1f)
+                                        ) {
+                                            Icon(Icons.Rounded.MenuBook, contentDescription = null, tint = StatusOkGreen, modifier = Modifier.size(15.dp))
+                                            Spacer(modifier = Modifier.width(4.dp))
+                                            Text(stringResource(R.string.action_offline), maxLines = 1)
                                         }
                                     }
                                 }
                             }
+                        }
 
-                            OutlinedButton(
-                                onClick = onResetDiagnosis,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(48.dp),
-                                shape = RoundedCornerShape(14.dp)
-                            ) {
-                                Icon(Icons.Rounded.Refresh, contentDescription = null)
-                                Spacer(modifier = Modifier.width(8.dp))
-                                Text(stringResource(R.string.audio_capture_another))
+                        is DiagnosisUiState.Ready -> {
+                            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                                DiagnosticResultCard(
+                                    result = diagnosisState.result,
+                                    isSaved = diagnosisState.savedReportId != null,
+                                    onSaveClick = onSaveDiagnosis,
+                                    onShareClick = onShareReport,
+                                    engineSource = diagnosisState.engineSource,
+                                    category = diagnosisState.category
+                                )
+
+                                if (showInlineSupportBanner) {
+                                    InlinePostDiagnosisSupportCard(
+                                        onSupportClick = onOpenSupportSheet,
+                                        onDismiss = onDismissSupportBanner
+                                    )
+                                }
+
+                                Surface(
+                                    color = MaterialTheme.colorScheme.surface,
+                                    shape = RoundedCornerShape(18.dp),
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .border(
+                                            1.dp,
+                                            MaterialTheme.colorScheme.outlineVariant,
+                                            RoundedCornerShape(18.dp)
+                                        )
+                                ) {
+                                    Column(
+                                        modifier = Modifier.padding(16.dp),
+                                        verticalArrangement = Arrangement.spacedBy(10.dp)
+                                    ) {
+                                        Text(
+                                            text = stringResource(R.string.result_followup_header),
+                                            style = MaterialTheme.typography.labelLarge,
+                                            color = DiagnosticCyan
+                                        )
+
+                                        followUpMessages.forEach { msg ->
+                                            Surface(
+                                                color = if (msg.isUser) {
+                                                    MaterialTheme.colorScheme.primaryContainer
+                                                } else {
+                                                    MaterialTheme.colorScheme.surfaceVariant
+                                                },
+                                                shape = RoundedCornerShape(14.dp),
+                                                modifier = Modifier.fillMaxWidth()
+                                            ) {
+                                                Column(
+                                                    modifier = Modifier.padding(12.dp),
+                                                    verticalArrangement = Arrangement.spacedBy(6.dp)
+                                                ) {
+                                                    Text(
+                                                        text = if (msg.isUser) "You" else stringResource(R.string.app_name),
+                                                        style = MaterialTheme.typography.labelSmall,
+                                                        color = if (msg.isUser) SafetyAmber else DiagnosticCyan
+                                                    )
+                                                    Text(
+                                                        text = msg.text,
+                                                        style = MaterialTheme.typography.bodyMedium,
+                                                        color = MaterialTheme.colorScheme.onSurface
+                                                    )
+                                                    if (msg.sources.isNotEmpty()) {
+                                                        GroundingSourcesSection(sources = msg.sources)
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        Row(
+                                            modifier = Modifier.fillMaxWidth(),
+                                            verticalAlignment = Alignment.CenterVertically,
+                                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                                        ) {
+                                            OutlinedTextField(
+                                                value = followUpInput,
+                                                onValueChange = { followUpInput = it },
+                                                placeholder = { Text(stringResource(R.string.result_followup_hint)) },
+                                                singleLine = true,
+                                                modifier = Modifier
+                                                    .weight(1f)
+                                                    .testTag("audio_followup_input"),
+                                                shape = RoundedCornerShape(12.dp)
+                                            )
+                                            IconButton(
+                                                onClick = {
+                                                    val q = followUpInput.trim()
+                                                    if (q.isNotEmpty()) {
+                                                        followUpInput = ""
+                                                        onSendFollowUp(q)
+                                                    }
+                                                },
+                                                enabled = followUpInput.isNotBlank() && !isFollowUpLoading,
+                                                modifier = Modifier
+                                                    .size(48.dp)
+                                                    .clip(CircleShape)
+                                                    .background(MaterialTheme.colorScheme.secondaryContainer)
+                                                    .testTag("audio_followup_send_button")
+                                            ) {
+                                                if (isFollowUpLoading) {
+                                                    CircularProgressIndicator(
+                                                        modifier = Modifier.size(18.dp),
+                                                        strokeWidth = 2.dp
+                                                    )
+                                                } else {
+                                                    Icon(
+                                                        Icons.AutoMirrored.Rounded.Send,
+                                                        contentDescription = stringResource(R.string.result_followup_header),
+                                                        tint = DiagnosticCyan
+                                                    )
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                OutlinedButton(
+                                    onClick = onResetDiagnosis,
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(48.dp),
+                                    shape = RoundedCornerShape(14.dp)
+                                ) {
+                                    Icon(Icons.Rounded.Refresh, contentDescription = null)
+                                    Spacer(modifier = Modifier.width(8.dp))
+                                    Text(stringResource(R.string.audio_capture_another))
+                                }
                             }
                         }
                     }
                 }
             }
+        }
 
-            Spacer(modifier = Modifier.height(16.dp))
+        if (isWideLayout) {
+            Row(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .widthIn(max = 1200.dp)
+                    .align(Alignment.TopCenter)
+                    .padding(horizontal = 20.dp, vertical = 12.dp),
+                horizontalArrangement = Arrangement.spacedBy(18.dp)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxHeight()
+                        .verticalScroll(rememberScrollState())
+                ) {
+                    probeAndActionPane()
+                }
+                Box(
+                    modifier = Modifier
+                        .weight(1.05f)
+                        .fillMaxHeight()
+                        .verticalScroll(rememberScrollState())
+                ) {
+                    contextAndResultPane()
+                }
+            }
+        } else {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .widthIn(max = 720.dp)
+                    .align(Alignment.TopCenter)
+                    .verticalScroll(rememberScrollState())
+                    .padding(horizontal = 16.dp, vertical = 12.dp),
+                verticalArrangement = Arrangement.spacedBy(14.dp)
+            ) {
+                probeAndActionPane()
+                contextAndResultPane()
+                Spacer(modifier = Modifier.height(16.dp))
+            }
         }
     }
 }

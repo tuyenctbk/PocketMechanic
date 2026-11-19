@@ -305,7 +305,7 @@ fun DiagnosticResultCard(
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
-    val checkedSteps = remember(result.title) { mutableStateMapOf<Int, Boolean>() }
+    val checkedSteps = remember(result) { mutableStateMapOf<Int, Boolean>() }
     val animatedConfidence by animateFloatAsState(
         targetValue = (result.confidencePercent / 100f).coerceIn(0f, 1f),
         animationSpec = tween(durationMillis = 650, easing = FastOutSlowInEasing),
@@ -625,6 +625,7 @@ fun DiagnosticResultCard(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .minimumInteractiveComponentSize()
+                                .workshopFocusRing(RoundedCornerShape(10.dp), focusColor = SafetyAmber)
                                 .clip(RoundedCornerShape(10.dp))
                                 .clickable { checkedSteps[idx] = !isDone }
                                 .padding(vertical = 8.dp, horizontal = 4.dp),

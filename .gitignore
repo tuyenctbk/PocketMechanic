@@ -1,7 +1,11 @@
+# Gradle & Kotlin build caches
+.gradle/
+.kotlin/
+build/
+**/build/
 *.iml
-.gradle
-.kotlin
-/local.properties
+
+# IDE & OS metadata
 /.idea/caches
 /.idea/libraries
 /.idea/modules.xml
@@ -9,11 +13,35 @@
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
 .DS_Store
-/build
+Thumbs.db
+
+# Native & profiler outputs
 /captures
 .externalNativeBuild
 .cxx
+*.hprof
+
+# Local environment & signing secrets
 local.properties
 .env
-debug.keystore
+.env.*
+!.env.example
+*.jks
+*.keystore
+*.p12
+*.pk8
+*.pem
+
+# Compiled Android packages
+*.apk
+*.ap_
+*.aab
+*.dex
+
+# Firebase & Node test artifacts
+node_modules/
 *-debug.log
+firebase-debug.log*
+firestore-debug.log*
+ui-debug.log*
+.firebase/

@@ -11,6 +11,7 @@ import com.example.model.SafetyHazardType
 import com.example.model.SafetyWarning
 import com.example.model.SafetyWarningLevel
 import com.google.firebase.Firebase
+import com.google.firebase.FirebaseApp
 import com.google.firebase.ai.ai
 import com.google.firebase.ai.type.Content
 import com.google.firebase.ai.type.GenerateContentResponse
@@ -131,6 +132,15 @@ class MechanicAiService {
         )
     }
 
+    private fun requireFirebaseConfigured() {
+        val hasApp = runCatching { FirebaseApp.getInstance() }.isSuccess
+        if (!hasApp) {
+            throw IllegalStateException(
+                "Cloud Free AI is unavailable in offline/local build. Add your free BYOK Gemini key in AI Engine settings or tap Offline Ref."
+            )
+        }
+    }
+
     suspend fun diagnose(
         category: EquipmentCategory,
         equipmentName: String,
@@ -153,6 +163,8 @@ class MechanicAiService {
             )
             return AiDiagnosisOutcome(result = result, engineSource = AiEngineSource.BYOK_PERSONAL_KEY)
         }
+
+        requireFirebaseConfigured()
 
         val promptContent = buildDiagnosticPrompt(
             category = category,
@@ -228,6 +240,8 @@ class MechanicAiService {
             return rest.text to rest.sources
         }
 
+        requireFirebaseConfigured()
+
         val prompt = content { text(promptText) }
         val response = try {
             withTimeout(60_000L) { followUpModel.generateContent(prompt) }
@@ -279,6 +293,8 @@ class MechanicAiService {
             )
             return rest.text to rest.sources
         }
+
+        requireFirebaseConfigured()
 
         val prompt = content {
             if (audioWavBytes != null && audioWavBytes.isNotEmpty()) {
@@ -661,8 +677,8 @@ class MechanicAiService {
 
     companion object {
         private const val TAG = "MechanicAiService"
-        const val PRIMARY_MODEL = "gemini-3.8-flash"
-        const val LITE_FALLBACK_MODEL = "gemini-3.5-flash-lite"
+        const val PRIMARY_MODEL = "gemini-2.5-flash"
+        const val LITE_FALLBACK_MODEL = "gemini-2.5-flash-lite"
 
         internal fun parseDiagnosticResponseText(
             rawText: String,

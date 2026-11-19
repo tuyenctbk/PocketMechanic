@@ -251,10 +251,10 @@ private fun SafetyWarningItemCard(
         modifier = Modifier
             .fillMaxWidth()
             .minimumInteractiveComponentSize()
-            .border(
-                width = 1.dp,
-                color = effectiveAccent.copy(alpha = if (isAcknowledged) 0.45f else 0.55f),
-                shape = RoundedCornerShape(14.dp)
+            .workshopFocusRing(
+                shape = RoundedCornerShape(14.dp),
+                focusColor = effectiveAccent,
+                unfocusedColor = effectiveAccent.copy(alpha = if (isAcknowledged) 0.45f else 0.55f)
             )
             .clip(RoundedCornerShape(14.dp))
             .clickable(onClick = onToggleAcknowledge)

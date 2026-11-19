@@ -1,5 +1,6 @@
 package com.example
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
@@ -49,6 +50,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
+import androidx.compose.material3.NavigationRailItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -87,10 +89,12 @@ import com.example.ai.MechanicAiService
 import com.example.analytics.AppEventTracker
 import com.example.data.FirestoreRepository
 import com.example.data.local.DiagnosisHistoryRepository
+import com.example.data.local.LocalEquipmentRepository
 import com.example.data.local.PocketMechanicDatabase
 import com.example.donation.BillingManager
 import com.example.engagement.EngagementPreferencesRepository
 import com.example.engagement.PlayEngagementManager
+import com.example.firebase.FirebaseAvailability
 import com.example.firebase.configureAppCheck
 import com.example.hardware.AudioRecorderManager
 import com.example.hardware.HandsFreeVoiceEngine
@@ -108,6 +112,8 @@ import com.example.ui.components.DonationModalSheet
 import com.example.ui.components.SmartEngagementPopupDialog
 import com.example.ui.components.TorchActionButton
 import com.example.ui.components.WorkshopSplashOverlay
+import com.example.ui.components.rememberIsTelevision
+import com.example.ui.components.workshopFocusRing
 import com.example.ui.screens.AudioCaptureScreen
 import com.example.ui.screens.GarageScreen
 import com.example.ui.screens.HandsFreeScreen
@@ -117,15 +123,13 @@ import com.example.ui.theme.DiagnosticCyan
 import com.example.ui.theme.PocketMechanicTheme
 import com.example.ui.theme.SafetyAmber
 import com.example.util.findActiveActivity
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.auth
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -169,9 +173,29 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+private const val SESSION_PREFS = "pocket_mechanic_session"
+private const val KEY_GUEST_MODE = "guest_workshop_mode"
+private const val LOCAL_WORKSHOP_UID = "local_workshop_user"
+
+private data class ActiveSession(
+    val userId: String,
+    val isCloudAccount: Boolean
+)
+
 @Composable
-fun AppNavigation(auth: FirebaseAuth = Firebase.auth) {
-    val currentUser by auth.authStateFlow().collectAsStateWithLifecycle(initialValue = auth.currentUser)
+fun AppNavigation() {
+    val context = LocalContext.current
+    val auth = remember(context) { FirebaseAvailability.safeAuth(context) }
+    val authFlow = remember(auth) { auth?.authStateFlow() ?: flowOf(null) }
+    val currentUser by authFlow.collectAsStateWithLifecycle(initialValue = auth?.currentUser)
+
+    val sessionPrefs = remember(context) {
+        context.getSharedPreferences(SESSION_PREFS, Context.MODE_PRIVATE)
+    }
+    var isGuestWorkshop by remember {
+        mutableStateOf(sessionPrefs.getBoolean(KEY_GUEST_MODE, false))
+    }
+
     var showSplash by remember { mutableStateOf(true) }
 
     LaunchedEffect(Unit) {
@@ -179,17 +203,39 @@ fun AppNavigation(auth: FirebaseAuth = Firebase.auth) {
         showSplash = false
     }
 
+    val activeSession = when {
+        currentUser != null -> ActiveSession(userId = currentUser!!.uid, isCloudAccount = true)
+        isGuestWorkshop -> ActiveSession(userId = LOCAL_WORKSHOP_UID, isCloudAccount = false)
+        else -> null
+    }
+
     Box(modifier = Modifier.fillMaxSize()) {
         Crossfade(
-            targetState = currentUser,
+            targetState = activeSession,
             animationSpec = tween(durationMillis = 300),
             label = "auth_crossfade"
-        ) { user ->
-            if (user == null) {
-                AuthScreen(onAuthSuccess = {})
+        ) { session ->
+            if (session == null) {
+                AuthScreen(
+                    onAuthSuccess = {
+                        sessionPrefs.edit().putBoolean(KEY_GUEST_MODE, false).apply()
+                        isGuestWorkshop = false
+                    },
+                    onContinueGuest = {
+                        sessionPrefs.edit().putBoolean(KEY_GUEST_MODE, true).apply()
+                        isGuestWorkshop = true
+                    }
+                )
             } else {
-                key(user.uid) {
-                    PocketMechanicShell(currentUserId = user.uid)
+                key("${session.userId}_${session.isCloudAccount}") {
+                    PocketMechanicShell(
+                        currentUserId = session.userId,
+                        isCloudAccount = session.isCloudAccount,
+                        onExitSession = {
+                            sessionPrefs.edit().putBoolean(KEY_GUEST_MODE, false).apply()
+                            isGuestWorkshop = false
+                        }
+                    )
                 }
             }
         }
@@ -200,10 +246,15 @@ fun AppNavigation(auth: FirebaseAuth = Firebase.auth) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun PocketMechanicShell(currentUserId: String) {
+private fun PocketMechanicShell(
+    currentUserId: String,
+    isCloudAccount: Boolean,
+    onExitSession: () -> Unit
+) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
+    val isTv = rememberIsTelevision()
 
     val lifecycleOwner = LocalLifecycleOwner.current
     val hostActivity = LocalActivity.current?.takeIf { !it.isFinishing && !it.isDestroyed }
@@ -259,22 +310,25 @@ private fun PocketMechanicShell(currentUserId: String) {
     }
 
     val viewModel: MechanicViewModel = viewModel(
-        key = currentUserId,
+        key = "${currentUserId}_$isCloudAccount",
         factory = viewModelFactory {
             initializer {
                 val app = checkNotNull(this[APPLICATION_KEY]) {
                     "APPLICATION_KEY missing from CreationExtras"
                 }
                 val databaseId = app.getString(R.string.firestore_database_id)
-                val db = FirebaseFirestore.getInstance(databaseId)
+                val db = if (isCloudAccount) FirebaseAvailability.safeFirestore(app, databaseId) else null
+                val auth = if (isCloudAccount) FirebaseAvailability.safeAuth(app) else null
                 val localDb = PocketMechanicDatabase.getInstance(app)
                 val prefsRepo = EngagementPreferencesRepository(app)
                 val aiAccessRepo = AiAccessRepository(app)
                 MechanicViewModel(
-                    repository = FirestoreRepository(db),
+                    repository = FirestoreRepository(db, auth),
                     historyRepository = DiagnosisHistoryRepository(localDb.diagnosisHistoryDao()),
                     aiService = MechanicAiService(),
                     currentUserId = currentUserId,
+                    localEquipmentRepository = LocalEquipmentRepository(localDb.localEquipmentDao()),
+                    isCloudAccount = isCloudAccount && db != null && auth?.currentUser != null,
                     aiAccessRepository = aiAccessRepo,
                     isActiveSupporterFlow = prefsRepo.stateFlow.map { it.isActiveSupporter },
                     eventHooks = object : WorkshopEventHooks {
@@ -324,6 +378,7 @@ private fun PocketMechanicShell(currentUserId: String) {
     }
 
     val isTorchOn by torchController.isTorchOn.collectAsStateWithLifecycle()
+    val isFlashAvailable by torchController.isFlashAvailable.collectAsStateWithLifecycle()
     val statusBanner by viewModel.statusBanner.collectAsStateWithLifecycle()
     val engagementNotice by engagementViewModel.engagementNotice.collectAsStateWithLifecycle()
     val engagementPrefs by engagementViewModel.engagementState.collectAsStateWithLifecycle()
@@ -417,22 +472,24 @@ private fun PocketMechanicShell(currentUserId: String) {
                             }
                         }
 
-                        TorchActionButton(
-                            isTorchOn = isTorchOn,
-                            onToggle = {
-                                val ok = torchController.toggleTorch()
-                                if (ok) {
-                                    engagementViewModel.onFlashlightToggled(torchController.isTorchOn.value)
-                                } else {
-                                    scope.launch {
-                                        snackbarHostState.showSnackbar(
-                                            context.getString(R.string.torch_card_unavailable)
-                                        )
+                        if (isFlashAvailable) {
+                            TorchActionButton(
+                                isTorchOn = isTorchOn,
+                                onToggle = {
+                                    val ok = torchController.toggleTorch()
+                                    if (ok) {
+                                        engagementViewModel.onFlashlightToggled(torchController.isTorchOn.value)
+                                    } else {
+                                        scope.launch {
+                                            snackbarHostState.showSnackbar(
+                                                context.getString(R.string.torch_card_unavailable)
+                                            )
+                                        }
                                     }
-                                }
-                            },
-                            modifier = Modifier.padding(end = 12.dp)
-                        )
+                                },
+                                modifier = Modifier.padding(end = 12.dp)
+                            )
+                        }
                     },
                     colors = TopAppBarDefaults.topAppBarColors(
                         containerColor = MaterialTheme.colorScheme.background,
@@ -481,7 +538,9 @@ private fun PocketMechanicShell(currentUserId: String) {
                 if (useRail) {
                     NavigationRail(
                         containerColor = MaterialTheme.colorScheme.surface,
-                        modifier = Modifier.fillMaxHeight()
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .padding(start = if (isTv) 16.dp else 0.dp)
                     ) {
                         WorkshopTab.entries.forEach { tab ->
                             val selected = activeTab == tab
@@ -499,13 +558,27 @@ private fun PocketMechanicShell(currentUserId: String) {
                                         text = stringResource(tab.labelRes),
                                         style = MaterialTheme.typography.labelSmall
                                     )
-                                }
+                                },
+                                colors = NavigationRailItemDefaults.colors(
+                                    selectedIconColor = SafetyAmber,
+                                    selectedTextColor = SafetyAmber,
+                                    indicatorColor = MaterialTheme.colorScheme.primaryContainer
+                                ),
+                                modifier = Modifier.workshopFocusRing(
+                                    shape = RoundedCornerShape(14.dp),
+                                    focusColor = DiagnosticCyan
+                                )
                             )
                         }
                     }
                 }
 
-                Box(modifier = Modifier.weight(1f).fillMaxHeight()) {
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxHeight()
+                        .padding(end = if (isTv) 20.dp else 0.dp, bottom = if (isTv) 12.dp else 0.dp)
+                ) {
                     AnimatedContent(
                         targetState = activeTab,
                         transitionSpec = {
@@ -576,7 +649,8 @@ private fun PocketMechanicShell(currentUserId: String) {
                                     activeTab = WorkshopTab.WORKBENCH
                                 },
                                 engagementViewModel = engagementViewModel,
-                                onOpenAiSettings = { showAiEngineSheet = true }
+                                onOpenAiSettings = { showAiEngineSheet = true },
+                                onSignOutComplete = onExitSession
                             )
                         }
                     }

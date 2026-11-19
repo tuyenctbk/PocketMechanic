@@ -23,6 +23,17 @@
     <string name="auth_feature_voice_title">Hands-Free Voice Mode</string>
     <string name="auth_feature_voice_desc">Talk back and forth with the assistant without touching the screen.</string>
     <string name="auth_sync_footnote">Syncs your Garage equipment &amp; DIY repair logs securely to your account.</string>
+    <string name="auth_continue_workshop">Start Workshop (Offline &amp; BYOK)</string>
+    <string name="auth_local_footnote">Works offline with local Garage, Repair History, and optional Gemini BYOK key.</string>
+    <string name="action_delete">Delete</string>
+    <string name="confirm_delete_equipment_title">Remove Equipment?</string>
+    <string name="confirm_delete_equipment_msg">Remove \"%1$s\" from your Garage? Past repair logs will be kept.</string>
+    <string name="confirm_delete_log_title">Delete Repair Entry?</string>
+    <string name="confirm_delete_log_msg">Permanently remove \"%1$s\" from your repair log?</string>
+    <string name="local_workshop_owner">Local Workshop</string>
+    <string name="local_workshop_subtitle">On-device Garage • Offline &amp; BYOK ready</string>
+    <string name="cloud_log_local_mode_title">Local Workshop Mode Active</string>
+    <string name="cloud_log_local_mode_desc">All diagnoses are automatically stored on this device in Device History. Sign in with Google to sync reports across devices.</string>
 
     <!-- Flashlight & Hardware -->
     <string name="torch_toggle">Toggle Flashlight</string>

@@ -37,6 +37,9 @@ import androidx.compose.material.icons.rounded.History
 import androidx.compose.material.icons.rounded.RadioButtonUnchecked
 import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material.icons.rounded.WarningAmber
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
@@ -50,15 +53,18 @@ import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -74,6 +80,7 @@ import com.example.model.SafetyWarningLevel
 import com.example.ui.MechanicViewModel
 import com.example.ui.StreamUiState
 import com.example.ui.components.DiagnosticResultCard
+import com.example.ui.components.workshopFocusRing
 import com.example.ui.theme.DiagnosticCyan
 import com.example.ui.theme.SafetyAmber
 import com.example.ui.theme.StatusCriticalRed
@@ -105,10 +112,12 @@ fun RepairLogScreen(
     val localHistory by viewModel.localHistoryState.collectAsStateWithLifecycle()
     val searchQuery by viewModel.historySearchQuery.collectAsStateWithLifecycle()
 
-    var sourceTab by remember { mutableStateOf(LogSourceTab.DEVICE_HISTORY) }
-    var filter by remember { mutableStateOf(LogFilter.ALL) }
+    var sourceTab by rememberSaveable { mutableStateOf(LogSourceTab.DEVICE_HISTORY) }
+    var filter by rememberSaveable { mutableStateOf(LogFilter.ALL) }
     var selectedCloudReport by remember { mutableStateOf<DiagnosticReport?>(null) }
     var selectedLocalEntry by remember { mutableStateOf<DiagnosisHistoryEntity?>(null) }
+    var pendingDeleteLocal by remember { mutableStateOf<DiagnosisHistoryEntity?>(null) }
+    var pendingDeleteCloud by remember { mutableStateOf<DiagnosticReport?>(null) }
 
     val cloudReports = (diagnosticsState as? StreamUiState.Success<List<DiagnosticReport>>)?.data.orEmpty()
     val summaryTotal = if (sourceTab == LogSourceTab.DEVICE_HISTORY) localHistory.size else cloudReports.size
@@ -282,12 +291,7 @@ fun RepairLogScreen(
                                                 remoteReportId = entry.remoteReportId
                                             )
                                         },
-                                        onDelete = {
-                                            if (selectedLocalEntry?.id == entry.id) {
-                                                selectedLocalEntry = null
-                                            }
-                                            viewModel.deleteLocalHistoryEntry(entry.id)
-                                        }
+                                        onDelete = { pendingDeleteLocal = entry }
                                     )
                                 }
                             }
@@ -295,7 +299,12 @@ fun RepairLogScreen(
                     }
 
                     LogSourceTab.CLOUD_LOG -> {
-                        when (val state = diagnosticsState) {
+                        if (!viewModel.isCloudAccount) {
+                            EmptyHistoryStateCard(
+                                title = stringResource(R.string.cloud_log_local_mode_title),
+                                subtitle = stringResource(R.string.cloud_log_local_mode_desc)
+                            )
+                        } else when (val state = diagnosticsState) {
                             is StreamUiState.Loading -> {
                                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                                     CircularProgressIndicator(color = SafetyAmber)
@@ -359,12 +368,7 @@ fun RepairLogScreen(
                                                 onToggleResolved = {
                                                     viewModel.toggleDiagnosticResolved(report.id, !report.resolved)
                                                 },
-                                                onDelete = {
-                                                    if (selectedCloudReport?.id == report.id) {
-                                                        selectedCloudReport = null
-                                                    }
-                                                    viewModel.deleteDiagnostic(report.id)
-                                                }
+                                                onDelete = { pendingDeleteCloud = report }
                                             )
                                         }
                                     }
@@ -473,6 +477,68 @@ fun RepairLogScreen(
                 Spacer(modifier = Modifier.height(24.dp))
             }
         }
+    }
+
+    val deleteLocalTarget = pendingDeleteLocal
+    if (deleteLocalTarget != null) {
+        AlertDialog(
+            onDismissRequest = { pendingDeleteLocal = null },
+            title = { Text(stringResource(R.string.confirm_delete_log_title)) },
+            text = { Text(stringResource(R.string.confirm_delete_log_msg, deleteLocalTarget.title)) },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        if (selectedLocalEntry?.id == deleteLocalTarget.id) {
+                            selectedLocalEntry = null
+                        }
+                        viewModel.deleteLocalHistoryEntry(deleteLocalTarget.id)
+                        pendingDeleteLocal = null
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = StatusCriticalRed,
+                        contentColor = Color.White
+                    )
+                ) {
+                    Text(stringResource(R.string.action_delete))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { pendingDeleteLocal = null }) {
+                    Text(stringResource(R.string.action_cancel))
+                }
+            }
+        )
+    }
+
+    val deleteCloudTarget = pendingDeleteCloud
+    if (deleteCloudTarget != null) {
+        AlertDialog(
+            onDismissRequest = { pendingDeleteCloud = null },
+            title = { Text(stringResource(R.string.confirm_delete_log_title)) },
+            text = { Text(stringResource(R.string.confirm_delete_log_msg, deleteCloudTarget.title)) },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        if (selectedCloudReport?.id == deleteCloudTarget.id) {
+                            selectedCloudReport = null
+                        }
+                        viewModel.deleteDiagnostic(deleteCloudTarget.id)
+                        pendingDeleteCloud = null
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = StatusCriticalRed,
+                        contentColor = Color.White
+                    )
+                ) {
+                    Text(stringResource(R.string.action_delete))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { pendingDeleteCloud = null }) {
+                    Text(stringResource(R.string.action_cancel))
+                }
+            }
+        )
     }
 }
 
@@ -584,7 +650,11 @@ private fun HistoryItemCard(
         shape = RoundedCornerShape(18.dp),
         modifier = modifier
             .fillMaxWidth()
-            .border(1.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(18.dp))
+            .workshopFocusRing(
+                shape = RoundedCornerShape(18.dp),
+                focusColor = SafetyAmber,
+                unfocusedColor = MaterialTheme.colorScheme.outlineVariant
+            )
             .clip(RoundedCornerShape(18.dp))
             .clickable(onClick = onClick)
             .testTag(testTag)
