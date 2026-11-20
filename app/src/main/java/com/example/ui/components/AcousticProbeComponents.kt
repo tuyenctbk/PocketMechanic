@@ -1,12 +1,15 @@
 package com.example.ui.components
 
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
+import kotlin.math.PI
+import kotlin.math.sin
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -74,57 +77,57 @@ enum class AcousticCaptureProfile(
     val placementHintRes: Int,
     val icon: ImageVector,
     val category: EquipmentCategory,
-    val symptomChips: List<String>,
-    val equipmentPlaceholder: String,
-    val symptomPlaceholder: String
+    val symptomChipRes: List<Int>,
+    val equipmentPlaceholderRes: Int,
+    val symptomPlaceholderRes: Int
 ) {
     ENGINE_BAY(
         labelRes = R.string.audio_profile_engine,
         placementHintRes = R.string.audio_placement_engine,
         icon = Icons.Rounded.DirectionsCar,
         category = EquipmentCategory.VEHICLE,
-        symptomChips = listOf(
-            "Belt squeal",
-            "Rhythmic knock",
-            "Lifter tick",
-            "Bad bearing",
-            "Exhaust hiss",
-            "Alternator whine"
+        symptomChipRes = listOf(
+            R.string.chip_belt_squeal,
+            R.string.chip_rhythmic_knock,
+            R.string.chip_lifter_tick,
+            R.string.chip_bad_bearing,
+            R.string.chip_exhaust_hiss,
+            R.string.chip_alternator_whine
         ),
-        equipmentPlaceholder = "e.g., 2018 Honda Civic 1.5T, Ford F-150 5.0L",
-        symptomPlaceholder = "e.g., High-pitched squeal on cold start that rises with RPM"
+        equipmentPlaceholderRes = R.string.placeholder_engine_equip,
+        symptomPlaceholderRes = R.string.placeholder_engine_symptom
     ),
     PLUMBING(
         labelRes = R.string.audio_profile_plumbing,
         placementHintRes = R.string.audio_placement_plumbing,
         icon = Icons.Rounded.Plumbing,
         category = EquipmentCategory.PLUMBING,
-        symptomChips = listOf(
-            "Water hammer",
-            "Pipe rattle",
-            "Trap gurgle",
-            "Valve hiss",
-            "Sump pump hum",
-            "Dripping echo"
+        symptomChipRes = listOf(
+            R.string.chip_water_hammer,
+            R.string.chip_pipe_rattle,
+            R.string.chip_trap_gurgle,
+            R.string.chip_valve_hiss,
+            R.string.chip_sump_pump_hum,
+            R.string.chip_dripping_echo
         ),
-        equipmentPlaceholder = "e.g., Kitchen sink P-trap, Rheem 50gal water heater",
-        symptomPlaceholder = "e.g., Loud bang in wall pipes when washer valve shuts off"
+        equipmentPlaceholderRes = R.string.placeholder_plumbing_equip,
+        symptomPlaceholderRes = R.string.placeholder_plumbing_symptom
     ),
     APPLIANCE(
         labelRes = R.string.audio_profile_appliance,
         placementHintRes = R.string.audio_placement_appliance,
         icon = Icons.Rounded.Kitchen,
         category = EquipmentCategory.APPLIANCE,
-        symptomChips = listOf(
-            "Compressor buzz",
-            "Relay click",
-            "Drum thump",
-            "Fan grind",
-            "Drain pump whine",
-            "Motor hum"
+        symptomChipRes = listOf(
+            R.string.chip_compressor_buzz,
+            R.string.chip_relay_click,
+            R.string.chip_drum_thump,
+            R.string.chip_fan_grind,
+            R.string.chip_drain_pump_whine,
+            R.string.chip_motor_hum
         ),
-        equipmentPlaceholder = "e.g., LG WM3900HWA washer, Carrier AC condenser",
-        symptomPlaceholder = "e.g., Clicking relay every 45s while compressor fails to start"
+        equipmentPlaceholderRes = R.string.placeholder_appliance_equip,
+        symptomPlaceholderRes = R.string.placeholder_appliance_symptom
     );
 
     companion object {
@@ -163,16 +166,20 @@ fun AcousticProbeConsoleCard(
         label = "record_ring_progress"
     )
 
-    val pulseTransition = rememberInfiniteTransition(label = "record_pulse")
-    val pulseScale by pulseTransition.animateFloat(
-        initialValue = 1f,
-        targetValue = if (isRecording) 1.18f else 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(680),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "record_pulse_scale"
-    )
+    val pulseScale = if (isRecording) {
+        val pulseTransition = rememberInfiniteTransition(label = "record_pulse")
+        pulseTransition.animateFloat(
+            initialValue = 1f,
+            targetValue = 1.18f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(680),
+                repeatMode = RepeatMode.Reverse
+            ),
+            label = "record_pulse_scale"
+        ).value
+    } else {
+        1f
+    }
 
     val borderColor by animateColorAsState(
         targetValue = when {
@@ -204,7 +211,7 @@ fun AcousticProbeConsoleCard(
                     verticalArrangement = Arrangement.spacedBy(2.dp)
                 ) {
                     Text(
-                        text = "MECHANICAL ACOUSTIC PROBE",
+                        text = stringResource(R.string.probe_header),
                         style = MaterialTheme.typography.labelLarge,
                         color = SafetyAmber
                     )
@@ -228,10 +235,10 @@ fun AcousticProbeConsoleCard(
                 ) {
                     Text(
                         text = when {
-                            isRecording -> "REC"
-                            isPlaying -> "PLAY"
-                            hasAudioReady -> "READY"
-                            else -> "IDLE"
+                            isRecording -> stringResource(R.string.probe_status_rec)
+                            isPlaying -> stringResource(R.string.probe_status_play)
+                            hasAudioReady -> stringResource(R.string.probe_status_ready)
+                            else -> stringResource(R.string.probe_status_idle)
                         },
                         style = MaterialTheme.typography.labelSmall,
                         color = when {
@@ -317,9 +324,9 @@ fun AcousticProbeConsoleCard(
                     Text(
                         text = when {
                             isRecording -> "~$currentDb dB"
-                            isPlaying -> "Playing ${(playbackProgress * 100).toInt()}%"
-                            hasAudioReady -> "${(recordedBytesSize ?: 0) / 1024} KB WAV"
-                            else -> "16kHz Raw WAV"
+                            isPlaying -> stringResource(R.string.probe_playing_pct, (playbackProgress * 100).toInt())
+                            hasAudioReady -> stringResource(R.string.probe_kb_wav, (recordedBytesSize ?: 0) / 1024)
+                            else -> stringResource(R.string.probe_raw_wav)
                         },
                         style = MaterialTheme.typography.labelMedium,
                         color = DiagnosticCyan
@@ -346,7 +353,7 @@ fun AcousticProbeConsoleCard(
                     ) {
                         Icon(
                             imageVector = Icons.Rounded.DeleteOutline,
-                            contentDescription = "Discard audio sample",
+                            contentDescription = stringResource(R.string.probe_discard_audio),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
@@ -403,11 +410,9 @@ fun AcousticProbeConsoleCard(
                         Box(contentAlignment = Alignment.Center) {
                             Icon(
                                 imageVector = if (isRecording) Icons.Rounded.Stop else Icons.Rounded.Mic,
-                                contentDescription = if (isRecording) {
-                                    "Stop recording audio"
-                                } else {
-                                    "Start recording mechanical audio"
-                                },
+                                contentDescription = stringResource(
+                                    if (isRecording) R.string.probe_stop_recording else R.string.probe_start_recording
+                                ),
                                 tint = if (isRecording) Color.White else Color(0xFF281800),
                                 modifier = Modifier.size(34.dp)
                             )
@@ -451,10 +456,10 @@ fun AcousticProbeConsoleCard(
 
             Text(
                 text = when {
-                    isRecording -> "Capturing raw mechanical acoustics... Tap stop when ready"
-                    isPlaying -> "Playing back captured clip — verify the target noise is clear"
-                    hasAudioReady -> "Sample captured. Tap Play to preview, Mic to re-record, or Analyze below."
-                    else -> "Tap microphone to record engine, belt, motor, or plumbing noise"
+                    isRecording -> stringResource(R.string.probe_hint_recording)
+                    isPlaying -> stringResource(R.string.probe_hint_playing)
+                    hasAudioReady -> stringResource(R.string.probe_hint_ready)
+                    else -> stringResource(R.string.probe_hint_idle)
                 },
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -521,10 +526,12 @@ fun MechanicalWaveformDisplay(
         else -> DiagnosticCyan
     }
 
+    val showIdleContour = !isRecording && !hasAudioReady && !isPlaying
+
     Canvas(
         modifier = modifier
             .fillMaxWidth()
-            .height(148.dp)
+            .height(124.dp)
             .clip(RoundedCornerShape(18.dp))
             .background(Color(0xFF080C12))
             .border(
@@ -560,8 +567,14 @@ fun MechanicalWaveformDisplay(
         val playheadX = (w * playbackProgress.coerceIn(0f, 1f))
 
         samples.forEachIndexed { index, amp ->
-            val clamped = amp.coerceIn(0.06f, 1f)
-            val barHeight = (h * clamped).coerceAtLeast(6.dp.toPx())
+            val effectiveAmp = if (showIdleContour) {
+                val centerWeight = 1f - kotlin.math.abs((index.toFloat() / (count - 1).coerceAtLeast(1)) - 0.5f) * 1.4f
+                val wave = ((sin(0.9f + index * 0.42f) + 1f) * 0.5f)
+                (0.08f + 0.18f * wave * centerWeight.coerceIn(0.25f, 1f)).coerceIn(0.08f, 0.34f)
+            } else {
+                amp.coerceIn(0.06f, 1f)
+            }
+            val barHeight = (h * effectiveAmp).coerceAtLeast(6.dp.toPx())
             val x = index * (barWidth + gap)
             val top = centerY - barHeight / 2f
             val isBarPlayed = isPlaying && (x + barWidth / 2f) <= playheadX

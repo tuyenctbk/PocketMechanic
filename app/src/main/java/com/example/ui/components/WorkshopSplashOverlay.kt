@@ -89,26 +89,6 @@ fun WorkshopSplashOverlay(
         label = "splash_content_alpha"
     )
 
-    val sweepTransition = rememberInfiniteTransition(label = "splash_gauge")
-    val sweepAngle by sweepTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 360f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 1800, easing = LinearEasing),
-            repeatMode = RepeatMode.Restart
-        ),
-        label = "splash_sweep_angle"
-    )
-    val wavePhase by sweepTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = (2.0 * PI).toFloat(),
-        animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 1200, easing = LinearEasing),
-            repeatMode = RepeatMode.Restart
-        ),
-        label = "splash_wave_phase"
-    )
-
     AnimatedVisibility(
         visible = visible,
         exit = fadeOut(animationSpec = tween(320)) + scaleOut(
@@ -117,6 +97,26 @@ fun WorkshopSplashOverlay(
         ),
         modifier = modifier
     ) {
+        val sweepTransition = rememberInfiniteTransition(label = "splash_gauge")
+        val sweepAngle by sweepTransition.animateFloat(
+            initialValue = 0f,
+            targetValue = 360f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(durationMillis = 1800, easing = LinearEasing),
+                repeatMode = RepeatMode.Restart
+            ),
+            label = "splash_sweep_angle"
+        )
+        val wavePhase by sweepTransition.animateFloat(
+            initialValue = 0f,
+            targetValue = (2.0 * PI).toFloat(),
+            animationSpec = infiniteRepeatable(
+                animation = tween(durationMillis = 1200, easing = LinearEasing),
+                repeatMode = RepeatMode.Restart
+            ),
+            label = "splash_wave_phase"
+        )
+
         Box(
             modifier = Modifier
                 .fillMaxSize()

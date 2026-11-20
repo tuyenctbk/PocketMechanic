@@ -7,10 +7,12 @@ import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -18,13 +20,13 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.MenuBook
 import androidx.compose.material.icons.automirrored.rounded.OpenInNew
 import androidx.compose.material.icons.rounded.AutoAwesome
 import androidx.compose.material.icons.rounded.CheckCircle
 import androidx.compose.material.icons.rounded.DeleteOutline
 import androidx.compose.material.icons.rounded.Favorite
 import androidx.compose.material.icons.rounded.Key
-import androidx.compose.material.icons.rounded.MenuBook
 import androidx.compose.material.icons.rounded.Security
 import androidx.compose.material.icons.rounded.Tune
 import androidx.compose.material.icons.rounded.Visibility
@@ -61,12 +63,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.R
 import com.example.ai.AiAccessRepository
 import com.example.ai.AiAccessState
 import com.example.ai.AiProviderMode
 import com.example.ui.ByokVerificationUiState
+import com.example.ui.localizedLabel
+import com.example.ui.localizedShortLabel
 import com.example.ui.theme.DiagnosticCyan
 import com.example.ui.theme.SafetyAmber
 import com.example.ui.theme.StatusCriticalRed
@@ -156,7 +161,7 @@ fun AiQuotaChoiceCard(
                         .testTag("quota_choose_offline_button"),
                     shape = RoundedCornerShape(14.dp)
                 ) {
-                    Icon(Icons.Rounded.MenuBook, contentDescription = null, tint = StatusOkGreen, modifier = Modifier.size(16.dp))
+                    Icon(Icons.AutoMirrored.Rounded.MenuBook, contentDescription = null, tint = StatusOkGreen, modifier = Modifier.size(16.dp))
                     Spacer(modifier = Modifier.width(6.dp))
                     Text(stringResource(R.string.ai_choose_offline_cta), style = MaterialTheme.typography.labelMedium)
                 }
@@ -220,11 +225,11 @@ fun GarageAiEngineCard(
                     Text(
                         text = when {
                             accessState.preferredMode == AiProviderMode.OFFLINE_ONLY ->
-                                "Offline Reference Only ($0 • Zero network)"
+                                stringResource(R.string.ai_status_offline_only)
                             accessState.hasByokKey ->
-                                "BYOK Active (${AiAccessRepository.maskApiKey(accessState.byokApiKey)}) • Unlimited"
+                                stringResource(R.string.ai_status_byok_active, AiAccessRepository.maskApiKey(accessState.byokApiKey))
                             else ->
-                                "${accessState.preferredMode.label} • $remaining/$dailyLimit free left today"
+                                stringResource(R.string.ai_status_quota_left, accessState.preferredMode.localizedLabel(), remaining, dailyLimit)
                         },
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -297,7 +302,7 @@ fun AiEngineChoiceSheet(
                         color = MaterialTheme.colorScheme.onSurface
                     )
                     Text(
-                        text = "Choose how PocketMechanic runs diagnostics — 100% transparent & flexible.",
+                        text = stringResource(R.string.ai_sheet_subtitle),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -320,7 +325,7 @@ fun AiEngineChoiceSheet(
                         ),
                         modifier = Modifier.testTag("ai_mode_${mode.name.lowercase()}")
                     ) {
-                        Text(mode.shortLabel, style = MaterialTheme.typography.labelSmall, maxLines = 1)
+                        Text(mode.localizedShortLabel(), style = MaterialTheme.typography.labelSmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
                     }
                 }
             }
@@ -341,19 +346,21 @@ fun AiEngineChoiceSheet(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = if (isActiveSupporter) "SUPPORTER SHARED ALLOWANCE" else "FREE SHARED TIER",
+                            text = stringResource(
+                                if (isActiveSupporter) R.string.ai_tier_supporter_header else R.string.ai_tier_free_header
+                            ),
                             style = MaterialTheme.typography.labelLarge,
                             color = SafetyAmber
                         )
                         Text(
-                            text = "$remaining / $dailyLimit left today",
+                            text = stringResource(R.string.ai_quota_left_today, remaining, dailyLimit),
                             style = MaterialTheme.typography.labelMedium,
                             color = if (remaining > 0) StatusOkGreen else StatusCriticalRed,
                             fontWeight = FontWeight.Bold
                         )
                     }
                     Text(
-                        text = "Uses Flash with automatic Flash-Lite fallback if busy. Resets daily at midnight UTC.",
+                        text = stringResource(R.string.ai_tier_desc),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -366,12 +373,17 @@ fun AiEngineChoiceSheet(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(top = 4.dp)
-                                .height(44.dp),
+                                .heightIn(min = 48.dp),
+                            contentPadding = PaddingValues(horizontal = 14.dp, vertical = 10.dp),
                             shape = RoundedCornerShape(12.dp)
                         ) {
                             Icon(Icons.Rounded.Favorite, contentDescription = null, tint = SafetyAmber, modifier = Modifier.size(16.dp))
                             Spacer(modifier = Modifier.width(6.dp))
-                            Text("Support Indie Dev (Boosts Daily Tier to 25/day)")
+                            Text(
+                                text = stringResource(R.string.ai_support_boost_btn),
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
                         }
                     }
                 }
@@ -404,18 +416,18 @@ fun AiEngineChoiceSheet(
                         ) {
                             Icon(Icons.Rounded.Key, contentDescription = null, tint = DiagnosticCyan, modifier = Modifier.size(18.dp))
                             Text(
-                                text = "BRING YOUR OWN GEMINI KEY (BYOK)",
+                                text = stringResource(R.string.ai_byok_header),
                                 style = MaterialTheme.typography.labelLarge,
                                 color = DiagnosticCyan
                             )
                         }
                         if (accessState.hasByokKey) {
-                            Icon(Icons.Rounded.CheckCircle, contentDescription = "Key saved", tint = StatusOkGreen, modifier = Modifier.size(18.dp))
+                            Icon(Icons.Rounded.CheckCircle, contentDescription = null, tint = StatusOkGreen, modifier = Modifier.size(18.dp))
                         }
                     }
 
                     Text(
-                        text = "Paste your own free Google AI Studio Gemini API key for unlimited multimodal audio, camera & voice diagnoses directly under your own free tier.",
+                        text = stringResource(R.string.ai_byok_desc),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -424,11 +436,16 @@ fun AiEngineChoiceSheet(
                         onClick = { context.openExternalUrl(AiAccessState.AI_STUDIO_KEY_URL, "Google AI Studio Key URL") },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(44.dp)
+                            .heightIn(min = 48.dp)
                             .testTag("byok_get_free_key_button"),
+                        contentPadding = PaddingValues(horizontal = 14.dp, vertical = 10.dp),
                         shape = RoundedCornerShape(12.dp)
                     ) {
-                        Text(stringResource(R.string.ai_get_key_cta))
+                        Text(
+                            text = stringResource(R.string.ai_get_key_cta),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
                         Spacer(modifier = Modifier.width(6.dp))
                         Icon(Icons.AutoMirrored.Rounded.OpenInNew, contentDescription = null, modifier = Modifier.size(16.dp))
                     }
@@ -460,13 +477,13 @@ fun AiEngineChoiceSheet(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = "Model:",
+                            text = stringResource(R.string.ai_model_label),
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                         listOf(
-                            AiAccessState.DEFAULT_BYOK_MODEL to "Flash (Best)",
-                            AiAccessState.LITE_BYOK_MODEL to "Flash-Lite (Fastest)"
+                            AiAccessState.DEFAULT_BYOK_MODEL to stringResource(R.string.ai_model_flash),
+                            AiAccessState.LITE_BYOK_MODEL to stringResource(R.string.ai_model_lite)
                         ).forEach { (modelId, label) ->
                             FilterChip(
                                 selected = selectedModel == modelId,

@@ -69,6 +69,7 @@ import com.example.model.EquipmentCategory
 import com.example.ui.EngagementViewModel
 import com.example.ui.MechanicViewModel
 import com.example.ui.StreamUiState
+import com.example.ui.localizedName
 import com.example.ui.auth.signOut
 import com.example.ui.components.ActiveSupporterBadge
 import com.example.ui.components.GarageAiEngineCard
@@ -493,7 +494,7 @@ private fun EquipmentCard(
                         shape = RoundedCornerShape(6.dp)
                     ) {
                         Text(
-                            text = equipment.categoryEnum().displayName.uppercase(),
+                            text = equipment.categoryEnum().localizedName().uppercase(),
                             style = MaterialTheme.typography.labelSmall,
                             color = DiagnosticCyan,
                             modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp)
@@ -521,14 +522,14 @@ private fun EquipmentCard(
                     IconButton(onClick = onEdit) {
                         Icon(
                             Icons.Rounded.Edit,
-                            contentDescription = "Edit equipment",
+                            contentDescription = stringResource(R.string.garage_edit_equipment),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                     IconButton(onClick = onDelete) {
                         Icon(
                             Icons.Rounded.DeleteOutline,
-                            contentDescription = "Delete equipment",
+                            contentDescription = stringResource(R.string.action_delete),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
@@ -599,7 +600,7 @@ private fun EquipmentEditorDialog(
                         FilterChip(
                             selected = category == cat,
                             onClick = { category = cat },
-                            label = { Text(cat.displayName, style = MaterialTheme.typography.labelSmall) }
+                            label = { Text(cat.localizedName(), style = MaterialTheme.typography.labelSmall) }
                         )
                     }
                 }
@@ -608,7 +609,7 @@ private fun EquipmentEditorDialog(
                     value = name,
                     onValueChange = { name = it.take(80) },
                     label = { Text(stringResource(R.string.garage_field_nickname)) },
-                    placeholder = { Text("e.g., Family Civic / Basement Washer") },
+                    placeholder = { Text(stringResource(R.string.placeholder_garage_nickname)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -616,7 +617,7 @@ private fun EquipmentEditorDialog(
                     value = makeModel,
                     onValueChange = { makeModel = it.take(100) },
                     label = { Text(stringResource(R.string.garage_field_make_model)) },
-                    placeholder = { Text("e.g., LG WM3900HWA") },
+                    placeholder = { Text(stringResource(R.string.placeholder_garage_make)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -624,7 +625,7 @@ private fun EquipmentEditorDialog(
                     value = yearOrSerial,
                     onValueChange = { yearOrSerial = it.take(60) },
                     label = { Text(stringResource(R.string.garage_field_year_serial)) },
-                    placeholder = { Text("e.g., 2019 or SN-4421") },
+                    placeholder = { Text(stringResource(R.string.placeholder_garage_year)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -632,7 +633,7 @@ private fun EquipmentEditorDialog(
                     value = notes,
                     onValueChange = { notes = it.take(300) },
                     label = { Text(stringResource(R.string.garage_field_notes)) },
-                    placeholder = { Text("Oil filter size, recent repairs...") },
+                    placeholder = { Text(stringResource(R.string.placeholder_garage_notes)) },
                     maxLines = 3,
                     modifier = Modifier.fillMaxWidth()
                 )

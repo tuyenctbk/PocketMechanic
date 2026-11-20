@@ -62,11 +62,13 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import com.example.R
 import com.example.hardware.CameraXManager
 import com.example.hardware.TorchController
 import com.example.ui.theme.DiagnosticCyan
@@ -178,7 +180,7 @@ fun MechanicalCameraViewfinder(
                         onClick = { bindAttempt++ },
                         modifier = Modifier.height(48.dp)
                     ) {
-                        Text("Retry Camera")
+                        Text(stringResource(R.string.camera_retry))
                     }
                 }
             }
@@ -276,12 +278,12 @@ fun MechanicalCameraViewfinder(
             ) {
                 Icon(
                     imageVector = if (isTorchOn) Icons.Rounded.FlashlightOn else Icons.Rounded.FlashlightOff,
-                    contentDescription = "Toggle camera flashlight",
+                    contentDescription = stringResource(R.string.torch_toggle),
                     tint = if (isTorchOn) Color.Black else Color.White,
                     modifier = Modifier.size(18.dp)
                 )
                 Text(
-                    text = if (isTorchOn) "Torch On" else "Torch",
+                    text = stringResource(if (isTorchOn) R.string.camera_torch_on else R.string.camera_torch_off),
                     style = MaterialTheme.typography.labelSmall,
                     color = if (isTorchOn) Color.Black else Color.White,
                     fontWeight = FontWeight.Bold
@@ -297,7 +299,7 @@ fun MechanicalCameraViewfinder(
                 .padding(top = 12.dp)
         ) {
             Text(
-                text = "Tap to focus part or code",
+                text = stringResource(R.string.camera_tap_focus),
                 style = MaterialTheme.typography.labelSmall,
                 color = Color.White,
                 modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp)
@@ -314,7 +316,7 @@ fun MechanicalCameraViewfinder(
                 .background(Color(0xB3000000))
                 .testTag("camera_close_button")
         ) {
-            Icon(Icons.Rounded.Close, contentDescription = "Close camera", tint = Color.White)
+            Icon(Icons.Rounded.Close, contentDescription = stringResource(R.string.camera_close), tint = Color.White)
         }
 
         // Bottom Controls: Quick Zoom Pills + Shutter Button
@@ -403,11 +405,11 @@ fun MechanicalCameraViewfinder(
                         strokeWidth = 2.dp
                     )
                     Spacer(modifier = Modifier.width(6.dp))
-                    Text("Capturing...", fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.camera_capturing), fontWeight = FontWeight.Bold)
                 } else {
                     Icon(Icons.Rounded.CameraAlt, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(6.dp))
-                    Text("Snap Part", fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.camera_snap_part), fontWeight = FontWeight.Bold)
                 }
             }
         }

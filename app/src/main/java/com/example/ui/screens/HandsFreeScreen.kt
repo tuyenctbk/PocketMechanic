@@ -34,6 +34,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.ArrowForward
 import androidx.compose.material.icons.rounded.DeleteSweep
 import androidx.compose.material.icons.rounded.GraphicEq
 import androidx.compose.material.icons.rounded.Mic
@@ -196,24 +197,28 @@ fun HandsFreeScreen(
 
     val orbColor by animateColorAsState(
         targetValue = when (effectivePhase) {
-            HandsFreePhase.IDLE -> MaterialTheme.colorScheme.surfaceVariant
-            HandsFreePhase.LISTENING -> SafetyAmber
+            HandsFreePhase.IDLE -> SafetyAmber
+            HandsFreePhase.LISTENING -> StatusCriticalRed
             HandsFreePhase.THINKING -> DiagnosticCyan
             HandsFreePhase.SPEAKING -> StatusOkGreen
         },
         label = "orb_color"
     )
 
-    val pulseTransition = rememberInfiniteTransition(label = "orb_pulse")
-    val pulseScale by pulseTransition.animateFloat(
-        initialValue = 1f,
-        targetValue = if (effectivePhase != HandsFreePhase.IDLE) 1.09f else 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(750),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "pulse_scale"
-    )
+    val pulseScale = if (effectivePhase != HandsFreePhase.IDLE) {
+        val pulseTransition = rememberInfiniteTransition(label = "orb_pulse")
+        pulseTransition.animateFloat(
+            initialValue = 1f,
+            targetValue = 1.09f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(750),
+                repeatMode = RepeatMode.Reverse
+            ),
+            label = "pulse_scale"
+        ).value
+    } else {
+        1f
+    }
 
     val triggerQuickPrompt: (String) -> Unit = { promptText ->
         voiceNotice = null
@@ -264,17 +269,23 @@ fun HandsFreeScreen(
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
-                        if (isFlashAvailable) {
-                            TorchActionButton(
-                                isTorchOn = isTorchOn,
-                                onToggle = {
-                                    if (torchController.toggleTorch()) {
-                                        voiceNotice = null
-                                        onTorchToggled(torchController.isTorchOn.value)
-                                    } else {
-                                        voiceNotice = context.getString(R.string.torch_card_unavailable)
+                        Surface(
+                            color = orbColor.copy(alpha = 0.16f),
+                            shape = RoundedCornerShape(8.dp)
+                        ) {
+                            Text(
+                                text = stringResource(
+                                    when (effectivePhase) {
+                                        HandsFreePhase.IDLE -> R.string.hf_badge_ready
+                                        HandsFreePhase.LISTENING -> R.string.hf_badge_live
+                                        HandsFreePhase.THINKING -> R.string.hf_badge_thinking
+                                        HandsFreePhase.SPEAKING -> R.string.hf_badge_speaking
                                     }
-                                }
+                                ),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = orbColor,
+                                fontWeight = FontWeight.Bold,
+                                modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp)
                             )
                         }
                     }
@@ -310,7 +321,7 @@ fun HandsFreeScreen(
                             ) {
                                 Icon(
                                     Icons.Rounded.DeleteSweep,
-                                    contentDescription = "Clear voice conversation",
+                                    contentDescription = stringResource(R.string.hf_clear_conversation),
                                     tint = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                             }
@@ -458,27 +469,56 @@ fun HandsFreeScreen(
                             verticalArrangement = Arrangement.spacedBy(10.dp)
                         ) {
                             Text(
-                                text = "TRY ASKING HANDS-FREE",
+                                text = stringResource(R.string.hf_try_asking_header),
                                 style = MaterialTheme.typography.labelLarge,
                                 color = DiagnosticCyan
                             )
                             Text(
-                                text = "Tap a quick scenario below or press the mic orb to talk through your repair step by step:",
+                                text = stringResource(R.string.hf_try_asking_subtitle),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                             listOf(
-                                "My engine belt squeals loudly on cold start — what should I check?",
-                                "Washer showing OE drain error code and won't spin",
-                                "Slow drip under kitchen sink P-trap slip nut",
-                                "AC condenser is buzzing and fan won't spin"
-                            ).forEach { samplePrompt ->
-                                FilterChip(
-                                    selected = false,
-                                    onClick = { triggerQuickPrompt(samplePrompt) },
-                                    label = { Text(samplePrompt, style = MaterialTheme.typography.bodySmall) },
-                                    modifier = Modifier.fillMaxWidth()
-                                )
+                                R.string.hf_prompt_belt,
+                                R.string.hf_prompt_washer,
+                                R.string.hf_prompt_sink,
+                                R.string.hf_prompt_ac
+                            ).forEach { promptRes ->
+                                val samplePrompt = stringResource(promptRes)
+                                Surface(
+                                    color = MaterialTheme.colorScheme.surfaceVariant,
+                                    shape = RoundedCornerShape(12.dp),
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .workshopFocusRing(
+                                            shape = RoundedCornerShape(12.dp),
+                                            focusColor = DiagnosticCyan,
+                                            unfocusedColor = MaterialTheme.colorScheme.outlineVariant
+                                        )
+                                        .clip(RoundedCornerShape(12.dp))
+                                        .clickable { triggerQuickPrompt(samplePrompt) }
+                                ) {
+                                    Row(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(horizontal = 14.dp, vertical = 12.dp),
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.spacedBy(10.dp)
+                                    ) {
+                                        Text(
+                                            text = samplePrompt,
+                                            style = MaterialTheme.typography.bodySmall,
+                                            color = MaterialTheme.colorScheme.onSurface,
+                                            modifier = Modifier.weight(1f)
+                                        )
+                                        Icon(
+                                            imageVector = Icons.AutoMirrored.Rounded.ArrowForward,
+                                            contentDescription = null,
+                                            tint = DiagnosticCyan,
+                                            modifier = Modifier.size(16.dp)
+                                        )
+                                    }
+                                }
                             }
                         }
                     }
@@ -506,7 +546,7 @@ fun HandsFreeScreen(
                             verticalArrangement = Arrangement.spacedBy(6.dp)
                         ) {
                             Text(
-                                text = if (turn.isUser) "YOU" else "POCKETMECHANIC",
+                                text = stringResource(if (turn.isUser) R.string.speaker_you else R.string.app_name).uppercase(),
                                 style = MaterialTheme.typography.labelSmall,
                                 color = if (turn.isUser) SafetyAmber else DiagnosticCyan
                             )

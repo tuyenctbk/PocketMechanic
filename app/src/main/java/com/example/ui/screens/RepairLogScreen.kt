@@ -81,6 +81,7 @@ import com.example.ui.MechanicViewModel
 import com.example.ui.StreamUiState
 import com.example.ui.components.DiagnosticResultCard
 import com.example.ui.components.workshopFocusRing
+import com.example.ui.localizedName
 import com.example.ui.theme.DiagnosticCyan
 import com.example.ui.theme.SafetyAmber
 import com.example.ui.theme.StatusCriticalRed
@@ -90,15 +91,15 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-private enum class LogFilter(val label: String) {
-    ALL("All"),
-    OPEN("Open"),
-    RESOLVED("Fixed")
+private enum class LogFilter(val labelRes: Int) {
+    ALL(R.string.log_filter_all),
+    OPEN(R.string.log_filter_open),
+    RESOLVED(R.string.log_filter_fixed)
 }
 
-private enum class LogSourceTab(val label: String) {
-    DEVICE_HISTORY("Device History"),
-    CLOUD_LOG("Cloud Log")
+private enum class LogSourceTab(val labelRes: Int) {
+    DEVICE_HISTORY(R.string.log_tab_device),
+    CLOUD_LOG(R.string.log_tab_cloud)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -160,12 +161,13 @@ fun RepairLogScreen(
                         },
                         modifier = Modifier.testTag("repair_log_source_${tab.name.lowercase()}")
                     ) {
+                        val tabLabel = stringResource(tab.labelRes)
                         val badge = if (tab == LogSourceTab.DEVICE_HISTORY && localHistory.isNotEmpty()) {
-                            "${tab.label} (${localHistory.size})"
+                            "$tabLabel (${localHistory.size})"
                         } else {
-                            tab.label
+                            tabLabel
                         }
-                        Text(badge, style = MaterialTheme.typography.labelMedium)
+                        Text(badge, style = MaterialTheme.typography.labelMedium, maxLines = 1, overflow = TextOverflow.Ellipsis)
                     }
                 }
             }
@@ -181,7 +183,7 @@ fun RepairLogScreen(
                     trailingIcon = {
                         if (searchQuery.isNotEmpty()) {
                             IconButton(onClick = { viewModel.setHistorySearchQuery("") }) {
-                                Icon(Icons.Rounded.Close, contentDescription = "Clear search")
+                                Icon(Icons.Rounded.Close, contentDescription = stringResource(R.string.action_close))
                             }
                         }
                     },
@@ -199,19 +201,19 @@ fun RepairLogScreen(
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     RepairMetricPill(
-                        label = "TOTAL",
+                        label = stringResource(R.string.log_stat_total),
                         value = summaryTotal.toString(),
                         accent = DiagnosticCyan,
                         modifier = Modifier.weight(1f)
                     )
                     RepairMetricPill(
-                        label = "OPEN",
+                        label = stringResource(R.string.log_stat_open),
                         value = summaryOpen.toString(),
                         accent = SafetyAmber,
                         modifier = Modifier.weight(1f)
                     )
                     RepairMetricPill(
-                        label = "FIXED",
+                        label = stringResource(R.string.log_stat_fixed),
                         value = summaryResolved.toString(),
                         accent = StatusOkGreen,
                         modifier = Modifier.weight(1f)
@@ -227,7 +229,7 @@ fun RepairLogScreen(
                     FilterChip(
                         selected = filter == option,
                         onClick = { filter = option },
-                        label = { Text(option.label, style = MaterialTheme.typography.labelMedium) }
+                        label = { Text(stringResource(option.labelRes), style = MaterialTheme.typography.labelMedium) }
                     )
                 }
             }
@@ -252,12 +254,12 @@ fun RepairLogScreen(
 
                         if (filteredLocal.isEmpty()) {
                             EmptyHistoryStateCard(
-                                title = if (searchQuery.isNotBlank()) "No Matching Diagnoses" else "No Local Diagnosis History",
-                                subtitle = if (searchQuery.isNotBlank()) {
-                                    "Try clearing your search filter or switch to another keyword."
-                                } else {
-                                    "Every audio, camera, or code diagnosis is automatically saved on-device so you can review mechanical insights and repair steps offline anytime."
-                                }
+                                title = stringResource(
+                                    if (searchQuery.isNotBlank()) R.string.log_empty_no_match_title else R.string.log_empty_local_title
+                                ),
+                                subtitle = stringResource(
+                                    if (searchQuery.isNotBlank()) R.string.log_empty_no_match_desc else R.string.log_empty_local_desc
+                                )
                             )
                         } else {
                             LazyColumn(
@@ -273,7 +275,7 @@ fun RepairLogScreen(
                                     }
                                     HistoryItemCard(
                                         title = entry.title,
-                                        modeLabel = entry.modeEnum().displayName,
+                                        modeLabel = entry.modeEnum().localizedName(),
                                         equipmentName = entry.equipmentName,
                                         primaryCulprit = entry.primaryCulprit,
                                         severity = entry.severityEnum(),
@@ -337,8 +339,8 @@ fun RepairLogScreen(
 
                                 if (filtered.isEmpty()) {
                                     EmptyHistoryStateCard(
-                                        title = "No Cloud Repair Logs Yet",
-                                        subtitle = "Tap Save to Repair Log after a diagnosis or promote any entry from Device History to sync it across devices."
+                                        title = stringResource(R.string.log_empty_cloud_title),
+                                        subtitle = stringResource(R.string.log_empty_cloud_desc)
                                     )
                                 } else {
                                     LazyColumn(
@@ -354,7 +356,7 @@ fun RepairLogScreen(
                                             }
                                             HistoryItemCard(
                                                 title = report.title,
-                                                modeLabel = report.modeEnum().displayName,
+                                                modeLabel = report.modeEnum().localizedName(),
                                                 equipmentName = report.equipmentName,
                                                 primaryCulprit = report.primaryCulprit,
                                                 severity = report.severityEnum(),
@@ -582,34 +584,39 @@ private fun EmptyHistoryStateCard(
     title: String,
     subtitle: String
 ) {
-    Surface(
-        color = MaterialTheme.colorScheme.surface,
-        shape = RoundedCornerShape(20.dp),
-        modifier = Modifier
-            .fillMaxWidth()
-            .border(1.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(20.dp))
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.TopCenter
     ) {
-        Column(
-            modifier = Modifier.padding(24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(10.dp)
+        Surface(
+            color = MaterialTheme.colorScheme.surface,
+            shape = RoundedCornerShape(20.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .border(1.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(20.dp))
         ) {
-            Icon(
-                imageVector = Icons.Rounded.AssignmentTurnedIn,
-                contentDescription = null,
-                tint = SafetyAmber,
-                modifier = Modifier.size(42.dp)
-            )
-            Text(
-                text = title,
-                style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-            Text(
-                text = subtitle,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
+            Column(
+                modifier = Modifier.padding(24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Rounded.AssignmentTurnedIn,
+                    contentDescription = null,
+                    tint = SafetyAmber,
+                    modifier = Modifier.size(42.dp)
+                )
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+                Text(
+                    text = subtitle,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
         }
     }
 }
@@ -637,11 +644,12 @@ private fun HistoryItemCard(
         DiagnosticSeverity.HIGH -> StatusWarnOrange
         DiagnosticSeverity.CRITICAL -> StatusCriticalRed
     }
-    val dateLabel = remember(dateMillis) {
+    val justNowLabel = stringResource(R.string.log_just_now)
+    val dateLabel = remember(dateMillis, justNowLabel) {
         if (dateMillis != null) {
             SimpleDateFormat("MMM d, h:mm a", Locale.getDefault()).format(Date(dateMillis))
         } else {
-            "Just now"
+            justNowLabel
         }
     }
 
@@ -695,7 +703,7 @@ private fun HistoryItemCard(
                     if (isSyncedCloud) {
                         Icon(
                             imageVector = Icons.Rounded.CloudDone,
-                            contentDescription = "Synced to Cloud",
+                            contentDescription = stringResource(R.string.log_synced_cloud),
                             tint = DiagnosticCyan,
                             modifier = Modifier.size(15.dp)
                         )
@@ -717,14 +725,14 @@ private fun HistoryItemCard(
                             } else {
                                 Icons.Rounded.RadioButtonUnchecked
                             },
-                            contentDescription = if (resolved) "Mark open" else "Mark fixed",
+                            contentDescription = stringResource(if (resolved) R.string.log_mark_open else R.string.log_mark_fixed),
                             tint = if (resolved) StatusOkGreen else MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                     IconButton(onClick = onDelete) {
                         Icon(
                             imageVector = Icons.Rounded.DeleteOutline,
-                            contentDescription = "Delete repair entry",
+                            contentDescription = stringResource(R.string.action_delete),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }

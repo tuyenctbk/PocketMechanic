@@ -26,6 +26,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.MenuBook
 import androidx.compose.material.icons.automirrored.rounded.OpenInNew
 import androidx.compose.material.icons.rounded.AutoAwesome
 import androidx.compose.material.icons.rounded.BookmarkAdd
@@ -36,7 +37,6 @@ import androidx.compose.material.icons.rounded.FlashlightOff
 import androidx.compose.material.icons.rounded.FlashlightOn
 import androidx.compose.material.icons.rounded.Key
 import androidx.compose.material.icons.rounded.LocationOn
-import androidx.compose.material.icons.rounded.MenuBook
 import androidx.compose.material.icons.rounded.RadioButtonUnchecked
 import androidx.compose.material.icons.rounded.Share
 import androidx.compose.material.icons.rounded.Storefront
@@ -82,6 +82,8 @@ import com.example.model.DiagnosticResult
 import com.example.model.DiagnosticSeverity
 import com.example.model.EquipmentCategory
 import com.example.model.GroundedSource
+import com.example.ui.localizedBadgeLabel
+import com.example.ui.localizedLabel
 import com.example.ui.theme.DiagnosticCyan
 import com.example.ui.theme.SafetyAmber
 import com.example.ui.theme.StatusCriticalContainer
@@ -123,21 +125,24 @@ fun TorchActionButton(
             .testTag("torch_toggle_button")
     ) {
         Row(
-            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+            modifier = Modifier.padding(horizontal = 10.dp, vertical = 8.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(6.dp)
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             Icon(
                 imageVector = if (isTorchOn) Icons.Rounded.FlashlightOn else Icons.Rounded.FlashlightOff,
-                contentDescription = if (isTorchOn) "Turn off flashlight" else "Turn on flashlight",
+                contentDescription = stringResource(R.string.torch_toggle),
                 tint = contentColor,
-                modifier = Modifier.size(18.dp)
+                modifier = Modifier.size(16.dp)
             )
             Text(
                 text = if (isTorchOn) stringResource(R.string.torch_light_on) else stringResource(R.string.torch_light_off),
                 style = MaterialTheme.typography.labelSmall,
                 color = contentColor,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                maxLines = 1,
+                softWrap = false,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }
@@ -344,7 +349,7 @@ fun DiagnosticResultCard(
                             shape = RoundedCornerShape(8.dp)
                         ) {
                             Text(
-                                text = result.severity.label.uppercase(),
+                                text = result.severity.localizedLabel().uppercase(),
                                 style = MaterialTheme.typography.labelSmall,
                                 color = severityFg,
                                 fontWeight = FontWeight.Bold,
@@ -352,7 +357,7 @@ fun DiagnosticResultCard(
                             )
                         }
                         Text(
-                            text = "${result.confidencePercent}% MATCH",
+                            text = stringResource(R.string.result_confidence_match, result.confidencePercent),
                             style = MaterialTheme.typography.labelMedium,
                             color = DiagnosticCyan,
                             fontWeight = FontWeight.Bold
@@ -369,7 +374,7 @@ fun DiagnosticResultCard(
                             AiEngineSource.OFFLINE_REFERENCE -> Triple(
                                 StatusOkGreen.copy(alpha = 0.14f),
                                 StatusOkGreen,
-                                Icons.Rounded.MenuBook
+                                Icons.AutoMirrored.Rounded.MenuBook
                             )
                             AiEngineSource.FREE_SHARED_FLASH,
                             AiEngineSource.FREE_SHARED_LITE_FALLBACK -> Triple(
@@ -395,7 +400,7 @@ fun DiagnosticResultCard(
                                     modifier = Modifier.size(13.dp)
                                 )
                                 Text(
-                                    text = engineSource.badgeLabel,
+                                    text = engineSource.localizedBadgeLabel(),
                                     style = MaterialTheme.typography.labelSmall,
                                     color = sourceFg,
                                     fontWeight = FontWeight.SemiBold
@@ -509,7 +514,7 @@ fun DiagnosticResultCard(
                                     onShareClick(shareSummary)
                                 } else {
                                     context.sharePlainText(
-                                        chooserTitle = "Share Repair Diagnosis",
+                                        chooserTitle = context.getString(R.string.result_share_diagnosis),
                                         subject = result.title,
                                         text = shareSummary
                                     )
@@ -604,7 +609,7 @@ fun DiagnosticResultCard(
                             color = MaterialTheme.colorScheme.primary
                         )
                         Text(
-                            text = "$completedSteps/${result.diySteps.size} DONE",
+                            text = stringResource(R.string.result_steps_done, completedSteps, result.diySteps.size),
                             style = MaterialTheme.typography.labelSmall,
                             color = if (completedSteps == result.diySteps.size) StatusOkGreen else MaterialTheme.colorScheme.onSurfaceVariant,
                             fontWeight = FontWeight.Bold

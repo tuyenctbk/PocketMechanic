@@ -28,12 +28,12 @@ import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Assignment
+import androidx.compose.material.icons.automirrored.outlined.Assignment
+import androidx.compose.material.icons.automirrored.rounded.Assignment
 import androidx.compose.material.icons.outlined.Build
 import androidx.compose.material.icons.outlined.Garage
 import androidx.compose.material.icons.outlined.GraphicEq
 import androidx.compose.material.icons.outlined.Mic
-import androidx.compose.material.icons.rounded.Assignment
 import androidx.compose.material.icons.rounded.AutoAwesome
 import androidx.compose.material.icons.rounded.Build
 import androidx.compose.material.icons.rounded.FavoriteBorder
@@ -77,7 +77,9 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -120,6 +122,7 @@ import com.example.ui.screens.HandsFreeScreen
 import com.example.ui.screens.RepairLogScreen
 import com.example.ui.screens.WorkbenchScreen
 import com.example.ui.theme.DiagnosticCyan
+import com.example.ui.theme.PlusJakartaSansFontFamily
 import com.example.ui.theme.PocketMechanicTheme
 import com.example.ui.theme.SafetyAmber
 import com.example.util.findActiveActivity
@@ -142,7 +145,12 @@ private enum class WorkshopTab(
     AUDIO_PROBE("audio_probe", R.string.nav_audio, Icons.Rounded.GraphicEq, Icons.Outlined.GraphicEq),
     WORKBENCH("workbench", R.string.nav_workbench, Icons.Rounded.Build, Icons.Outlined.Build),
     HANDS_FREE("hands_free", R.string.nav_hands_free, Icons.Rounded.Mic, Icons.Outlined.Mic),
-    REPAIR_LOG("logs", R.string.nav_logs, Icons.Rounded.Assignment, Icons.Outlined.Assignment),
+    REPAIR_LOG(
+        "logs",
+        R.string.nav_logs,
+        Icons.AutoMirrored.Rounded.Assignment,
+        Icons.AutoMirrored.Outlined.Assignment
+    ),
     GARAGE("garage", R.string.nav_garage, Icons.Rounded.Garage, Icons.Outlined.Garage)
 }
 
@@ -425,27 +433,32 @@ private fun PocketMechanicShell(
                     title = {
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(10.dp)
+                            horizontalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
                             Image(
                                 painter = painterResource(id = R.drawable.ic_launcher_foreground_art),
                                 contentDescription = null,
                                 contentScale = ContentScale.Crop,
                                 modifier = Modifier
-                                    .size(30.dp)
+                                    .size(28.dp)
                                     .clip(RoundedCornerShape(8.dp))
                             )
                             Text(
                                 text = stringResource(R.string.app_name),
-                                style = MaterialTheme.typography.titleLarge,
-                                fontWeight = FontWeight.Bold
+                                style = MaterialTheme.typography.titleMedium.copy(fontSize = 18.sp),
+                                fontWeight = FontWeight.Bold,
+                                maxLines = 1,
+                                softWrap = false,
+                                overflow = TextOverflow.Ellipsis
                             )
                         }
                     },
                     actions = {
                         IconButton(
                             onClick = { showAiEngineSheet = true },
-                            modifier = Modifier.testTag("top_bar_ai_engine_button")
+                            modifier = Modifier
+                                .size(40.dp)
+                                .testTag("top_bar_ai_engine_button")
                         ) {
                             Icon(
                                 imageVector = if (aiAccessState.hasByokKey) Icons.Rounded.Key else Icons.Rounded.AutoAwesome,
@@ -462,7 +475,9 @@ private fun PocketMechanicShell(
                         } else {
                             IconButton(
                                 onClick = { engagementViewModel.openDonationSheet("top_bar_heart") },
-                                modifier = Modifier.testTag("top_bar_support_button")
+                                modifier = Modifier
+                                    .size(40.dp)
+                                    .testTag("top_bar_support_button")
                             ) {
                                 Icon(
                                     imageVector = Icons.Rounded.FavoriteBorder,
@@ -516,7 +531,13 @@ private fun PocketMechanicShell(
                                 label = {
                                     Text(
                                         text = stringResource(tab.labelRes),
-                                        style = MaterialTheme.typography.labelSmall
+                                        fontFamily = PlusJakartaSansFontFamily,
+                                        fontSize = 11.sp,
+                                        fontWeight = if (selected) FontWeight.SemiBold else FontWeight.Medium,
+                                        letterSpacing = 0.sp,
+                                        maxLines = 1,
+                                        softWrap = false,
+                                        overflow = TextOverflow.Ellipsis
                                     )
                                 },
                                 colors = NavigationBarItemDefaults.colors(
@@ -556,7 +577,13 @@ private fun PocketMechanicShell(
                                 label = {
                                     Text(
                                         text = stringResource(tab.labelRes),
-                                        style = MaterialTheme.typography.labelSmall
+                                        fontFamily = PlusJakartaSansFontFamily,
+                                        fontSize = 11.sp,
+                                        fontWeight = if (selected) FontWeight.SemiBold else FontWeight.Medium,
+                                        letterSpacing = 0.sp,
+                                        maxLines = 1,
+                                        softWrap = false,
+                                        overflow = TextOverflow.Ellipsis
                                     )
                                 },
                                 colors = NavigationRailItemDefaults.colors(

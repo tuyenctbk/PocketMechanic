@@ -65,14 +65,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.example.R
 import com.example.donation.BillingUiState
 import com.example.donation.DonationConfig
 import com.example.donation.DonationTier
 import com.example.donation.PayPalPreset
 import com.example.donation.QrCodeGenerator
+import com.example.ui.localizedLabel
+import com.example.ui.localizedTitle
 import com.example.ui.theme.DiagnosticCyan
 import com.example.ui.theme.SafetyAmber
 import com.example.ui.theme.StatusOkGreen
@@ -146,13 +150,15 @@ fun DonationModalSheet(
                 }
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = if (isActiveSupporter) "Thank You, Supporter!" else "Support PocketMechanic",
+                        text = stringResource(
+                            if (isActiveSupporter) R.string.donate_title_supporter else R.string.donate_title_default
+                        ),
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurface
                     )
                     Text(
-                        text = "100% ad-free indie DIY workshop tool. Pick any channel below.",
+                        text = stringResource(R.string.donate_subtitle),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -175,13 +181,13 @@ fun DonationModalSheet(
                         Icon(Icons.Rounded.Verified, contentDescription = null, tint = StatusOkGreen)
                         Column {
                             Text(
-                                text = "Active Supporter Status Unlocked",
+                                text = stringResource(R.string.donate_unlocked_title),
                                 style = MaterialTheme.typography.labelLarge,
                                 color = StatusOkGreen,
                                 fontWeight = FontWeight.Bold
                             )
                             Text(
-                                text = "All donation prompts are permanently muted.${supporterTierId?.let { " ($it)" }.orEmpty()}",
+                                text = "${stringResource(R.string.donate_unlocked_desc)}${supporterTierId?.let { " ($it)" }.orEmpty()}",
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -233,7 +239,7 @@ fun DonationModalSheet(
                 DonationChannelTab.GOOGLE_PLAY -> {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         Text(
-                            text = "One-tap Google Play Billing — permanently activates your Active Supporter badge.",
+                            text = stringResource(R.string.donate_play_desc),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -264,17 +270,19 @@ fun DonationModalSheet(
                                 ) {
                                     Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
                                         Text(
-                                            text = "${tierDisplay.tier.badgeLabel} • ${tierDisplay.tier.title}",
+                                            text = "${tierDisplay.tier.badgeLabel} • ${tierDisplay.tier.localizedTitle()}",
                                             style = MaterialTheme.typography.titleSmall,
                                             fontWeight = FontWeight.SemiBold,
                                             color = MaterialTheme.colorScheme.onSurface
                                         )
                                         Text(
-                                            text = if (tierDisplay.isPlayCatalogLoaded) {
-                                                "Google Play verified SKU"
-                                            } else {
-                                                "1-Tap Google Play Checkout"
-                                            },
+                                            text = stringResource(
+                                                if (tierDisplay.isPlayCatalogLoaded) {
+                                                    R.string.donate_play_verified
+                                                } else {
+                                                    R.string.donate_play_checkout
+                                                }
+                                            ),
                                             style = MaterialTheme.typography.bodySmall,
                                             color = MaterialTheme.colorScheme.onSurfaceVariant
                                         )
@@ -307,7 +315,7 @@ fun DonationModalSheet(
                                     color = SafetyAmber
                                 )
                                 Text(
-                                    text = "Connecting to Google Play Billing...",
+                                    text = stringResource(R.string.donate_play_connecting),
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
@@ -348,7 +356,7 @@ fun DonationModalSheet(
                                     onClick = { selectedPayPalPreset = preset },
                                     label = {
                                         Text(
-                                            text = preset.label,
+                                            text = preset.localizedLabel(),
                                             style = MaterialTheme.typography.labelMedium
                                         )
                                     },
@@ -458,7 +466,7 @@ fun DonationModalSheet(
                             ) {
                                 Icon(Icons.Rounded.Share, contentDescription = null, modifier = Modifier.size(18.dp))
                                 Spacer(modifier = Modifier.width(6.dp))
-                                Text("Share")
+                                Text(stringResource(R.string.action_share))
                             }
 
                             Button(
@@ -482,7 +490,7 @@ fun DonationModalSheet(
                                     contentColor = Color(0xFF002029)
                                 )
                             ) {
-                                Text("Open PayPal")
+                                Text(stringResource(R.string.donate_open_paypal))
                                 Spacer(modifier = Modifier.width(6.dp))
                                 Icon(
                                     Icons.AutoMirrored.Rounded.OpenInNew,
@@ -517,13 +525,13 @@ fun DonationModalSheet(
                                 )
                                 Column {
                                     Text(
-                                        text = "Buy the Developer a Ko-fi",
+                                        text = stringResource(R.string.donate_kofi_title),
                                         style = MaterialTheme.typography.titleMedium,
                                         fontWeight = FontWeight.SemiBold,
                                         color = MaterialTheme.colorScheme.onSurface
                                     )
                                     Text(
-                                        text = "Quick web tip jar — zero account lock-in.",
+                                        text = stringResource(R.string.donate_kofi_desc),
                                         style = MaterialTheme.typography.bodySmall,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant
                                     )
@@ -555,7 +563,7 @@ fun DonationModalSheet(
                                 ) {
                                     Icon(Icons.Rounded.ContentCopy, contentDescription = null, modifier = Modifier.size(18.dp))
                                     Spacer(modifier = Modifier.width(6.dp))
-                                    Text("Copy")
+                                    Text(stringResource(R.string.action_copy))
                                 }
 
                                 Button(
@@ -579,7 +587,7 @@ fun DonationModalSheet(
                                         contentColor = Color(0xFF281800)
                                     )
                                 ) {
-                                    Text("Open Ko-fi")
+                                    Text(stringResource(R.string.donate_open_kofi))
                                     Spacer(modifier = Modifier.width(6.dp))
                                     Icon(
                                         Icons.AutoMirrored.Rounded.OpenInNew,

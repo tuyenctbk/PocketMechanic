@@ -51,13 +51,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.R
 import com.example.model.DiagnosticSeverity
 import com.example.model.SafetyHazardType
 import com.example.model.SafetyWarning
 import com.example.model.SafetyWarningLevel
+import com.example.ui.localizedLabel
 import com.example.ui.theme.PocketMechanicTheme
 import com.example.ui.theme.SafetyAmber
 import com.example.ui.theme.StatusCriticalRed
@@ -103,16 +106,20 @@ fun SafetyWarningsPanel(
     }
 
     val isActiveDanger = highestLevel == SafetyWarningLevel.DANGER && !allAcknowledged
-    val dangerPulseTransition = rememberInfiniteTransition(label = "safety_danger_pulse")
-    val borderPulseAlpha by dangerPulseTransition.animateFloat(
-        initialValue = if (isActiveDanger) 0.45f else 0.85f,
-        targetValue = if (isActiveDanger) 1f else 0.85f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 850),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "safety_border_alpha"
-    )
+    val borderPulseAlpha = if (isActiveDanger) {
+        val dangerPulseTransition = rememberInfiniteTransition(label = "safety_danger_pulse")
+        dangerPulseTransition.animateFloat(
+            initialValue = 0.45f,
+            targetValue = 1f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(durationMillis = 850),
+                repeatMode = RepeatMode.Reverse
+            ),
+            label = "safety_border_alpha"
+        ).value
+    } else {
+        0.85f
+    }
 
     Surface(
         color = MaterialTheme.colorScheme.surface,
@@ -180,20 +187,22 @@ fun SafetyWarningsPanel(
 
                         Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
                             Text(
-                                text = when {
-                                    allAcknowledged -> "SAFETY CHECKS CONFIRMED"
-                                    highestLevel == SafetyWarningLevel.DANGER -> "CRITICAL SAFETY WARNINGS"
-                                    else -> "SAFETY PRECAUTIONS FIRST"
-                                },
+                                text = stringResource(
+                                    when {
+                                        allAcknowledged -> R.string.safety_checks_confirmed
+                                        highestLevel == SafetyWarningLevel.DANGER -> R.string.safety_critical_warnings
+                                        else -> R.string.safety_precautions_first
+                                    }
+                                ),
                                 style = MaterialTheme.typography.labelLarge,
                                 color = accentColor,
                                 fontWeight = FontWeight.ExtraBold
                             )
                             Text(
                                 text = if (allAcknowledged) {
-                                    "All ${warnings.size} safety precautions checked off"
+                                    stringResource(R.string.safety_all_checked, warnings.size)
                                 } else {
-                                    "Verify each precaution before touching equipment"
+                                    stringResource(R.string.safety_verify_each)
                                 },
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -291,7 +300,7 @@ private fun SafetyWarningItemCard(
                         shape = RoundedCornerShape(6.dp)
                     ) {
                         Text(
-                            text = warning.level.name,
+                            text = warning.level.localizedLabel(),
                             style = MaterialTheme.typography.labelSmall,
                             color = levelColor,
                             fontWeight = FontWeight.ExtraBold,
@@ -310,7 +319,7 @@ private fun SafetyWarningItemCard(
                             modifier = Modifier.size(14.dp)
                         )
                         Text(
-                            text = warning.hazardType.label,
+                            text = warning.hazardType.localizedLabel(),
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )

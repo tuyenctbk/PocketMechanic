@@ -27,6 +27,7 @@ import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 import java.net.HttpURLConnection
 import java.net.URL
+import java.util.Locale
 
 data class AiDiagnosisOutcome(
     val result: DiagnosticResult,
@@ -225,6 +226,7 @@ class MechanicAiService {
 
             User follow-up question: $question
             Answer clearly and practically. Use Google Search if exact torque specs, part numbers, or manual steps are needed.
+            ${responseLanguageDirective(preserveHeaders = false)}
         """.trimIndent()
 
         val cleanKey = byokApiKey?.trim().orEmpty()
@@ -279,6 +281,7 @@ class MechanicAiService {
             $historyBlock
 
             Current user input: $userAsk
+            ${responseLanguageDirective(preserveHeaders = false)}
         """.trimIndent()
 
         val cleanKey = byokApiKey?.trim().orEmpty()
@@ -640,7 +643,22 @@ class MechanicAiService {
             - If audio is attached, analyze the rhythmic cadence, pitch, squeal, knock, rattle, or hum pattern to identify the most likely mechanical culprit.
             - If an image is attached, inspect any visible error codes, leaks, corrosion, blown fuses, belt wear, or pipe fitting types.
             - Cross-reference the exact make/model and error code via Google Search grounding for manufacturer repair guidance and safety warnings.
+            ${responseLanguageDirective(preserveHeaders = true)}
         """.trimIndent()
+    }
+
+    private fun responseLanguageDirective(preserveHeaders: Boolean): String {
+        val locale = Locale.getDefault()
+        val langTag = locale.toLanguageTag().ifBlank { "en" }
+        val langName = locale.getDisplayLanguage(Locale.ENGLISH).ifBlank { "English" }
+        if (locale.language.equals("en", ignoreCase = true)) {
+            return ""
+        }
+        return if (preserveHeaders) {
+            "- Respond in $langName ($langTag) for all diagnostic values, explanations, safety warnings, DIY steps, and parts, while keeping the exact English section headers (TITLE:, CULPRIT:, CONFIDENCE:, SEVERITY:, SUMMARY:, SAFETY_WARNINGS:, DIY_STEPS:, PARTS_TOOLS:) and [DANGER|WARNING|CAUTION] prefixes."
+        } else {
+            "Respond naturally in $langName ($langTag)."
+        }
     }
 
     private fun scaleBitmapForUpload(source: Bitmap): Bitmap {

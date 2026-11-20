@@ -32,6 +32,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -47,6 +48,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.MenuBook
 import androidx.compose.material.icons.automirrored.rounded.Send
 import androidx.compose.material.icons.rounded.AutoFixHigh
 import androidx.compose.material.icons.rounded.CameraAlt
@@ -55,7 +57,6 @@ import androidx.compose.material.icons.rounded.DeleteOutline
 import androidx.compose.material.icons.rounded.EditNote
 import androidx.compose.material.icons.rounded.GraphicEq
 import androidx.compose.material.icons.rounded.Key
-import androidx.compose.material.icons.rounded.MenuBook
 import androidx.compose.material.icons.rounded.Mic
 import androidx.compose.material.icons.rounded.PhotoLibrary
 import androidx.compose.material.icons.rounded.PlayArrow
@@ -94,6 +95,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -106,6 +108,7 @@ import com.example.model.EquipmentCategory
 import com.example.ui.DiagnosisUiState
 import com.example.ui.MechanicViewModel
 import com.example.ui.StreamUiState
+import com.example.ui.localizedName
 import com.example.ui.components.AcousticWaveformCanvas
 import com.example.ui.components.AiQuotaChoiceCard
 import com.example.ui.components.DiagnosticResultCard
@@ -269,7 +272,7 @@ fun WorkbenchScreen(
                                 onClick = { viewModel.setCategory(category) },
                                 label = {
                                     Text(
-                                        text = category.displayName,
+                                        text = category.localizedName(),
                                         style = MaterialTheme.typography.labelMedium
                                     )
                                 },
@@ -307,7 +310,7 @@ fun WorkbenchScreen(
                         value = equipmentInput,
                         onValueChange = { viewModel.setEquipmentInput(it) },
                         label = { Text(stringResource(R.string.workbench_make_model_label)) },
-                        placeholder = { Text("e.g., 2018 Honda Civic, LG WM3900HWA, Kohler 20hp") },
+                        placeholder = { Text(stringResource(R.string.placeholder_workbench_equip)) },
                         singleLine = true,
                         modifier = Modifier
                             .fillMaxWidth()
@@ -477,7 +480,7 @@ fun WorkbenchScreen(
                                 verticalArrangement = Arrangement.spacedBy(8.dp)
                             ) {
                                 Text(
-                                    text = "QUICK ERROR CODE / SYMPTOM TEMPLATES",
+                                    text = stringResource(R.string.workbench_templates_header),
                                     style = MaterialTheme.typography.labelSmall,
                                     color = DiagnosticCyan
                                 )
@@ -486,11 +489,12 @@ fun WorkbenchScreen(
                                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                                 ) {
                                     listOf(
-                                        "Washer showing OE drain code",
-                                        "Engine OBD code P0301 misfire",
-                                        "Slow drip under P-trap slip nut",
-                                        "AC condenser buzzing, fan not spinning"
-                                    ).forEach { hint ->
+                                        R.string.template_washer_oe,
+                                        R.string.template_obd_p0301,
+                                        R.string.template_sink_drip,
+                                        R.string.template_ac_buzz
+                                    ).forEach { hintRes ->
+                                        val hint = stringResource(hintRes)
                                         FilterChip(
                                             selected = false,
                                             onClick = { viewModel.setSymptomInput(hint) },
@@ -509,7 +513,7 @@ fun WorkbenchScreen(
                 value = symptomInput,
                 onValueChange = { viewModel.setSymptomInput(it) },
                 label = { Text(stringResource(R.string.workbench_symptom_label)) },
-                placeholder = { Text("e.g., Squeals on cold start, or flashing E24 on dishwasher") },
+                placeholder = { Text(stringResource(R.string.placeholder_workbench_symptom)) },
                 minLines = 2,
                 maxLines = 4,
                 trailingIcon = {
@@ -524,14 +528,14 @@ fun WorkbenchScreen(
                                 putExtra(RecognizerIntent.EXTRA_PROMPT, context.getString(R.string.dictate_symptoms))
                             }
                             runCatching { dictationLauncher.launch(speechIntent) }.onFailure {
-                                localNotice = "On-device voice dictation is not available on this device."
+                                localNotice = context.getString(R.string.dictation_unavailable)
                             }
                         },
                         modifier = Modifier.testTag("workbench_dictate_symptoms_button")
                     ) {
                         Icon(
                             imageVector = Icons.Rounded.Mic,
-                            contentDescription = "Dictate symptom notes with voice",
+                            contentDescription = stringResource(R.string.dictate_symptoms),
                             tint = DiagnosticCyan
                         )
                     }
@@ -566,7 +570,7 @@ fun WorkbenchScreen(
                                     modifier = Modifier.size(16.dp)
                                 )
                                 Text(
-                                    text = "Audio (${(recordedWav!!.size / 1024)} KB)",
+                                    text = stringResource(R.string.workbench_audio_badge, recordedWav!!.size / 1024),
                                     style = MaterialTheme.typography.labelSmall,
                                     color = MaterialTheme.colorScheme.onPrimaryContainer
                                 )
@@ -590,7 +594,7 @@ fun WorkbenchScreen(
                                     modifier = Modifier.size(16.dp)
                                 )
                                 Text(
-                                    text = "Photo Attached",
+                                    text = stringResource(R.string.workbench_photo_attached),
                                     style = MaterialTheme.typography.labelSmall,
                                     color = MaterialTheme.colorScheme.onSecondaryContainer
                                 )
@@ -671,7 +675,7 @@ fun WorkbenchScreen(
                             ) {
                                 CircularProgressIndicator(color = SafetyAmber)
                                 Text(
-                                    text = "Cross-referencing acoustic/visual signatures with repair manuals...",
+                                    text = stringResource(R.string.workbench_cross_referencing),
                                     style = MaterialTheme.typography.bodyMedium,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
@@ -706,7 +710,7 @@ fun WorkbenchScreen(
                                 verticalArrangement = Arrangement.spacedBy(10.dp)
                             ) {
                                 Text(
-                                    text = "Diagnosis Error",
+                                    text = stringResource(R.string.workbench_diagnosis_error),
                                     style = MaterialTheme.typography.titleMedium,
                                     color = MaterialTheme.colorScheme.onErrorContainer
                                 )
@@ -743,7 +747,7 @@ fun WorkbenchScreen(
                                         },
                                         modifier = Modifier.weight(1f)
                                     ) {
-                                        Icon(Icons.Rounded.MenuBook, contentDescription = null, tint = StatusOkGreen, modifier = Modifier.size(15.dp))
+                                        Icon(Icons.AutoMirrored.Rounded.MenuBook, contentDescription = null, tint = StatusOkGreen, modifier = Modifier.size(15.dp))
                                         Spacer(modifier = Modifier.width(4.dp))
                                         Text(stringResource(R.string.action_offline), maxLines = 1)
                                     }
@@ -807,7 +811,7 @@ fun WorkbenchScreen(
                                                 verticalArrangement = Arrangement.spacedBy(6.dp)
                                             ) {
                                                 Text(
-                                                    text = if (msg.isUser) "You" else stringResource(R.string.app_name),
+                                                    text = stringResource(if (msg.isUser) R.string.speaker_you else R.string.app_name),
                                                     style = MaterialTheme.typography.labelSmall,
                                                     color = if (msg.isUser) SafetyAmber else DiagnosticCyan
                                                 )
@@ -926,12 +930,12 @@ private fun AudioProbePanel(
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "ACOUSTIC SOUND PROBE",
+                        text = stringResource(R.string.workbench_sound_probe_title),
                         style = MaterialTheme.typography.labelLarge,
                         color = SafetyAmber
                     )
                     Text(
-                        text = "Hold phone near engine, belt, motor, or pipe (up to 20s)",
+                        text = stringResource(R.string.workbench_sound_probe_desc),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -968,11 +972,13 @@ private fun AudioProbePanel(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = when {
-                            isRecording -> "Stop Listening"
-                            hasAudioReady -> "Re-Record Sound"
-                            else -> "Listen to Noise"
-                        }
+                        text = stringResource(
+                            when {
+                                isRecording -> R.string.workbench_stop_listening
+                                hasAudioReady -> R.string.workbench_rerecord_sound
+                                else -> R.string.workbench_listen_noise
+                            }
+                        )
                     )
                 }
 
@@ -987,7 +993,9 @@ private fun AudioProbePanel(
                     ) {
                         Icon(
                             imageVector = if (isPlaying) Icons.Rounded.Stop else Icons.Rounded.PlayArrow,
-                            contentDescription = if (isPlaying) "Stop audio preview" else "Play audio preview",
+                            contentDescription = stringResource(
+                                if (isPlaying) R.string.audio_playback_stop else R.string.audio_playback_play
+                            ),
                             tint = DiagnosticCyan
                         )
                     }
@@ -1002,7 +1010,7 @@ private fun AudioProbePanel(
                     ) {
                         Icon(
                             Icons.Rounded.DeleteOutline,
-                            contentDescription = "Discard recorded audio",
+                            contentDescription = stringResource(R.string.probe_discard_audio),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
@@ -1011,7 +1019,7 @@ private fun AudioProbePanel(
 
             if (hasAudioReady && !isRecording) {
                 Text(
-                    text = "Audio clip captured — ready for Gemini rhythmic pattern analysis.",
+                    text = stringResource(R.string.workbench_audio_ready),
                     style = MaterialTheme.typography.bodySmall,
                     color = StatusOkGreen
                 )
@@ -1021,7 +1029,14 @@ private fun AudioProbePanel(
                 modifier = Modifier.horizontalScroll(rememberScrollState()),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                listOf("Belt squeal", "Rhythmic knock", "Grinding bearing", "Clicking relay", "Pipe rattle").forEach { tag ->
+                listOf(
+                    R.string.chip_belt_squeal,
+                    R.string.chip_rhythmic_knock,
+                    R.string.chip_grinding_bearing,
+                    R.string.chip_clicking_relay,
+                    R.string.chip_pipe_rattle
+                ).forEach { tagRes ->
+                    val tag = stringResource(tagRes)
                     FilterChip(
                         selected = false,
                         onClick = { onSymptomChipClick(tag) },
@@ -1060,12 +1075,12 @@ private fun VisionInspectorPanel(
         ) {
             Column(modifier = Modifier.fillMaxWidth()) {
                 Text(
-                    text = "VISUAL FAULT & ERROR SCANNER",
+                    text = stringResource(R.string.workbench_vision_title),
                     style = MaterialTheme.typography.labelLarge,
                     color = DiagnosticCyan
                 )
                 Text(
-                    text = "Snap error displays, blown fuses, hoses, or pipe fittings",
+                    text = stringResource(R.string.workbench_vision_desc),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -1090,7 +1105,7 @@ private fun VisionInspectorPanel(
                 ) {
                     Image(
                         bitmap = capturedBitmap.asImageBitmap(),
-                        contentDescription = "Captured diagnostic photo",
+                        contentDescription = stringResource(R.string.workbench_photo_attached),
                         contentScale = ContentScale.Crop,
                         modifier = Modifier.fillMaxSize()
                     )
@@ -1105,7 +1120,7 @@ private fun VisionInspectorPanel(
                     ) {
                         Icon(
                             Icons.Rounded.Close,
-                            contentDescription = "Remove photo",
+                            contentDescription = stringResource(R.string.action_close),
                             tint = Color.White
                         )
                     }
@@ -1123,14 +1138,21 @@ private fun VisionInspectorPanel(
                         .height(50.dp)
                         .testTag("open_camera_button"),
                     shape = RoundedCornerShape(14.dp),
+                    contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.secondaryContainer,
                         contentColor = MaterialTheme.colorScheme.onSecondaryContainer
                     )
                 ) {
-                    Icon(Icons.Rounded.CameraAlt, contentDescription = null)
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(if (isCameraOpen) "Hide Camera" else "Live Camera")
+                    Icon(Icons.Rounded.CameraAlt, contentDescription = null, modifier = Modifier.size(18.dp))
+                    Spacer(modifier = Modifier.width(6.dp))
+                    Text(
+                        text = stringResource(
+                            if (isCameraOpen) R.string.workbench_hide_camera else R.string.workbench_live_camera
+                        ),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
                 }
 
                 OutlinedButton(
@@ -1139,11 +1161,16 @@ private fun VisionInspectorPanel(
                         .weight(1f)
                         .height(50.dp)
                         .testTag("pick_photo_button"),
-                    shape = RoundedCornerShape(14.dp)
+                    shape = RoundedCornerShape(14.dp),
+                    contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp)
                 ) {
-                    Icon(Icons.Rounded.PhotoLibrary, contentDescription = null)
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text("Photo Library")
+                    Icon(Icons.Rounded.PhotoLibrary, contentDescription = null, modifier = Modifier.size(18.dp))
+                    Spacer(modifier = Modifier.width(6.dp))
+                    Text(
+                        text = stringResource(R.string.workbench_photo_library),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
                 }
             }
         }

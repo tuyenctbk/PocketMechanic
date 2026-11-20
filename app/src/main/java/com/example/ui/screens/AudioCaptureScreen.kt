@@ -31,11 +31,11 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.MenuBook
 import androidx.compose.material.icons.automirrored.rounded.Send
 import androidx.compose.material.icons.rounded.AutoFixHigh
 import androidx.compose.material.icons.rounded.GraphicEq
 import androidx.compose.material.icons.rounded.Key
-import androidx.compose.material.icons.rounded.MenuBook
 import androidx.compose.material.icons.rounded.Mic
 import androidx.compose.material.icons.rounded.Refresh
 import androidx.compose.material3.Button
@@ -79,6 +79,7 @@ import com.example.ui.DiagnosisUiState
 import com.example.ui.FollowUpMessage
 import com.example.ui.MechanicViewModel
 import com.example.ui.StreamUiState
+import com.example.ui.localizedName
 import com.example.ui.components.AcousticCaptureProfile
 import com.example.ui.components.AcousticProbeConsoleCard
 import com.example.ui.components.AiQuotaChoiceCard
@@ -279,7 +280,7 @@ fun AudioCaptureScreen(
                 putExtra(RecognizerIntent.EXTRA_PROMPT, context.getString(R.string.dictate_symptoms))
             }
             runCatching { dictationLauncher.launch(speechIntent) }.onFailure {
-                permissionError = "On-device voice dictation is not available on this device."
+                permissionError = context.getString(R.string.dictation_unavailable)
             }
         },
         modifier = modifier
@@ -409,7 +410,7 @@ fun AudioCaptureContent(
                                 FilterChip(
                                     selected = selectedCategory == category,
                                     onClick = { onSelectCategory(category) },
-                                    label = { Text(category.displayName, style = MaterialTheme.typography.labelSmall) },
+                                    label = { Text(category.localizedName(), style = MaterialTheme.typography.labelSmall) },
                                     colors = FilterChipDefaults.filterChipColors(
                                         selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
                                         selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer
@@ -443,7 +444,7 @@ fun AudioCaptureContent(
                             value = equipmentInput,
                             onValueChange = onEquipmentInputChange,
                             label = { Text(stringResource(R.string.audio_make_model_label)) },
-                            placeholder = { Text(activeProfile.equipmentPlaceholder) },
+                            placeholder = { Text(stringResource(activeProfile.equipmentPlaceholderRes)) },
                             singleLine = true,
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -455,7 +456,8 @@ fun AudioCaptureContent(
                             modifier = Modifier.horizontalScroll(rememberScrollState()),
                             horizontalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
-                            activeProfile.symptomChips.forEach { tag ->
+                            activeProfile.symptomChipRes.forEach { chipRes ->
+                                val tag = stringResource(chipRes)
                                 FilterChip(
                                     selected = false,
                                     onClick = { onAppendSymptom(tag) },
@@ -468,7 +470,7 @@ fun AudioCaptureContent(
                             value = symptomInput,
                             onValueChange = onSymptomInputChange,
                             label = { Text(stringResource(R.string.audio_symptom_label)) },
-                            placeholder = { Text(activeProfile.symptomPlaceholder) },
+                            placeholder = { Text(stringResource(activeProfile.symptomPlaceholderRes)) },
                             minLines = 2,
                             maxLines = 3,
                             trailingIcon = {
@@ -599,7 +601,7 @@ fun AudioCaptureContent(
                                             onClick = onRunOfflineFallback,
                                             modifier = Modifier.weight(1f)
                                         ) {
-                                            Icon(Icons.Rounded.MenuBook, contentDescription = null, tint = StatusOkGreen, modifier = Modifier.size(15.dp))
+                                            Icon(Icons.AutoMirrored.Rounded.MenuBook, contentDescription = null, tint = StatusOkGreen, modifier = Modifier.size(15.dp))
                                             Spacer(modifier = Modifier.width(4.dp))
                                             Text(stringResource(R.string.action_offline), maxLines = 1)
                                         }
@@ -662,7 +664,7 @@ fun AudioCaptureContent(
                                                     verticalArrangement = Arrangement.spacedBy(6.dp)
                                                 ) {
                                                     Text(
-                                                        text = if (msg.isUser) "You" else stringResource(R.string.app_name),
+                                                        text = stringResource(if (msg.isUser) R.string.speaker_you else R.string.app_name),
                                                         style = MaterialTheme.typography.labelSmall,
                                                         color = if (msg.isUser) SafetyAmber else DiagnosticCyan
                                                     )
